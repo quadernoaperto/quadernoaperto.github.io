@@ -447,7 +447,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .m-note{display:flex;gap:.6rem;margin-top:1.3rem;padding:.75rem .85rem;border:1px dashed var(--line);border-radius:6px;color:var(--ink-2);font-size:.8rem}
 .m-note svg{width:15px;height:15px;flex:none;margin-top:.1rem;color:var(--accent)}
 /* ============================================================
-   13. TOAST
+   13. TOAST + AVVISO DI AVVIO
    ============================================================ */
 .toaster{position:fixed;bottom:1.2rem;right:1.2rem;z-index:500;display:flex;flex-direction:column;gap:.6rem;max-width:min(360px,calc(100vw - 2.4rem))}
 .toast{
@@ -459,6 +459,12 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .toast.out{animation:tout .28s forwards}
 @keyframes tin{from{transform:translateY(14px);opacity:0}}
 @keyframes tout{to{transform:translateY(10px);opacity:0}}
+.boot-err{
+  position:relative;z-index:1000;margin:1rem auto;max-width:760px;padding:1rem 1.2rem;
+  border:1.5px solid var(--accent);border-radius:6px;background:var(--paper-3);
+  box-shadow:4px 4px 0 var(--hard);font-size:.9rem;color:var(--ink);line-height:1.6;
+}
+.boot-err .mono{font-family:var(--font-m);font-size:.8rem;color:var(--accent)}
 /* ============================================================
    14. REGISTRO DEL DOCENTE
    ============================================================ */
@@ -560,6 +566,9 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 </style>
 </head>
 <body>
+<noscript>
+  <div class="boot-err"><b>JavaScript è disattivato.</b> Questo archivio funziona con JavaScript attivo: abilitalo nelle impostazioni del browser per vedere l'indice delle lezioni e dei saggi.</div>
+</noscript>
 
 <!-- ══════════ HEADER ══════════ -->
 <header class="site-head">
@@ -885,7 +894,7 @@ const CONFIG = { owner:'', repo:'', branch:'main' };
    DATI DIMOSTRATIVI — spariscono appena pubblichi
    le lezioni reali dal «Registro del docente».
    Convenzione nomi file: fil-4-kant.pptx, sto-3-…,
-   saggio-nietzsche.pdf
+   saggio-fil-nietzsche.pdf
    ══════════════════════════════════════════════════ */
 const F = (title,type,cls,date,size,pages,dl,desc)=>({ id:slug(title),title,type,cls,date,size,pages,dl,desc });
 const S = (title,subj,cls,date,size,pages,dl,desc)=>({ id:'saggio-'+slug(title),title,type:'pdf',subj,cls:cls||null,date,size,pages,dl,desc });
@@ -962,6 +971,14 @@ const SUBJ_META = {
   sto:{label:'Storia',    tint:'--t-sto', sym:'Σ'},
   x:  {label:'Trasversale',tint:'--t-sag',sym:'¶'}
 };
+/* memoria del browser, blindata: su alcuni PC (file locali,
+   cookie bloccati) localStorage può rifiutarsi di lavorare,
+   e non deve mai fermare la pagina */
+const store={
+  get(k,fb){ try{ const v=localStorage.getItem(k); return v===null?fb:v; }catch{ return fb; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch{} },
+  del(k){ try{ localStorage.removeItem(k); }catch{} }
+};
 
 /* ══════════════════════════════════════════════════
    STATO DATI
@@ -987,7 +1004,7 @@ function useData(subjects,essays,mode){
    RENDER — indice lezioni (materia → anno)
    ══════════════════════════════════════════════════ */
 let filterCls='all', sortBy='recent', currentFile=null, lastFocus=null;
-const favs = new Set(JSON.parse(localStorage.getItem('qa-favs')||'[]'));
+const favs=(()=>{ try{ return new Set(JSON.parse(store.get('qa-favs','[]'))); }catch{ return new Set(); } })();
 
 const sortList = list=>{
   const cmp = sortBy==='az' ? (a,b)=>a.title.localeCompare(b.title,'it')
@@ -1229,7 +1246,7 @@ function downloadFile(x){
 function toggleFav(id){
   const on=!favs.has(id);
   on?favs.add(id):favs.delete(id);
-  localStorage.setItem('qa-favs',JSON.stringify([...favs]));
+  store.set('qa-favs',JSON.stringify([...favs]));
   $$(`.fav[data-file="${id}"]`).forEach(b=>b.classList.toggle('on',on));
   if(currentFile&&currentFile.f.id===id) setFavBtn(on);
   updateSavedStat();
@@ -1363,7 +1380,7 @@ function toast(msg,icon='check'){
 const TKEY='qa-teacher';
 let TCFG=null;
 let publishedData=null;
-try{ TCFG=JSON.parse(localStorage.getItem(TKEY)||'null'); }catch{}
+try{ TCFG=JSON.parse(store.get(TKEY,'null')); }catch{}
 
 const ghHeaders=()=>({Authorization:'Bearer '+TCFG.token,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'});
 async function ghApi(path,opts={}){
@@ -1490,7 +1507,7 @@ function renderTwSetup(){
     try{
       const branch=await ghVerify(owner,repo,token);
       TCFG={owner,repo,branch,token};
-      localStorage.setItem(TKEY,JSON.stringify(TCFG));
+      store.set(TKEY,JSON.stringify(TCFG));
       toast('Archivio collegato: puoi pubblicare le prime lezioni.','shield-check');
       renderTeacher();
     }catch(ex){
@@ -1507,6 +1524,7 @@ function renderTwHome(){
       <p class="tw-line" id="twMeta"></p>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem">
         <button class="btn" data-tw="reload"><i data-lucide="refresh-cw"></i> Ricarica</button>
+        <button class="btn" data-tw="sync" title="Ricostruisce l'indice leggendo la cartella lezioni/ del repository: utile dopo upload fatti direttamente su github.com"><i data-lucide="folder-sync"></i> Sincronizza cartella</button>
         <a class="btn" href="https://github.com/${TCFG.owner}/${TCFG.repo}" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Apri su GitHub</a>
       </div>
     </div>
@@ -1516,7 +1534,7 @@ function renderTwHome(){
       <span>oppure clicca per scegliere i file · .pptx e .pdf · anche più di uno</span>
     </div>
     <input type="file" id="fileInput" accept=".pptx,.pdf" multiple hidden>
-    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome del file inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b> o <b class="mono">saggio-</b> (es. <span class="mono">fil-4-kant.pptx</span>), tipo, materia e anno si compilano da soli.</span></p>
+    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome del file inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b> o <b class="mono">saggio-</b> (es. <span class="mono">fil-4-kant.pptx</span>, <span class="mono">saggio-fil-nietzsche.pdf</span>), tipo, materia e anno si compilano da soli.</span></p>
     <div id="twQueue" style="display:flex;flex-direction:column;gap:.9rem"></div>
     <div id="twQueueBar" hidden style="display:flex;justify-content:flex-end">
       <button class="btn accent" data-tw="puball"><i data-lucide="upload"></i> Pubblica tutto</button>
@@ -1591,18 +1609,24 @@ function renderPubList(){
   icons();
 }
 
+/* — metadati automatici dal nome del file — */
 function guessMeta(name,ext){
   let base=name.replace(new RegExp('\\.'+ext+'$','i'),'');
-  let sub=null, cls='', kind='lezione';
-  const m=base.match(/^(fil|sto|sag|saggio)[\s\-_.]*(\d)?[\s\-_.]+/i);
+  let kind='lezione', sub=null, cls='';
+  let m=base.match(/^(sag|saggio)[\s\-_.]+/i);
   if(m){
-    const p=m[1].toLowerCase();
-    if(p==='sag'||p==='saggio'){ kind='saggio'; sub='x'; }
-    else sub=p;
-    cls=m[2]||''; base=base.slice(m[0].length);
+    kind='saggio'; base=base.slice(m[0].length);
+    const a=base.match(/^(fil|sto)[\s\-_.]+/i);
+    if(a){ sub=a[1].toLowerCase(); base=base.slice(a[0].length); } else sub='x';
+  }else{
+    m=base.match(/^(fil|sto)[\s\-_.]*/i);
+    if(m){ sub=m[1].toLowerCase(); base=base.slice(m[0].length); }
   }
+  const c=base.match(/^(\d)[\s\-_.]+/);
+  if(c){ cls=c[1]; base=base.slice(c[0].length); }
   base=base.replace(/^[\d\s\-_.]+/,'').replace(/_+/g,' ').trim();
-  return { title: base||name.replace(/\.[^.]+$/,''), kind, sub: sub||(kind==='saggio'?'x':'fil'), cls: cls||(kind==='lezione'?'4':''), pages:null };
+  if(base) base=base.charAt(0).toUpperCase()+base.slice(1);
+  return { title: base||name.replace(/\.[^.]+$/,''), kind, sub: sub||(kind==='saggio'?'x':'fil'), cls, pages:null };
 }
 async function countPages(file,ext){
   try{
@@ -1645,7 +1669,7 @@ async function addFiles(files){
           <option value="sto" ${g.sub==='sto'?'selected':''}>Σ · Storia</option>
           <option value="x" ${g.sub==='x'?'selected':''}>¶ · Trasversale</option>
         </select></label>
-        <label class="fld q-lab-cls-lez" ${g.kind==='saggio'?'hidden':''}>Anno<select class="q-cls">${[3,4,5].map(c=>`<option ${+g.cls===c?'selected':''}>${c}</option>`).join('')}</select></label>
+        <label class="fld q-lab-cls-lez" ${g.kind==='saggio'?'hidden':''}>Anno<select class="q-cls">${[3,4,5].map(c=>`<option ${(+g.cls||4)===c?'selected':''}>${c}</option>`).join('')}</select></label>
         <label class="fld q-lab-cls-sag" ${g.kind!=='saggio'?'hidden':''}>Anno di riferimento<select class="q-cls-sag">
           <option value="0">—</option>${[3,4,5].map(c=>`<option ${+g.cls===c?'selected':''}>${c}</option>`).join('')}
         </select></label>
@@ -1754,6 +1778,81 @@ async function deletePublished(sub,id,btn){
   }
 }
 
+/* — sincronizza la cartella lezioni/ con l'indice:
+   utile dopo upload fatti direttamente su github.com — */
+const uniqueId=(base,taken)=>{ let id=base,i=2; while(taken.has(id)){id=base+'-'+i;i++;} return id; };
+async function twSyncFolder(btn){
+  const old=btn.innerHTML;
+  btn.disabled=true; btn.textContent='Sincronizzo…';
+  try{
+    let list;
+    try{
+      list=await ghApi(`/repos/${TCFG.owner}/${TCFG.repo}/contents/lezioni?ref=${TCFG.branch}`);
+    }catch(e){
+      if(e.status===404){ toast('La cartella lezioni/ non esiste ancora: pubblicando il primo file da qui (o caricandola su GitHub) verrà creata.','info'); return; }
+      throw e;
+    }
+    const files=(Array.isArray(list)?list:[]).filter(x=>x.type==='file'&&/\.(pptx|pdf)$/i.test(x.name));
+    const {json}=await ghGetPublished();
+    const indexed=new Set();
+    json.subjects.forEach(s=>s.files.forEach(f=>indexed.add(f.file)));
+    json.essays.forEach(f=>indexed.add(f.file));
+    /* file nella cartella ma non nell'indice */
+    const plan=[];
+    for(const x of files){
+      if(indexed.has(x.name)) continue;
+      const ext=(x.name.split('.').pop()||'').toLowerCase();
+      const g=guessMeta(x.name,ext);
+      let date=new Date().toISOString().slice(0,10);
+      try{
+        const cs=await ghApi(`/repos/${TCFG.owner}/${TCFG.repo}/commits?path=lezioni/${encodeURIComponent(x.name)}&per_page=1`);
+        if(cs[0]&&cs[0].commit&&cs[0].commit.author) date=(cs[0].commit.author.date||'').slice(0,10)||date;
+      }catch{}
+      plan.push({name:x.name,size:+(x.size/1048576).toFixed(1),ext,g,date});
+    }
+    /* voci dell'indice il cui file non esiste più */
+    const names=new Set(files.map(x=>x.name));
+    const orphans=[];
+    json.subjects.forEach(s=>s.files.forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'lezione',sub:s.id,id:f.id}); }));
+    json.essays.forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'saggio',id:f.id}); });
+    if(!plan.length&&!orphans.length){
+      toast('Cartella e indice già allineati: nessuna novità.','check');
+      return;
+    }
+    await updatePublished(j=>{
+      const taken=new Set();
+      j.subjects.forEach(s=>s.files.forEach(f=>taken.add(f.id)));
+      j.essays.forEach(f=>taken.add(f.id));
+      const have=new Set();
+      j.subjects.forEach(s=>s.files.forEach(f=>have.add(f.file)));
+      j.essays.forEach(f=>have.add(f.file));
+      plan.forEach(p=>{
+        if(have.has(p.name)) return;
+        if(p.g.kind==='saggio'){
+          const id=uniqueId('saggio-'+slug(p.g.title),taken); taken.add(id);
+          j.essays.push({id,title:p.g.title,type:p.ext,subj:p.g.sub,cls:p.g.cls?+p.g.cls:null,date:p.date,size:p.size,pages:null,dl:0,file:p.name,desc:'Saggio di approfondimento — '+SUBJ_META[p.g.sub].label+'.'});
+        }else{
+          const s=j.subjects.find(y=>y.id===p.g.sub);
+          if(!s) return;
+          const id=uniqueId(slug(p.g.title),taken); taken.add(id);
+          s.files.push({id,title:p.g.title,type:p.ext,cls:+(p.g.cls||4),date:p.date,size:p.size,pages:null,dl:0,file:p.name,desc:'Lezione del corso di '+(p.g.sub==='fil'?'Filosofia':'Storia')+' (Prof. Valerio Ciaco).'});
+        }
+      });
+      orphans.forEach(o=>{
+        if(o.kind==='saggio') j.essays=j.essays.filter(x=>x.id!==o.id);
+        else { const s=j.subjects.find(y=>y.id===o.sub); if(s) s.files=s.files.filter(x=>x.id!==o.id); }
+      });
+      return j;
+    },'Sincronizza la cartella lezioni/ con l\'indice');
+    renderPubList(); renderTwMeta();
+    toast(`Sincronizzati ${plan.length} file nuovi${orphans.length?` e rimosse ${orphans.length} voci orfane`:''}.`,'folder-sync');
+  }catch(e){
+    toast('Sincronizzazione non riuscita: '+e.message,'info');
+  }finally{
+    btn.disabled=false; btn.innerHTML=old; icons();
+  }
+}
+
 /* ══════════════════════════════════════════════════
    CARICAMENTO PUBBLICO — lezioni.json, se esiste
    ══════════════════════════════════════════════════ */
@@ -1763,7 +1862,7 @@ async function loadPublicData(){
   if(CONFIG.owner&&CONFIG.repo) urls.push(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch||'main'}/lezioni.json`);
   for(const u of urls){
     try{
-      const r=await fetch(u,{cache:'no-store'});
+      const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
       if(!r.ok) continue;
       const j=await r.json();
       if(publishedData) return;
@@ -1781,7 +1880,7 @@ function bind(){
   $('#themeBtn').addEventListener('click',()=>{
     const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
     document.documentElement.dataset.theme=next;
-    localStorage.setItem('qa-theme',next);
+    store.set('qa-theme',next);
     toast(next==='dark'?'Modalità serale attiva — comoda per ripassare la sera.':'Si torna alla luce del giorno.','sun');
   });
   $('#searchBtn').addEventListener('click',()=>openPalette());
@@ -1875,7 +1974,8 @@ function bind(){
     const el=e.target.closest('[data-tw]'); if(!el)return;
     const act=el.dataset.tw;
     if(act==='reload')twReload();
-    else if(act==='logout'){ localStorage.removeItem(TKEY); TCFG=null; publishedData=null; renderTeacher(); toast('Disconnesso: token rimosso da questo browser.','log-out'); }
+    else if(act==='sync')twSyncFolder(el);
+    else if(act==='logout'){ store.del(TKEY); TCFG=null; publishedData=null; renderTeacher(); toast('Disconnesso: token rimosso da questo browser.','log-out'); }
     else if(act==='pub')publishOne(el.closest('.q-card'));
     else if(act==='puball')publishAll();
     else if(act==='rmq'){ el.closest('.q-card').remove(); updateQueueBar(); }
@@ -1926,17 +2026,28 @@ function parallax(){
 }
 
 /* ══════════════════════════════════════════════════
-   AVVIO
+   AVVIO — protetto: se qualcosa va storto, la pagina
+   lo dice a visiera aperta invece di restare vuota
    ══════════════════════════════════════════════════ */
-const savedTheme=localStorage.getItem('qa-theme');
-if(savedTheme)document.documentElement.dataset.theme=savedTheme;
-useData(SUBJECTS,ESSAYS,'demo');
-bind();
-parallax();
-icons();
-loadPublicData();
-const m0=location.hash.match(/^#(?:lezione|saggio)-(.+)$/);
-if(m0&&fileMap.has(m0[1])) openFile(m0[1]);
+function boot(){
+  const savedTheme=store.get('qa-theme',null);
+  if(savedTheme)document.documentElement.dataset.theme=savedTheme;
+  useData(SUBJECTS,ESSAYS,'demo');
+  bind();
+  parallax();
+  icons();
+  loadPublicData();
+  const m0=location.hash.match(/^#(?:lezione|saggio)-(.+)$/);
+  if(m0&&fileMap.has(m0[1])) openFile(m0[1]);
+}
+try{ boot(); }
+catch(err){
+  const b=document.createElement('div');
+  b.className='boot-err';
+  b.innerHTML='<b>La pagina non è partita del tutto.</b> Dettaglio: <span class="mono">'+esc((err&&err.message)||String(err))+'</span><br>Se hai copiato il file a mano, verifica che la copia sia completa: un file integro termina con <span class="mono">&lt;/html&gt;</span> e pesa circa 130&nbsp;KB. In caso di dubbio, ricarica il codice e riprova a copiarlo per intero.';
+  document.body.prepend(b);
+  if(window.lucide){ try{ lucide.createIcons(); }catch{} }
+}
 </script>
 </body>
 </html>
