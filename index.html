@@ -884,6 +884,17 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
 /* ══════════════════════════════════════════════════
+   FUNZIONI DI BASE — definite PRIMA di tutto il resto:
+   la lista demo qui sotto le usa appena viene creata.
+   (Nella versione precedente stavano più in basso e
+   l'avvio si bloccava: «norm before initialization».)
+   ══════════════════════════════════════════════════ */
+const norm = s=>String(s).toLowerCase()
+  .replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i')
+  .replace(/[òó]/g,'o').replace(/[ùú]/g,'u');
+function slug(t){ return norm(t).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+
+/* ══════════════════════════════════════════════════
    CONFIGURAZIONE ARCHIVIO (opzionale)
    Compila SOLO se il sito è ospitato altrove ma i
    file restano su GitHub. Con GitHub Pages: vuoto.
@@ -955,10 +966,6 @@ const $  = s=>document.querySelector(s);
 const $$ = s=>[...document.querySelectorAll(s)];
 const icons = ()=>{ if(window.lucide) lucide.createIcons(); };
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const norm = s=>String(s).toLowerCase()
-  .replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i')
-  .replace(/[òó]/g,'o').replace(/[ùú]/g,'u');
-function slug(t){ return norm(t).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 const esc = s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtDate = d=>new Date(d+'T00:00:00').toLocaleDateString('it-IT',{day:'numeric',month:'short',year:'numeric'});
 const fmtDateShort = d=>new Date(d+'T00:00:00').toLocaleDateString('it-IT',{day:'numeric',month:'short'});
@@ -1524,7 +1531,7 @@ function renderTwHome(){
       <p class="tw-line" id="twMeta"></p>
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem">
         <button class="btn" data-tw="reload"><i data-lucide="refresh-cw"></i> Ricarica</button>
-        <button class="btn" data-tw="sync" title="Ricostruisce l'indice leggendo la cartella lezioni/ del repository: utile dopo upload fatti direttamente su github.com"><i data-lucide="folder-sync"></i> Sincronizza cartella</button>
+        <button class="btn" data-tw="sync" title="Ricostruisce l'indice leggendo la cartella lezioni/ del repository: utile dopo upload fatti con GitHub Desktop o su github.com"><i data-lucide="folder-sync"></i> Sincronizza cartella</button>
         <a class="btn" href="https://github.com/${TCFG.owner}/${TCFG.repo}" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Apri su GitHub</a>
       </div>
     </div>
@@ -1779,7 +1786,7 @@ async function deletePublished(sub,id,btn){
 }
 
 /* — sincronizza la cartella lezioni/ con l'indice:
-   utile dopo upload fatti direttamente su github.com — */
+   utile dopo upload fatti con GitHub Desktop o su github.com — */
 const uniqueId=(base,taken)=>{ let id=base,i=2; while(taken.has(id)){id=base+'-'+i;i++;} return id; };
 async function twSyncFolder(btn){
   const old=btn.innerHTML;
