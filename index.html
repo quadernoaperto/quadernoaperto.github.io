@@ -412,7 +412,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .p-empty svg{width:18px;height:18px;flex:none}
 .p-foot{display:flex;gap:1.2rem;align-items:center;padding:.6rem 1rem;border-top:1.5px solid var(--line);font-family:var(--font-m);font-size:.66rem;color:var(--ink-2)}
 /* ============================================================
-   12. MODAL
+   12. MODAL + COPERTINA PDF
    ============================================================ */
 .modal{
   position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.97);z-index:401;
@@ -429,13 +429,19 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .m-slide::after{
   content:"anteprima";position:absolute;bottom:.7rem;right:.8rem;font-family:var(--font-m);
   font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);
-  border:1px solid var(--line);border-radius:3px;padding:.12rem .4rem;transform:rotate(-4deg);
+  border:1px solid var(--line);border-radius:3px;padding:.12rem .4rem;transform:rotate(-4deg);z-index:2;
 }
 .ms-top{font-family:var(--font-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--c)}
 .ms-title{font-family:var(--font-d);font-weight:600;font-size:1.55rem;line-height:1.12;margin-top:.7rem;font-variation-settings:"SOFT" 40,"WONK" 1}
-.ms-lines{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem}
+.ms-cover{margin-top:1.2rem;flex:1;display:flex;flex-direction:column;min-height:0}
+.ms-lines{display:flex;flex-direction:column;gap:.5rem}
 .ms-lines i{height:7px;border-radius:4px;background:var(--line-soft)}
-.ms-foot{margin-top:auto;font-family:var(--font-m);font-size:.64rem;color:var(--ink-2)}
+.ms-cover.has-thumb .ms-lines{display:none}
+.ms-cover canvas.ms-thumb{
+  width:100%;height:auto;border:1px solid var(--line);border-radius:3px;background:#fff;
+  box-shadow:2px 3px 0 color-mix(in srgb,var(--hard) 25%,transparent);
+}
+.ms-foot{margin-top:1rem;font-family:var(--font-m);font-size:.64rem;color:var(--ink-2)}
 .m-info{padding:1.8rem 1.7rem 1.6rem}
 .m-kicker{font-family:var(--font-m);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--c);font-weight:500}
 #mTitle{font-family:var(--font-d);font-weight:600;font-size:1.7rem;line-height:1.1;margin-top:.5rem}
@@ -446,6 +452,32 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .m-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.5rem}
 .m-note{display:flex;gap:.6rem;margin-top:1.3rem;padding:.75rem .85rem;border:1px dashed var(--line);border-radius:6px;color:var(--ink-2);font-size:.8rem}
 .m-note svg{width:15px;height:15px;flex:none;margin-top:.1rem;color:var(--accent)}
+/* ============================================================
+   12b. LETTORE PDF
+   ============================================================ */
+#readBack{z-index:430}
+.reader{
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);z-index:431;
+  width:min(980px,calc(100vw - 1.6rem));height:min(88dvh,920px);
+  background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;
+  box-shadow:9px 9px 0 var(--hard);display:flex;flex-direction:column;overflow:hidden;
+  transition:transform .2s;
+}
+#readBack.open .reader{transform:translate(-50%,-50%) scale(1)}
+.rd-head{
+  flex:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.85rem 1.1rem;border-bottom:1.5px solid var(--ink);background:var(--paper-2);
+}
+.rd-kick{font-family:var(--font-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:500}
+#rdTitle{font-family:var(--font-d);font-weight:600;font-size:1.2rem;line-height:1.15;margin-top:.15rem}
+.rd-tools{display:flex;gap:.5rem;flex:none}
+.rd-body{flex:1;overflow:auto;background:#26221B;display:flex;padding:1rem}
+.rd-body canvas{margin:auto;background:#fff;max-width:100%;height:auto;box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.rd-foot{
+  flex:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.65rem 1.1rem;border-top:1.5px solid var(--ink);background:var(--paper-2);
+}
+.rd-page{font-family:var(--font-m);font-size:.78rem;color:var(--ink-2)}
 /* ============================================================
    13. TOAST + AVVISO DI AVVIO
    ============================================================ */
@@ -553,6 +585,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   .files{margin-left:0}
   .g-step{grid-template-columns:1fr;gap:.6rem}
   .g-step:nth-child(2),.g-step:nth-child(3){margin-left:0}
+  .rd-head{flex-wrap:wrap}
 }
 @media(max-width:560px){
   .file,.essay{grid-template-columns:2.3rem minmax(0,1fr) auto}
@@ -613,7 +646,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           Tutte le lezioni di Filosofia e Storia del triennio — PPTX e PDF — più una
           saggistica di approfondimento, raccolte dal Prof. Valerio Ciaco in un unico
           archivio aperto: cerca per argomento, sfoglia l'indice per materia e anno,
-          scarica quello che serve.
+          leggi e scarica quello che serve.
         </p>
         <form class="hero-search" id="heroForm">
           <label class="search-box">
@@ -673,7 +706,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <p class="kicker">§ L'indice — le lezioni</p>
           <h2 class="sec-title" id="indexTitle">…</h2>
         </div>
-        <p class="sec-note">Prima la materia, poi l'anno: ogni voce si apre sul posto e si scarica senza ostacoli. I saggi hanno un loro scaffale, subito dopo.</p>
+        <p class="sec-note">Prima la materia, poi l'anno: ogni voce si apre sul posto, si legge e si scarica senza ostacoli. I saggi hanno un loro scaffale, subito dopo.</p>
       </div>
       <div class="toolbar">
         <div class="seg" id="classFilter" role="group" aria-label="Filtra per anno">
@@ -766,8 +799,8 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <div class="g-step">
             <span class="g-n">2</span>
             <div>
-              <h3>Studia o scarica</h3>
-              <p>Apri la scheda per l'anteprima e i dettagli, poi scarica il file: i PDF si aprono direttamente nel browser, i PPTX si scaricano. Ogni lezione e ogni saggio hanno un link diretto da condividere sul gruppo di classe.</p>
+              <h3>Leggi o scarica</h3>
+              <p>Apri la scheda: i PDF mostrano in miniatura la prima pagina e si sfogliano qui sul sito col pulsante <b>«Leggi»</b>; i PPTX si scaricano in un click. Ogni lezione e ogni saggio hanno un link diretto da condividere sul gruppo di classe.</p>
             </div>
           </div>
           <div class="g-step">
@@ -842,7 +875,9 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
       <div class="m-slide" id="mSlide">
         <p class="ms-top" id="msTop">—</p>
         <h4 class="ms-title" id="msTitle">—</h4>
-        <div class="ms-lines" aria-hidden="true"><i style="width:86%"></i><i style="width:62%"></i><i style="width:74%"></i></div>
+        <div class="ms-cover" id="msCover">
+          <div class="ms-lines" aria-hidden="true"><i style="width:86%"></i><i style="width:62%"></i><i style="width:74%"></i></div>
+        </div>
         <p class="ms-foot" id="msFoot">—</p>
       </div>
       <div class="m-info">
@@ -856,12 +891,36 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <div><dt>Scaricamenti</dt><dd id="mDl">—</dd></div>
         </dl>
         <div class="m-actions">
-          <button class="btn accent" id="mDownload"><i data-lucide="download"></i> Scarica</button>
+          <button class="btn accent" id="mRead"><i data-lucide="book-open"></i> Leggi</button>
+          <button class="btn" id="mDownload"><i data-lucide="download"></i> Scarica</button>
           <button class="btn" id="mCopy"><i data-lucide="link-2"></i> Copia link</button>
           <button class="btn" id="mFav"><i data-lucide="star"></i> <span id="mFavTxt">Salva</span></button>
         </div>
         <p class="m-note" id="mNote"><i data-lucide="info"></i> <span>—</span></p>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ LETTORE PDF ══════════ -->
+<div class="overlay" id="readBack">
+  <div class="reader" role="dialog" aria-modal="true" aria-label="Lettore PDF">
+    <div class="rd-head">
+      <div style="min-width:0">
+        <p class="rd-kick" id="rdKicker">—</p>
+        <h3 id="rdTitle">—</h3>
+      </div>
+      <div class="rd-tools">
+        <button class="ibtn" id="rdZoomOut" aria-label="Riduci"><i data-lucide="zoom-out"></i></button>
+        <button class="ibtn" id="rdZoomIn" aria-label="Ingrandisci"><i data-lucide="zoom-in"></i></button>
+        <button class="ibtn" id="rdClose" aria-label="Chiudi il lettore"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div class="rd-body" id="rdBody"><canvas id="rdCanvas" width="0" height="0"></canvas></div>
+    <div class="rd-foot">
+      <button class="btn" id="rdPrev"><i data-lucide="chevron-left"></i> Indietro</button>
+      <span class="rd-page" id="rdPage">—</span>
+      <button class="btn" id="rdNext">Avanti <i data-lucide="chevron-right"></i></button>
     </div>
   </div>
 </div>
@@ -884,10 +943,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
 /* ══════════════════════════════════════════════════
-   FUNZIONI DI BASE — definite PRIMA di tutto il resto:
-   la lista demo qui sotto le usa appena viene creata.
-   (Nella versione precedente stavano più in basso e
-   l'avvio si bloccava: «norm before initialization».)
+   FUNZIONI DI BASE — definite PRIMA di tutto il resto
    ══════════════════════════════════════════════════ */
 const norm = s=>String(s).toLowerCase()
   .replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i')
@@ -896,10 +952,19 @@ function slug(t){ return norm(t).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'
 
 /* ══════════════════════════════════════════════════
    CONFIGURAZIONE ARCHIVIO (opzionale)
-   Compila SOLO se il sito è ospitato altrove ma i
-   file restano su GitHub. Con GitHub Pages: vuoto.
    ══════════════════════════════════════════════════ */
 const CONFIG = { owner:'', repo:'', branch:'main' };
+
+/* ══════════════════════════════════════════════════
+   DESCRIZIONI DELLE MATERIE
+   Modificabili dal Registro; quella vecchia di Storia
+   viene corretta automaticamente negli archivi esistenti.
+   ══════════════════════════════════════════════════ */
+const DEFAULT_DESC={
+  fil:'Dal mito al logos fino al Novecento: i testi, i concetti e le connessioni tra gli autori, con schemi e mappe per orientarsi.',
+  sto:'Dall\'anno Mille al mondo contemporaneo: fatti, cause e interpretazioni storiografiche, con fonti, mappe e cronologie.'
+};
+const OLD_DESC_STO='L\'Ottocento e il Novecento: fatti, cause e storiografia, con fonti, mappe e cronologie.';
 
 /* ══════════════════════════════════════════════════
    DATI DIMOSTRATIVI — spariscono appena pubblichi
@@ -912,7 +977,7 @@ const S = (title,subj,cls,date,size,pages,dl,desc)=>({ id:'saggio-'+slug(title),
 
 const SUBJECTS = [
   { id:'fil', name:'Filosofia', tint:'--t-fil',
-    desc:'Dal mito al logos fino al Novecento: i testi, i concetti e le connessioni tra gli autori, con schemi e mappe per orientarsi.',
+    desc:DEFAULT_DESC.fil,
     files:[
       F('Le origini della filosofia: i Presocratici','pptx',3,'2024-09-18',7.4,32,132,'Dai Milesi a Eraclito e Parmenide: il passaggio dal mito al logos e i primi modelli della physis.'),
       F('Socrate: la cura dell\'anima','pptx',3,'2024-10-09',6.8,29,147,'Il metodo maieutico, l\'ironia e il processo: il filosofo che non ha scritto nulla e ha cambiato tutto.'),
@@ -933,17 +998,23 @@ const SUBJECTS = [
       F('L\'esistenzialismo: da Heidegger a Sartre','pptx',5,'2025-02-25',6.9,31,142,'Esserci, essere-nel-mondo, libertà e responsabilità: la filosofia dell\'esistenza nel Novecento.')
     ]},
   { id:'sto', name:'Storia', tint:'--t-sto',
-    desc:'L\'Ottocento e il Novecento: fatti, cause e storiografia, con fonti, mappe e cronologie.',
+    desc:DEFAULT_DESC.sto,
     files:[
-      F('La Restaurazione e il Congresso di Vienna','pptx',3,'2024-09-17',7.2,30,139,'Equilibrio europeo, Santo Alleanza e l\'ondata rivoluzionaria del 1820-21.'),
-      F('Il Risorgimento: dal 1820 a Porta Pia','pptx',3,'2024-10-30',10.4,42,201,'Moti, riforme e guerra: l\'unità d\'Italia raccontata per fasi e protagonisti.'),
-      F('La seconda rivoluzione industriale','pptx',3,'2024-11-19',6.1,27,108,'Acciaio, elettricità e petrolio: nasce la società di massa.'),
-      F('L\'età di Bismarck e l\'unificazione tedesca','pdf',3,'2024-12-03',1.8,9,84,'«Ferro e sangue»: la Germania unita dall\'alto e il sistema delle alleanze.'),
-      F('Imperialismo e grande emigrazione','pptx',4,'2024-09-26',6.6,29,112,'La spartizione del mondo e l\'Italia dei migranti: due facce della globalizzazione otto-novecentesca.'),
-      F('La Grande Guerra','pptx',4,'2024-11-26',11.2,42,238,'Cause, svolgimento e conseguenze: guerra di posizione, fronte interno e Versailles.'),
-      F('Russia 1917: due rivoluzioni','pdf',4,'2024-12-17',1.6,8,96,'Febbraio e ottobre: crolla un impero, nasce un esperimento.'),
-      F('Fascismo e nazismo: origini e consenso','pptx',4,'2025-01-14',9.3,38,214,'Ideologie, propaganda e società totalitaria: un confronto storiografico.'),
-      F('La Seconda guerra mondiale','pptx',4,'2025-02-05',10.8,44,232,'Dall\'invasione della Polonia alla Shoah fino a Hiroshima: la guerra totale.'),
+      F('Comuni e rinascita dell\'anno Mille','pptx',3,'2024-09-17',7.2,30,139,'Sfruttamenti bonificati, città nuove e autonomie comunali: l\'Europa che riparte.'),
+      F('L\'impero di Federico II','pdf',3,'2024-10-02',1.8,9,84,'Stupor mundi: cultura, potere e scontro con il papato nella Sicilia del Duecento.'),
+      F('La crisi del Trecento','pptx',3,'2024-10-30',8.4,34,171,'Peste, carestie e rivolte: il crollo del sistema medievale.'),
+      F('Umanesimo e Rinascimento','pptx',3,'2024-11-27',9.1,38,188,'Dalla Firenze dei Medici alla corte di Federico da Montefeltro: arte, pensiero e mecenatismo.'),
+      F('Le grandi scoperte geografiche','pptx',3,'2024-12-18',7.6,31,158,'Colombo, Magellano e il mondo che diventa globale: conseguenze nei due emisferi.'),
+      F('Lutero e la Riforma protestante','pptx',3,'2025-01-15',8.0,35,203,'Le 95 tesi, la rottura con Roma e le guerre di religione.'),
+      F('La Controriforma e il Concilio di Trento','pdf',3,'2025-02-05',1.7,9,92,'La Chiesa che risponde: riforma interna, Inquisizione e nuovo catechismo.'),
+      F('Assolutismo ed Europa del Seicento','pptx',3,'2025-02-25',7.8,33,147,'Versailles, i Borboni e gli Asburgo: lo Stato moderno e le sue corti.'),
+      F('La Rivoluzione inglese e il parlamentarismo','pdf',4,'2024-09-24',1.9,10,96,'Dalla guerra civile alla Gloriosa: nasce la monarchia parlamentare.'),
+      F('Illuminismo e riforme settecentesche','pptx',4,'2024-10-22',8.2,36,167,'Filosofi, enciclopedie e sovrani riformatori: l\'Europa che cambia idea.'),
+      F('La Rivoluzione francese e Napoleone','pptx',4,'2024-11-26',10.6,42,224,'Dalla presa della Bastiglia a Waterloo: dieci anni che cambiano il mondo.'),
+      F('La Restaurazione e i moti risorgimentali','pptx',4,'2025-01-14',9.3,38,214,'Il Congresso di Vienna, i moti italiani e le guerre d\'indipendenza.'),
+      F('La Grande Guerra','pptx',4,'2025-02-05',11.2,42,238,'Cause, svolgimento e conseguenze: guerra di posizione, fronte interno e Versailles.'),
+      F('Fascismo e nazismo: origini e consenso','pptx',5,'2024-09-26',9.3,38,214,'Ideologie, propaganda e società totalitaria: un confronto storiografico.'),
+      F('La Seconda guerra mondiale','pptx',5,'2024-11-28',10.8,44,232,'Dall\'invasione della Polonia alla Shoah fino a Hiroshima: la guerra totale.'),
       F('La Guerra Fredda','pdf',5,'2025-01-21',2.8,15,176,'Blocchi, crisi e distensione: da Yalta alla caduta del Muro, con mappe e cronologie.'),
       F('Decolonizzazione e Terzo Mondo','pptx',5,'2025-02-11',6.7,30,121,'Bandung, Non Allineati e le indipendenze: nasce il Sud del mondo.'),
       F('L\'Italia repubblicana','pdf',5,'2025-02-25',2.2,11,104,'Dalla Costituzione al miracolo economico, fino alla Prima Repubblica.')
@@ -978,9 +1049,6 @@ const SUBJ_META = {
   sto:{label:'Storia',    tint:'--t-sto', sym:'Σ'},
   x:  {label:'Trasversale',tint:'--t-sag',sym:'¶'}
 };
-/* memoria del browser, blindata: su alcuni PC (file locali,
-   cookie bloccati) localStorage può rifiutarsi di lavorare,
-   e non deve mai fermare la pagina */
 const store={
   get(k,fb){ try{ const v=localStorage.getItem(k); return v===null?fb:v; }catch{ return fb; } },
   set(k,v){ try{ localStorage.setItem(k,v); }catch{} },
@@ -1209,23 +1277,34 @@ function setupStats(){
 const updateSavedStat=()=>{ $('#stSaved').textContent=favs.size; };
 
 /* ══════════════════════════════════════════════════
-   DOWNLOAD
+   DOWNLOAD — vero download via blob (PDF e PPTX)
    ══════════════════════════════════════════════════ */
 const fileUrl=f=> (CONFIG.owner&&CONFIG.repo)
   ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/lezioni/${f.file}`
   : 'lezioni/'+f.file;
 
-function downloadFile(x){
+async function downloadFile(x){
   const {f,kind}=x;
   const label = kind==='saggio'
     ? `Saggio · ${SUBJ_META[f.subj].label}`
     : `${x.s.name} · Classe ${f.cls}ª`;
   if(f.file){
-    const a=document.createElement('a');
-    a.href=fileUrl(f); a.download=f.title+'.'+f.type; a.target='_blank'; a.rel='noopener';
-    a.click();
+    const url=fileUrl(f);
+    toast(`Preparo il download di «${f.title}»…`,'download');
+    try{
+      const r=await fetch(url);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const blob=await r.blob();
+      const a=document.createElement('a');
+      const u=URL.createObjectURL(blob);
+      a.href=u; a.download=f.title+'.'+f.type;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(u),5000);
+    }catch(e){
+      window.open(url,'_blank','noopener');
+      toast('Download diretto non riuscito: il file si apre in una nuova scheda, salvalo da lì.','info');
+    }
     f.dl++; updateDl(f); renderTop();
-    toast(`«${f.title}» — download avviato.`,'download');
     return;
   }
   const txt=[
@@ -1245,6 +1324,125 @@ function downloadFile(x){
   URL.revokeObjectURL(a.href);
   f.dl++; updateDl(f); renderTop();
   toast(`«${f.title}» — download dimostrativo avviato.`,'download');
+}
+
+/* ══════════════════════════════════════════════════
+   VISUALIZZATORE PDF (PDF.js, caricato al volo)
+   ══════════════════════════════════════════════════ */
+const PDFJS_BASE='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+const pdfDocs=new Map();
+let pdfJsPromise=null;
+function ensurePdfJs(){
+  if(window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions.workerSrc) return Promise.resolve();
+  if(pdfJsPromise) return pdfJsPromise;
+  pdfJsPromise=(async()=>{
+    await new Promise((res,rej)=>{
+      const s=document.createElement('script');
+      s.src=PDFJS_BASE+'pdf.min.js';
+      s.onload=res;
+      s.onerror=()=>{ pdfJsPromise=null; rej(new Error('visualizzatore non caricato')); };
+      document.head.appendChild(s);
+    });
+    const lib=window.pdfjsLib;
+    try{
+      const r=await fetch(PDFJS_BASE+'pdf.worker.min.js');
+      if(!r.ok) throw 0;
+      lib.GlobalWorkerOptions.workerSrc=URL.createObjectURL(new Blob([await r.text()],{type:'text/javascript'}));
+    }catch{
+      lib.GlobalWorkerOptions.workerSrc=PDFJS_BASE+'pdf.worker.min.js';
+    }
+  })();
+  return pdfJsPromise;
+}
+async function loadPdf(url){
+  await ensurePdfJs();
+  if(pdfDocs.has(url)) return pdfDocs.get(url);
+  const doc=await window.pdfjsLib.getDocument({url}).promise;
+  pdfDocs.set(url,doc);
+  return doc;
+}
+/* miniatura: prima pagina del PDF nella copertina della scheda */
+async function renderCover(x){
+  const pane=$('#msCover'); if(!pane) return;
+  pane.querySelectorAll('canvas').forEach(c=>c.remove());
+  pane.classList.remove('has-thumb');
+  try{
+    const doc=await loadPdf(fileUrl(x.f));
+    if(currentFile!==x) return;
+    const page=await doc.getPage(1);
+    if(currentFile!==x) return;
+    const base=page.getViewport({scale:1});
+    const vp=page.getViewport({scale:240/base.width});
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    const canvas=document.createElement('canvas');
+    canvas.className='ms-thumb';
+    canvas.width=Math.floor(vp.width*dpr);
+    canvas.height=Math.floor(vp.height*dpr);
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    await page.render({canvasContext:ctx,viewport:vp,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
+    if(currentFile!==x) return;
+    pane.prepend(canvas);
+    pane.classList.add('has-thumb');
+    if(!x.f.pages){
+      x.f.pages=doc.numPages;
+      $('#msFoot').textContent=`${doc.numPages} pagine · Prof. Valerio Ciaco`;
+      $('#mFormat').textContent=`PDF · ${doc.numPages} pagine`;
+    }
+  }catch(e){ /* resta la copertina schematica */ }
+}
+/* lettore a tutta pagina */
+let rdState=null;
+async function openReader(x){
+  const {f}=x;
+  $('#readBack').classList.add('open');
+  document.body.classList.add('locked');
+  $('#rdKicker').textContent = x.kind==='saggio' ? `Saggio · ${SUBJ_META[f.subj].label}` : `${x.s.name} · ${f.cls}ª`;
+  $('#rdTitle').textContent=f.title;
+  $('#rdPage').textContent='carico il PDF…';
+  $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
+  rdState={x,url:fileUrl(f),doc:null,page:1,num:0,scale:1};
+  try{
+    rdState.doc=await loadPdf(rdState.url);
+    rdState.num=rdState.doc.numPages;
+    const avail=Math.max(320,($('#rdBody').clientHeight||600)-32);
+    const p1=await rdState.doc.getPage(1);
+    const vp=p1.getViewport({scale:1});
+    rdState.scale=Math.min(2.5,Math.max(.4,avail/vp.height));
+    await renderRdPage(1);
+  }catch(e){
+    const u=rdState.url; closeReader();
+    window.open(u,'_blank','noopener');
+    toast('Il visualizzatore non è partito: il PDF si apre in una nuova scheda.','info');
+  }
+}
+function closeReader(){
+  $('#readBack').classList.remove('open');
+  if(!$('#modBack').classList.contains('open')) document.body.classList.remove('locked');
+  rdState=null;
+}
+async function renderRdPage(n){
+  const st=rdState;
+  if(!st||!st.doc||!n||n<1||n>st.num) return;
+  st.page=n;
+  const page=await st.doc.getPage(n);
+  const vp=page.getViewport({scale:st.scale});
+  const canvas=$('#rdCanvas');
+  const dpr=Math.min(2,window.devicePixelRatio||1);
+  canvas.width=Math.floor(vp.width*dpr);
+  canvas.height=Math.floor(vp.height*dpr);
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  await page.render({canvasContext:ctx,viewport:vp,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
+  $('#rdPage').textContent=`pagina ${st.page} di ${st.num}`;
+  $('#rdPrev').disabled=st.page<=1;
+  $('#rdNext').disabled=st.page>=st.num;
+  $('#rdBody').scrollTop=0;
+}
+function rdZoom(m){
+  if(!rdState||!rdState.doc)return;
+  rdState.scale=Math.min(3,Math.max(.35,rdState.scale*m));
+  renderRdPage(rdState.page);
 }
 
 /* ══════════════════════════════════════════════════
@@ -1293,9 +1491,18 @@ function fillModal(x){
   $('#mSize').textContent=fmtSize(f.size);
   $('#mDl').textContent=f.dl;
   setFavBtn(favs.has(f.id));
-  $('#mNote').lastElementChild.textContent = f.file
-    ? 'Pubblicato nell\u2019archivio: «Scarica» serve il file originale. I PDF si aprono nel browser, i PPTX si scaricano.'
-    : 'Anteprima dimostrativa: pubblica i file veri dal «Registro del docente» e qui compariranno.';
+  const isPdf=!!(f.file&&f.type==='pdf');
+  $('#mRead').hidden=!isPdf;
+  $('#mDownload').classList.toggle('accent',!isPdf);
+  $('#mNote').lastElementChild.textContent = !f.file
+    ? 'Anteprima dimostrativa: pubblica i file veri dal «Registro del docente» e qui compariranno.'
+    : (f.type==='pdf'
+      ? 'Pubblicato nell\u2019archivio: «Leggi» lo sfoglia qui sul sito, pagina per pagina; «Scarica» salva il file originale.'
+      : 'Pubblicato nell\u2019archivio: «Scarica» salva il file; le slide PPTX si aprono con PowerPoint, LibreOffice o l\u2019app di Office.');
+  const pane=$('#msCover');
+  pane.querySelectorAll('canvas').forEach(c=>c.remove());
+  pane.classList.remove('has-thumb');
+  if(isPdf) renderCover(x);
 }
 function hashFor(x){ return (x.kind==='saggio'?'#saggio-':'#lezione-')+x.f.id; }
 function openFile(id){
@@ -1436,19 +1643,30 @@ const textToB64=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t)));
 const fileToB64=file=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
 
 const seedArchive=()=>({
-  subjects:SUBJECTS.map(s=>({id:s.id,name:s.name,tint:s.tint,desc:s.desc,files:[]})),
+  subjects:[
+    {id:'fil',name:'Filosofia',tint:'--t-fil',desc:DEFAULT_DESC.fil,files:[]},
+    {id:'sto',name:'Storia',tint:'--t-sto',desc:DEFAULT_DESC.sto,files:[]}
+  ],
   essays:[]
 });
+/* normalizza l'archivio: garantisce le due materie e
+   corregge la vecchia descrizione di Storia */
+function normalizeArchive(json){
+  if(Array.isArray(json)) json={subjects:json,essays:[]};
+  if(!Array.isArray(json.subjects)) json.subjects=[];
+  if(!Array.isArray(json.essays)) json.essays=[];
+  const seed=seedArchive();
+  ['fil','sto'].forEach(id=>{
+    let s=json.subjects.find(x=>x.id===id);
+    if(!s){ s=seed.subjects.find(x=>x.id===id); json.subjects.push(s); }
+    if(!s.desc||s.desc===OLD_DESC_STO) s.desc=DEFAULT_DESC[id];
+  });
+  return json;
+}
 async function ghGetPublished(){
   try{
     const j=await ghGet('lezioni.json');
-    let json=JSON.parse(b64ToText(j.content));
-    if(Array.isArray(json)) json={subjects:json,essays:[]};
-    if(!Array.isArray(json.subjects)) json.subjects=[];
-    if(!Array.isArray(json.essays)) json.essays=[];
-    const seed=seedArchive();
-    ['fil','sto'].forEach(id=>{ if(!json.subjects.find(s=>s.id===id)) json.subjects.push(seed.subjects.find(s=>s.id===id)); });
-    return {json,sha:j.sha};
+    return {json:normalizeArchive(JSON.parse(b64ToText(j.content))),sha:j.sha};
   }catch(e){
     if(e.status===404) return {json:seedArchive(),sha:null};
     throw e;
@@ -1524,6 +1742,11 @@ function renderTwSetup(){
   });
 }
 
+function fillDescFields(){
+  const fi=$('#descFil'), st=$('#descSto'); if(!fi||!st) return;
+  const get=id=>{ const s=(publishedData?.subjects||[]).find(x=>x.id===id); return s?.desc||DEFAULT_DESC[id]; };
+  fi.value=get('fil'); st.value=get('sto');
+}
 function renderTwHome(){
   $('#twBody').innerHTML=`
     <div class="tw-card">
@@ -1533,6 +1756,15 @@ function renderTwHome(){
         <button class="btn" data-tw="reload"><i data-lucide="refresh-cw"></i> Ricarica</button>
         <button class="btn" data-tw="sync" title="Ricostruisce l'indice leggendo la cartella lezioni/ del repository: utile dopo upload fatti con GitHub Desktop o su github.com"><i data-lucide="folder-sync"></i> Sincronizza cartella</button>
         <a class="btn" href="https://github.com/${TCFG.owner}/${TCFG.repo}" target="_blank" rel="noopener"><i data-lucide="external-link"></i> Apri su GitHub</a>
+      </div>
+    </div>
+    <div class="tw-card">
+      <h3><i data-lucide="pen-line"></i>Descrizioni delle materie</h3>
+      <p class="tw-line" style="margin-bottom:.7rem">Compariranno nell'indice, sotto il nome della materia. Riscrivile come meglio raccontano il tuo programma.</p>
+      <label class="fld">Filosofia<textarea id="descFil" rows="2"></textarea></label>
+      <label class="fld" style="margin-top:.7rem">Storia<textarea id="descSto" rows="2"></textarea></label>
+      <div style="margin-top:.85rem;display:flex;justify-content:flex-end">
+        <button class="btn accent" data-tw="savedesc"><i data-lucide="save"></i> Salva descrizioni</button>
       </div>
     </div>
     <div class="drop" id="dropZone" tabindex="0" role="button" aria-label="Aggiungi file da pubblicare">
@@ -1555,6 +1787,7 @@ function renderTwHome(){
       <p>Il token vive solo in questo browser. Per revocarlo: GitHub → Settings → Developer settings → Personal access tokens.</p>
     </div>`;
   icons();
+  fillDescFields();
   renderTwMeta();
   if(publishedData) renderPubList(); else twReload(true);
   const dz=$('#dropZone'), fi=$('#fileInput');
@@ -1578,7 +1811,7 @@ async function twReload(silent){
     const {json}=await ghGetPublished();
     publishedData=json;
     useData(json.subjects,json.essays,'published');
-    renderPubList(); renderTwMeta();
+    renderPubList(); renderTwMeta(); fillDescFields();
     if(!silent) toast('Archivio ricaricato.','refresh-cw');
   }catch(e){ if(!silent) toast('Impossibile leggere l\u2019archivio: '+e.message,'info'); }
 }
@@ -1785,8 +2018,7 @@ async function deletePublished(sub,id,btn){
   }
 }
 
-/* — sincronizza la cartella lezioni/ con l'indice:
-   utile dopo upload fatti con GitHub Desktop o su github.com — */
+/* — sincronizza la cartella lezioni/ con l'indice — */
 const uniqueId=(base,taken)=>{ let id=base,i=2; while(taken.has(id)){id=base+'-'+i;i++;} return id; };
 async function twSyncFolder(btn){
   const old=btn.innerHTML;
@@ -1804,7 +2036,6 @@ async function twSyncFolder(btn){
     const indexed=new Set();
     json.subjects.forEach(s=>s.files.forEach(f=>indexed.add(f.file)));
     json.essays.forEach(f=>indexed.add(f.file));
-    /* file nella cartella ma non nell'indice */
     const plan=[];
     for(const x of files){
       if(indexed.has(x.name)) continue;
@@ -1817,7 +2048,6 @@ async function twSyncFolder(btn){
       }catch{}
       plan.push({name:x.name,size:+(x.size/1048576).toFixed(1),ext,g,date});
     }
-    /* voci dell'indice il cui file non esiste più */
     const names=new Set(files.map(x=>x.name));
     const orphans=[];
     json.subjects.forEach(s=>s.files.forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'lezione',sub:s.id,id:f.id}); }));
@@ -1851,7 +2081,7 @@ async function twSyncFolder(btn){
       });
       return j;
     },'Sincronizza la cartella lezioni/ con l\'indice');
-    renderPubList(); renderTwMeta();
+    renderPubList(); renderTwMeta(); fillDescFields();
     toast(`Sincronizzati ${plan.length} file nuovi${orphans.length?` e rimosse ${orphans.length} voci orfane`:''}.`,'folder-sync');
   }catch(e){
     toast('Sincronizzazione non riuscita: '+e.message,'info');
@@ -1871,11 +2101,9 @@ async function loadPublicData(){
     try{
       const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
       if(!r.ok) continue;
-      const j=await r.json();
+      const j=normalizeArchive(await r.json());
       if(publishedData) return;
-      const subjects=Array.isArray(j)?j:(j.subjects||[]);
-      const essays=Array.isArray(j)?[]:(j.essays||[]);
-      if(subjects.some(s=>s.files&&s.files.length)||essays.length){ useData(subjects,essays,'published'); return; }
+      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length){ useData(j.subjects,j.essays,'published'); return; }
     }catch{}
   }
 }
@@ -1948,8 +2176,10 @@ function bind(){
   $('#topList').addEventListener('click',e=>{
     const b=e.target.closest('[data-file]'); if(b)openFile(b.dataset.file);
   });
+  /* modal */
   $('#mClose').addEventListener('click',()=>closeModal());
   $('#modBack').addEventListener('click',e=>{ if(e.target.id==='modBack')closeModal(); });
+  $('#mRead').addEventListener('click',()=>{ if(currentFile)openReader(currentFile); });
   $('#mDownload').addEventListener('click',()=>{ if(currentFile)downloadFile(currentFile); });
   $('#mFav').addEventListener('click',()=>{ if(currentFile)toggleFav(currentFile.f.id); });
   $('#mCopy').addEventListener('click',async()=>{
@@ -1962,7 +2192,15 @@ function bind(){
     }
     toast('Link copiato: apre esattamente questo contenuto.','link-2');
   });
+  /* lettore */
+  $('#rdClose').addEventListener('click',closeReader);
+  $('#readBack').addEventListener('click',e=>{ if(e.target.id==='readBack')closeReader(); });
+  $('#rdPrev').addEventListener('click',()=>renderRdPage((rdState?.page||1)-1));
+  $('#rdNext').addEventListener('click',()=>renderRdPage((rdState?.page||1)+1));
+  $('#rdZoomIn').addEventListener('click',()=>rdZoom(1.2));
+  $('#rdZoomOut').addEventListener('click',()=>rdZoom(1/1.2));
   $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}));
+  /* registro */
   $('#teacherBtn').addEventListener('click',openTeacher);
   $('#twClose').addEventListener('click',closeTeacher);
   $('#twBack').addEventListener('click',closeTeacher);
@@ -1982,13 +2220,34 @@ function bind(){
     const act=el.dataset.tw;
     if(act==='reload')twReload();
     else if(act==='sync')twSyncFolder(el);
+    else if(act==='savedesc'){
+      const fil=$('#descFil').value.trim()||DEFAULT_DESC.fil;
+      const sto=$('#descSto').value.trim()||DEFAULT_DESC.sto;
+      el.disabled=true;
+      updatePublished(j=>{
+        j.subjects.forEach(s=>{ if(s.id==='fil')s.desc=fil; if(s.id==='sto')s.desc=sto; });
+        return j;
+      },'Aggiorna le descrizioni delle materie')
+        .then(()=>toast('Descrizioni aggiornate: già visibili nell\u2019indice.','check'))
+        .catch(e2=>toast('Errore: '+e2.message,'info'))
+        .finally(()=>{ el.disabled=false; });
+    }
     else if(act==='logout'){ store.del(TKEY); TCFG=null; publishedData=null; renderTeacher(); toast('Disconnesso: token rimosso da questo browser.','log-out'); }
     else if(act==='pub')publishOne(el.closest('.q-card'));
     else if(act==='puball')publishAll();
     else if(act==='rmq'){ el.closest('.q-card').remove(); updateQueueBar(); }
     else if(act==='del')deletePublished(el.dataset.sub,el.dataset.id,el);
   });
+  /* scorciatoie globali */
   document.addEventListener('keydown',e=>{
+    if($('#readBack').classList.contains('open')){
+      if(e.key==='Escape'){ e.preventDefault(); closeReader(); return; }
+      if(e.key==='ArrowLeft'){ e.preventDefault(); renderRdPage((rdState?.page||1)-1); return; }
+      if(e.key==='ArrowRight'){ e.preventDefault(); renderRdPage((rdState?.page||1)+1); return; }
+      if(e.key==='+'||e.key==='='){ e.preventDefault(); rdZoom(1.2); return; }
+      if(e.key==='-'){ e.preventDefault(); rdZoom(1/1.2); return; }
+      return;
+    }
     if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){
       e.preventDefault();
       $('#palBack').classList.contains('open')?closePalette():openPalette();
@@ -2033,8 +2292,7 @@ function parallax(){
 }
 
 /* ══════════════════════════════════════════════════
-   AVVIO — protetto: se qualcosa va storto, la pagina
-   lo dice a visiera aperta invece di restare vuota
+   AVVIO — protetto
    ══════════════════════════════════════════════════ */
 function boot(){
   const savedTheme=store.get('qa-theme',null);
@@ -2051,7 +2309,7 @@ try{ boot(); }
 catch(err){
   const b=document.createElement('div');
   b.className='boot-err';
-  b.innerHTML='<b>La pagina non è partita del tutto.</b> Dettaglio: <span class="mono">'+esc((err&&err.message)||String(err))+'</span><br>Se hai copiato il file a mano, verifica che la copia sia completa: un file integro termina con <span class="mono">&lt;/html&gt;</span> e pesa circa 130&nbsp;KB. In caso di dubbio, ricarica il codice e riprova a copiarlo per intero.';
+  b.innerHTML='<b>La pagina non è partita del tutto.</b> Dettaglio: <span class="mono">'+esc((err&&err.message)||String(err))+'</span><br>Se hai copiato il file a mano, verifica che la copia sia completa: un file integro termina con <span class="mono">&lt;/html&gt;</span>. In caso di dubbio, ricarica il codice e riprova a copiarlo per intero.';
   document.body.prepend(b);
   if(window.lucide){ try{ lucide.createIcons(); }catch{} }
 }
