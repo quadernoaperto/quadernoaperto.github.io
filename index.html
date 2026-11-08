@@ -496,7 +496,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 #rdTitle{font-family:var(--font-d);font-weight:600;font-size:1.2rem;line-height:1.15;margin-top:.15rem}
 .rd-tools{display:flex;gap:.5rem;flex:none}
 .rd-body{flex:1;overflow:auto;background:#26221B;display:flex;padding:1rem}
-.rd-body canvas{margin:auto;background:#fff;max-width:100%;height:auto;box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.rd-body canvas{flex:none;margin:auto;background:#fff;box-shadow:0 12px 34px rgba(0,0,0,.5)}
 .rd-foot{
   flex:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;
   padding:.65rem 1.1rem;border-top:1.5px solid var(--ink);background:var(--paper-2);
@@ -589,6 +589,9 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 }
 .tw-foot-card{border:1.5px dashed var(--line);border-radius:6px;padding:1rem 1.1rem;font-size:.78rem;color:var(--ink-2);display:flex;flex-direction:column;gap:.55rem;line-height:1.5}
 .tw-foot-card .linkish{align-self:flex-start}
+.slide .thumb-wrap{display:block;margin-top:.15rem}
+.slide .thumb-wrap canvas{display:block;height:118px;width:auto;max-width:100%;margin:0 auto;border:1px solid var(--line);border-radius:3px;background:#fff;box-shadow:2px 2px 0 color-mix(in srgb,var(--hard) 25%,transparent);pointer-events:none}
+.slide.has-thumb .lines{display:none}
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr}
   .hero-side{max-width:520px}
@@ -640,7 +643,10 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
       <a href="#guida">Guida</a>
     </nav>
     <div class="head-tools">
-      <button class="search-pill" id="searchBtn" aria-label="Apri la ricerca">
+            <button class="ibtn" id="teacherTop" hidden title="Registro del docente (Ctrl+Maiusc+D)" aria-label="Registro del docente">
+        <i data-lucide="lock"></i>
+      </button>
+      <button class="ibtn" id="themeBtn" aria-label="Attiva la modalità serale">
         <i data-lucide="search"></i><span>Cerca</span><kbd>Ctrl K</kbd>
       </button>
       <button class="ibtn" id="themeBtn" aria-label="Attiva la modalità serale">
@@ -1132,8 +1138,39 @@ function renderHeroSlides(){
     el.querySelector('.hero-sl-head').textContent=head;
     el.querySelector('.hero-sl-title').textContent=it.f.title;
     el.querySelector('.hero-sl-foot').textContent=`${fmtType(it.f.type)}${pages}`;
-    el.setAttribute('aria-label',`Apri: ${it.f.title}`);
+       el.setAttribute('aria-label',`Apri: ${it.f.title}`);
+    heroThumb(el,it);
   });
+}
+let heroThumbSeq=0;
+async function heroThumb(el,item){
+  el.classList.remove('has-thumb');
+  const old=el.querySelector('.thumb-wrap'); if(old) old.remove();
+  if(!(item.f.file&&item.f.type==='pdf')) return;
+  const my=++heroThumbSeq;
+  const want=item.f.id;
+  try{
+    const doc=await loadPdf(fileUrl(item.f));
+    if(el.dataset.open!==want||my!==heroThumbSeq) return;
+    const page=await doc.getPage(1);
+    if(el.dataset.open!==want||my!==heroThumbSeq) return;
+    const base=page.getViewport({scale:1});
+    const vp=page.getViewport({scale:360/base.width});
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.floor(vp.width*dpr);
+    canvas.height=Math.floor(vp.height*dpr);
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    await page.render({canvasContext:ctx,viewport:vp,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
+    if(el.dataset.open!==want||my!==heroThumbSeq) return;
+    const wrap=document.createElement('span');
+    wrap.className='thumb-wrap';
+    wrap.appendChild(canvas);
+    const lines=el.querySelector('.lines');
+    if(lines) lines.after(wrap); else el.appendChild(wrap);
+    el.classList.add('has-thumb');
+  }catch(e){ /* resta lo schema */ }
 }
 
 /* ══════════════════════════════════════════════════
@@ -1510,7 +1547,8 @@ async function openReader(x){
     const avail=Math.max(320,($('#rdBody').clientHeight||600)-32);
     const p1=await rdState.doc.getPage(1);
     const vp=p1.getViewport({scale:1});
-    rdState.scale=Math.min(2.5,Math.max(.4,avail/vp.height));
+    const availW=Math.max(240,($('#rdBody').clientWidth||800)-32);
+    rdState.scale=Math.min(2.5,Math.max(.4,Math.min(avail/vp.height,availW/vp.width)));
     await renderRdPage(1);
   }catch(e){
     const u=rdState.url; closeReader();
@@ -1544,6 +1582,7 @@ async function renderRdPage(n){
   ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
   await page.render({canvasContext:ctx,viewport:vp,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
   if(st.rid!==my) return;
+  canvas.style.width=Math.round(vp.width)+'px';
   $('#rdPage').textContent=`pagina ${st.page} di ${st.num}`;
   $('#rdPrev').disabled=st.page<=1;
   $('#rdNext').disabled=st.page>=st.num;
@@ -1909,6 +1948,7 @@ function renderTwSetup(){
       const branch=await ghVerify(owner,repo,token);
       TCFG={owner,repo,branch,token};
       store.set(TKEY,JSON.stringify(TCFG));
+      const tTop=$('#teacherTop'); if(tTop) tTop.hidden=false;
       toast('Archivio collegato: puoi pubblicare le prime lezioni.','shield-check');
       renderTeacher();
     }catch(ex){
@@ -2558,7 +2598,8 @@ function bind(){
   $('#rdZoomIn').addEventListener('click',()=>rdZoom(1.2));
   $('#rdZoomOut').addEventListener('click',()=>rdZoom(1/1.2));
   $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}));
-  $('#teacherBtn').addEventListener('click',openTeacher);
+    $('#teacherBtn').addEventListener('click',openTeacher);
+  $('#teacherTop').addEventListener('click',openTeacher);
   $('#twClose').addEventListener('click',closeTeacher);
   $('#twBack').addEventListener('click',closeTeacher);
   $('#twBody').addEventListener('click',e=>{
@@ -2600,7 +2641,7 @@ function bind(){
       const wrap=el.closest('.pub-edit');
       saveEdit(el.dataset.sub,el.dataset.id,wrap,el);
     }
-    else if(act==='logout'){ store.del(TKEY); TCFG=null; publishedData=null; renderTeacher(); toast('Disconnesso: token rimosso da questo browser.','log-out'); }
+    else if(act==='logout'){ store.del(TKEY); TCFG=null; publishedData=null; renderTeacher(); const tTop=$('#teacherTop'); if(tTop) tTop.hidden=true; toast('Disconnesso: token rimosso da questo browser.','log-out'); } da questo browser.','log-out'); }
     else if(act==='pub')publishOne(el.closest('.q-card'));
     else if(act==='puball')publishAll();
     else if(act==='rmq'){ el.closest('.q-card').remove(); updateQueueBar(); }
@@ -2677,6 +2718,7 @@ function boot(){
   parallax();
   icons();
   const cy=$('#copyYear'); if(cy) cy.textContent=String(new Date().getFullYear());
+  const tTop=$('#teacherTop'); if(tTop) tTop.hidden=!TCFG;
   loadPublicData();
   const idle=window.requestIdleCallback||(cb=>setTimeout(cb,1500));
   idle(()=>{ ensurePdfJs().catch(()=>{}); });
