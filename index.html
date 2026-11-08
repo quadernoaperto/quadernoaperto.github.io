@@ -232,7 +232,7 @@ h1 .hand path{
 .proj-actions .mono{font-size:.62rem;color:var(--ink-2)}
 section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;border-top:3px double var(--ink);padding-top:1.2rem}
-.sec-note{max-width:38ch;color:var(--ink-2);font-size:.92rem}
+.sec-note{max-width:40ch;color:var(--ink-2);font-size:.92rem}
 .toolbar{
   display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
   margin-top:1.8rem;padding-bottom:.9rem;border-bottom:1.5px solid var(--ink);
@@ -328,6 +328,47 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .essay .f-actions{opacity:0}
 .essay:hover .f-actions,.essay:focus-within .f-actions{opacity:1}
 @media(hover:none){.essay .f-actions{opacity:1}}
+/* — opera (raccolta di parti) nella sezione saggistica — */
+.opera-row{
+  padding:1.05rem 1.1rem;margin-bottom:1.15rem;
+  border:1.5px solid color-mix(in srgb,var(--c) 45%,transparent);border-radius:8px;
+  background:var(--paper-3);box-shadow:3px 3px 0 var(--hard);
+  transition:transform .16s,box-shadow .16s;
+}
+.opera-row:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--hard);background:var(--paper-3)}
+.opera-row .e-title{font-size:1.18rem}
+/* — pagina dell'opera — */
+#opBack{z-index:395;display:flex;align-items:center;justify-content:center;padding:1rem}
+.opera{
+  position:static;width:min(880px,100%);max-height:88dvh;overflow-y:auto;
+  background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;box-shadow:9px 9px 0 var(--hard);
+}
+#opBack:not(.open) .opera{display:none}
+.op-close{position:absolute;top:.8rem;right:.8rem;z-index:2}
+.opera{position:relative}
+.op-grid{display:grid;grid-template-columns:280px 1fr;gap:0}
+.op-side{background:var(--paper-3);border-right:1.5px solid var(--ink);padding:1.7rem 1.4rem 1.4rem;display:flex;flex-direction:column;min-height:360px}
+.op-top{font-family:var(--font-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--c)}
+.op-title{font-family:var(--font-d);font-weight:600;font-size:1.75rem;line-height:1.1;margin-top:.6rem;font-variation-settings:"SOFT" 40,"WONK" 1}
+.op-author{font-family:var(--font-d);font-style:italic;font-size:1.05rem;color:var(--ink-2);margin-top:.45rem}
+.op-meta{margin-top:1.1rem;font-family:var(--font-m);font-size:.64rem;line-height:2;color:var(--ink-2);letter-spacing:.03em}
+.op-meta b{color:var(--ink)}
+.op-actions{display:flex;flex-direction:column;gap:.6rem;margin-top:1.3rem}
+.op-actions .btn{justify-content:center}
+.op-note{margin-top:auto;padding-top:1rem;font-size:.78rem;color:var(--ink-2);border-top:1px dashed var(--line);line-height:1.5}
+.op-main{padding:1.7rem 1.6rem 1.5rem;min-width:0}
+.op-desc{color:var(--ink-2);font-size:.94rem;max-width:62ch}
+.op-list{list-style:none;margin-top:1.2rem}
+.op-part{
+  display:grid;grid-template-columns:2.6rem minmax(0,1fr) auto auto;align-items:center;gap:.9rem;
+  padding:.8rem .3rem;border-bottom:1.5px dashed var(--line);
+}
+.op-list li:first-child .op-part{border-top:1.5px dashed var(--line)}
+.op-part:hover{background:var(--paper-2)}
+.op-num{font-family:var(--font-d);font-weight:600;font-size:1.55rem;color:var(--c);line-height:1}
+.op-pt{font-weight:600;font-size:.98rem;text-align:left;padding:0;display:block}
+.op-pt:hover{color:var(--c)}
+.op-pm{display:block;font-family:var(--font-m);font-size:.66rem;color:var(--ink-2);margin-top:.25rem}
 .band{background:var(--paper-2);border-block:1.5px solid var(--ink)}
 .top-list{list-style:none;margin-top:1.8rem}
 .top-row{
@@ -567,6 +608,8 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   .stack{height:340px}
   .m-grid{grid-template-columns:1fr}
   .m-slide{border-right:none;border-bottom:1.5px solid var(--ink);min-height:0;gap:.5rem}
+  .op-grid{grid-template-columns:1fr}
+  .op-side{border-right:none;border-bottom:1.5px solid var(--ink);min-height:0}
   .subject-head{grid-template-columns:2rem minmax(0,1fr) 2.2rem;row-gap:.4rem}
   .s-meta{grid-column:2;flex-direction:row;align-items:baseline;grid-row:2}
   .s-arrow{grid-row:1;grid-column:3}
@@ -577,7 +620,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   .rd-head{flex-wrap:wrap}
 }
 @media(max-width:560px){
-  .file,.essay{grid-template-columns:2.3rem minmax(0,1fr) auto}
+  .file,.essay,.op-part{grid-template-columns:2.3rem minmax(0,1fr) auto}
   .f-dl{display:none}
 }
 @media(prefers-reduced-motion:reduce){
@@ -634,22 +677,22 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
         </div>
         <h1>Le lezioni non finiscono<br>con la <em class="hand">campanella<svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 42 2, 82 13, 120 7 S 192 3, 217 8"/></svg></em>.</h1>
         <p class="hero-lede">
-          Tutte le lezioni di Filosofia e Storia del triennio — PPTX e PDF — più una
-          saggistica di approfondimento, raccolte dal Prof. Valerio Ciaco in un unico
+          Tutte le lezioni di Filosofia e Storia del triennio — PPTX e PDF — più saggi
+          e opere di approfondimento, raccolte dal Prof. Valerio Ciaco in un unico
           archivio aperto: cerca per argomento, sfoglia l'indice per materia e anno,
           leggi e scarica quello che serve.
         </p>
         <form class="hero-search" id="heroForm">
           <label class="search-box">
             <i data-lucide="search"></i>
-            <input type="text" id="heroInput" placeholder="Cerca una lezione, un saggio, un autore, un argomento…" aria-label="Cerca una lezione o un saggio">
+            <input type="text" id="heroInput" placeholder="Cerca una lezione, un saggio, un'opera, un autore…" aria-label="Cerca una lezione, un saggio o un'opera">
             <kbd>Ctrl K</kbd>
           </label>
           <p class="hero-alt">premi <b>Invio</b> per cercare — oppure <a href="#materie">sfoglia l'indice qui sotto</a></p>
         </form>
         <div class="stats" id="stats">
           <div class="stat"><b><span data-auto="lessons">0</span></b><span>lezioni</span></div>
-          <div class="stat"><b><span data-auto="essays">0</span></b><span>saggi</span></div>
+          <div class="stat"><b><span data-auto="essays">0</span></b><span>saggi e parti</span></div>
           <div class="stat"><b><span data-auto="pages">0</span></b><span>slide e pagine</span></div>
           <div class="stat"><b><span id="stSaved">0</span><i data-lucide="star"></i></b><span>salvate da te</span></div>
         </div>
@@ -741,7 +784,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <p class="kicker">¶ La saggistica</p>
           <h2 class="sec-title">Oltre la lezione.</h2>
         </div>
-        <p class="sec-note">Quello che non entra nelle slide finisce qui: saggi e approfondimenti di Filosofia e Storia, da leggere con calma. Ogni giorno, anche su Instagram: <a class="linkish" href="https://www.instagram.com/saggiogram" target="_blank" rel="noopener">@saggiogram</a>. <span class="mono" id="essayStats"></span></p>
+        <p class="sec-note">Saggi singoli e opere in più parti: le opere si aprono sulla loro pagina, con le parti numerate in ordine di lettura. Ogni giorno anche su Instagram: <a class="linkish" href="https://www.instagram.com/saggiogram" target="_blank" rel="noopener">@saggiogram</a>. <span class="mono" id="essayStats"></span></p>
       </div>
       <div class="toolbar">
         <div class="seg" id="essayFilter" role="group" aria-label="Filtra i saggi per ambito">
@@ -764,7 +807,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <p class="kicker">§ Classifica</p>
           <h2 class="sec-title">Le più scaricate.</h2>
         </div>
-        <p class="sec-note">Lezioni e saggi insieme: il podio di ciò che gli studenti scaricano di più, rimescolato a ogni nuovo arrivo.</p>
+        <p class="sec-note">Lezioni, saggi e parti di opere insieme: il podio di ciò che gli studenti scaricano di più.</p>
       </div>
       <ol class="top-list" id="topList"></ol>
       <p class="empty-note" id="topEmpty" hidden>La classifica prenderà forma con le prime pubblicazioni nell'archivio.</p>
@@ -800,7 +843,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
             <span class="g-n">2</span>
             <div>
               <h3>Leggi o scarica</h3>
-              <p>Apri la scheda: i PDF mostrano in miniatura la prima pagina e si sfogliano qui sul sito col pulsante <b>«Leggi»</b>; i PPTX si scaricano in un click. Ogni lezione e ogni saggio hanno un link diretto da condividere sul gruppo di classe.</p>
+              <p>Apri la scheda: i PDF mostrano in miniatura la prima pagina e si sfogliano qui sul sito col pulsante <b>«Leggi»</b>; le opere in più parti si aprono sulla loro pagina, con l'ordine di lettura numerato e il download dell'intera opera.</p>
             </div>
           </div>
           <div class="g-step">
@@ -857,10 +900,10 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 </footer>
 
 <div class="overlay" id="palBack">
-  <div class="palette" role="dialog" aria-modal="true" aria-label="Ricerca lezioni e saggi">
+  <div class="palette" role="dialog" aria-modal="true" aria-label="Ricerca lezioni, saggi e opere">
     <div class="p-bar">
       <i data-lucide="search"></i>
-      <input type="text" id="palInput" placeholder="Cerca tra lezioni e saggi…" autocomplete="off" spellcheck="false">
+      <input type="text" id="palInput" placeholder="Cerca tra lezioni, saggi e opere…" autocomplete="off" spellcheck="false">
       <kbd>esc</kbd>
     </div>
     <ul class="p-res" id="palRes"></ul>
@@ -901,6 +944,30 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <button class="btn" id="mFav"><i data-lucide="star"></i> <span id="mFavTxt">Salva</span></button>
         </div>
         <p class="m-note" id="mNote"><i data-lucide="info"></i> <span>—</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAGINA DELL'OPERA ══════════ -->
+<div class="overlay" id="opBack">
+  <div class="opera" role="dialog" aria-modal="true" aria-labelledby="opTitle">
+    <button class="ibtn op-close" id="opClose" aria-label="Chiudi l'opera"><i data-lucide="x"></i></button>
+    <div class="op-grid">
+      <aside class="op-side">
+        <p class="op-top" id="opTop">—</p>
+        <h2 class="op-title" id="opTitle">—</h2>
+        <p class="op-author" id="opAuthor">—</p>
+        <div class="op-meta" id="opMeta"></div>
+        <div class="op-actions">
+          <button class="btn accent" id="opDlAll"><i data-lucide="download"></i> Scarica tutta l'opera</button>
+          <button class="btn" id="opCopy"><i data-lucide="link-2"></i> Copia link all'opera</button>
+        </div>
+        <p class="op-note">La numerazione indica l'ordine di lettura: parti dalla Parte&nbsp;1 e prosegui in sequenza.</p>
+      </aside>
+      <div class="op-main">
+        <p class="op-desc" id="opDesc">—</p>
+        <ol class="op-list" id="opList"></ol>
       </div>
     </div>
   </div>
@@ -954,10 +1021,7 @@ const norm = s=>String(s).toLowerCase()
 function slug(t){ return norm(t).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 
 /* ══════════════════════════════════════════════════
-   CONFIGURAZIONE ARCHIVIO — precompilata con i dati
-   del tuo repository (valeriociaco-droid/lezioni).
-   Anche se cambi dominio del sito, i file continuano
-   a essere trovati; e il Registro si apre precompilato.
+   CONFIGURAZIONE ARCHIVIO
    ══════════════════════════════════════════════════ */
 const CONFIG = { owner:'valeriociaco-droid', repo:'lezioni', branch:'main' };
 
@@ -1068,10 +1132,30 @@ const store={
 const shortHost=u=>{ try{ return new URL(u).hostname; }catch{ return u; } };
 
 /* ══════════════════════════════════════════════════
-   STATO DATI
+   STATO DATI — lezioni, saggi, opere
    ══════════════════════════════════════════════════ */
 let SUBJECTS_NOW=[], ESSAYS_NOW=[], MODE='demo';
 const ALL=[]; const fileMap=new Map(); let totalSlides=0;
+let WORKS=[];               /* opere: saggi raggruppati */
+
+function computeWorks(){
+  const map=new Map();
+  ESSAYS_NOW.forEach(f=>{
+    if(!(f.work&&f.work.id)) return;
+    if(!map.has(f.work.id)) map.set(f.work.id,{id:f.work.id,title:f.work.title||'Opera',author:'',desc:'',subj:f.subj||'x',parts:[],dl:0,date:'',size:0});
+    const w=map.get(f.work.id);
+    w.parts.push(f);
+    if(!w.author&&f.work.author) w.author=f.work.author;
+    if(!w.desc&&(f.work.desc||'')) w.desc=f.work.desc;
+    w.dl+=f.dl||0;
+    if(!w.date||f.date>w.date) w.date=f.date;
+    w.size+=f.size||0;
+  });
+  WORKS=[...map.values()].map(w=>{
+    w.parts.sort((a,b)=>((a.part||999)-(b.part||999))||a.date.localeCompare(b.date));
+    return w;
+  }).sort((a,b)=>b.date.localeCompare(a.date));
+}
 
 function useData(subjects,essays,mode){
   SUBJECTS_NOW = subjects.map(s=>({...s, files:(s.files||[])}));
@@ -1082,6 +1166,7 @@ function useData(subjects,essays,mode){
   ESSAYS_NOW.forEach(f=>ALL.push({f,s:null,kind:'saggio'}));
   ALL.forEach(x=>fileMap.set(x.f.id,x));
   totalSlides = ALL.reduce((a,x)=>a+(x.f.pages||0),0);
+  computeWorks();
   const chip=$('#demoChip'); if(chip) chip.hidden = mode!=='demo';
   renderProjects();
   renderHeroSlides();
@@ -1090,8 +1175,7 @@ function useData(subjects,essays,mode){
 }
 
 /* ══════════════════════════════════════════════════
-   HERO — le due slide in evidenza: le lezioni più
-   recenti di Filosofia e Storia, cliccabili
+   HERO — le due slide in evidenza
    ══════════════════════════════════════════════════ */
 function pickHeroItems(){
   const pool=[...ALL].sort((a,b)=>b.f.date.localeCompare(a.f.date));
@@ -1158,7 +1242,7 @@ function extRow(p){
 }
 
 /* ══════════════════════════════════════════════════
-   RENDER — indice lezioni (materia → anno)
+   RENDER — indice lezioni
    ══════════════════════════════════════════════════ */
 let filterCls='all', sortBy='recent', currentFile=null, lastFocus=null;
 const favs=(()=>{ try{ return new Set(JSON.parse(store.get('qa-favs','[]'))); }catch{ return new Set(); } })();
@@ -1248,21 +1332,40 @@ function applyFilter(){
 }
 
 /* ══════════════════════════════════════════════════
-   RENDER — saggistica
+   RENDER — saggistica: opere + saggi singoli
    ══════════════════════════════════════════════════ */
 let essayFilter='all', essaysExist=false;
 function renderEssays(){
   const box=$('#essays');
-  const list=[...ESSAYS_NOW].sort((a,b)=>b.date.localeCompare(a.date));
-  essaysExist=list.length>0;
-  if(!essaysExist){
+  const singles=ESSAYS_NOW.filter(f=>!(f.work&&f.work.id))
+    .sort((a,b)=>b.date.localeCompare(a.date));
+  const hasAny = WORKS.length>0 || singles.length>0;
+  essaysExist=hasAny;
+  if(!hasAny){
     box.innerHTML='';
     $('#essayStats').textContent='';
     const e=$('#essayEmpty'); e.hidden=false;
     e.textContent='Nessun saggio ancora: i primi approfondimenti arriveranno dal Registro del docente.';
     return;
   }
-  box.innerHTML=list.map(f=>{
+  const workRows=WORKS.map(w=>{
+    const m=SUBJ_META[w.subj]||SUBJ_META.x;
+    const n=w.parts.length;
+    const sub=['opera in '+n+(n===1?' parte':' parti'), w.author?'di '+w.author:'', `${m.sym} ${m.label}`, 'agg. '+fmtDateShort(w.date)].filter(Boolean).join(' · ');
+    return `<article class="essay opera-row" data-subj="${w.subj}" style="--c:var(${m.tint})">
+      <span class="e-badge" aria-hidden="true">${m.sym}</span>
+      <div class="e-body">
+        <button class="e-title" data-act="opera" data-opera="${esc(w.id)}"><span class="f-sec">¶</span>${esc(w.title)}</button>
+        <span class="e-sub">${sub}</span>
+        <span class="e-desc">${esc(w.desc||'Saggio in più parti: apri per l\u2019elenco completo e l\u2019ordine di lettura.')}</span>
+      </div>
+      <span class="f-dl" title="Download totali"><i data-lucide="arrow-down-to-line"></i><b>${w.dl}</b></span>
+      <span class="f-actions">
+        <button class="ibtn" data-act="opera" data-opera="${esc(w.id)}" aria-label="Apri la pagina dell'opera"><i data-lucide="chevrons-up-right"></i></button>
+      </span>
+    </article>`;
+  }).join('');
+  const singleRows=singles.map(f=>{
     const m=SUBJ_META[f.subj]||SUBJ_META.x;
     const parts=[fmtType(f.type),m.label];
     if(f.cls) parts.push(f.cls+'ª');
@@ -1282,15 +1385,17 @@ function renderEssays(){
       </span>
     </div>`;
   }).join('');
-  const c={fil:0,sto:0,x:0}; list.forEach(f=>{ if(c[f.subj]!==undefined) c[f.subj]++; });
-  $('#essayStats').textContent=`${list.length} saggi · ${c.fil} φ · ${c.sto} Σ · ${c.x} ¶`;
+  box.innerHTML=workRows+singleRows;
+  const c={fil:0,sto:0,x:0}; ESSAYS_NOW.forEach(f=>{ if(c[f.subj]!==undefined) c[f.subj]++; });
+  const nW=WORKS.length, tot=ESSAYS_NOW.length;
+  $('#essayStats').textContent=`${nW?nW+' oper'+(nW===1?'a':'e')+' · ':''}${tot} saggi · ${c.fil} φ · ${c.sto} Σ · ${c.x} ¶`;
   icons();
   applyEssayFilter();
 }
 function applyEssayFilter(){
   if(!essaysExist) return;
   let n=0;
-  $$('.essay').forEach(el=>{
+  $$('#essays .essay').forEach(el=>{
     const ok = essayFilter==='all' || el.dataset.subj===essayFilter;
     el.classList.toggle('off',!ok); if(ok) n++;
   });
@@ -1301,9 +1406,13 @@ function applyEssayFilter(){
 /* ══════════════════════════════════════════════════
    RENDER — classifica, diario, statistiche
    ══════════════════════════════════════════════════ */
-const kindMeta = x=> x.kind==='saggio'
-  ? {sub:`Saggio · ${SUBJ_META[x.f.subj].label}`, tint:SUBJ_META[x.f.subj].tint}
-  : {sub:`${x.s.name} · ${fmtType(x.f.type)} · ${x.f.cls}ª`, tint:x.s.tint};
+const kindMeta = x=> x.kind==='opera'
+  ? {sub:`Opera · ${x.w.parts.length} parti${x.w.author?' · '+x.w.author:''}`, tint:(SUBJ_META[x.w.subj]||SUBJ_META.x).tint}
+  : x.kind==='saggio'
+    ? (x.f.work
+        ? {sub:`«${x.f.work.title}» · Parte ${x.f.part||'?'}`, tint:(SUBJ_META[x.f.subj]||SUBJ_META.x).tint}
+        : {sub:`Saggio · ${(SUBJ_META[x.f.subj]||SUBJ_META.x).label}`, tint:(SUBJ_META[x.f.subj]||SUBJ_META.x).tint})
+    : {sub:`${x.s.name} · ${fmtType(x.f.type)} · ${x.f.cls}ª`, tint:x.s.tint};
 
 function renderTop(){
   const top=[...ALL].sort((a,b)=>b.f.dl-a.f.dl).slice(0,5);
@@ -1326,7 +1435,9 @@ function renderDiario(){
   const recent=[...ALL].sort((a,b)=>b.f.date.localeCompare(a.f.date)).slice(0,8);
   $('#lastUpdate').textContent = recent.length ? fmtDateShort(recent[0].f.date) : '—';
   const items=recent.map(x=>{
-    const meta = x.kind==='saggio' ? `Saggio · ${SUBJ_META[x.f.subj].label}` : `${x.s.name} · ${x.f.cls}ª`;
+    const meta = x.kind==='saggio'
+      ? (x.f.work?`«${x.f.work.title}» · P.${x.f.part||'?'}`:`Saggio · ${(SUBJ_META[x.f.subj]||SUBJ_META.x).label}`)
+      : `${x.s.name} · ${x.f.cls}ª`;
     const chip = x.kind==='saggio' ? 'saggio' : 'nuovo';
     return `<span class="d-item"><span class="d-new">${chip}</span><b>${esc(x.f.title)}</b><span class="d-meta">${meta}</span><span class="d-date">${fmtDateShort(x.f.date)}</span></span><span class="d-sep"></span>`;
   }).join('');
@@ -1370,7 +1481,7 @@ const fileUrl=f=> (CONFIG.owner&&CONFIG.repo)
 async function downloadFile(x){
   const {f,kind}=x;
   const label = kind==='saggio'
-    ? `Saggio · ${SUBJ_META[f.subj].label}`
+    ? (f.work?`Parte ${f.part||'?'} di «${f.work.title}»`:`Saggio · ${(SUBJ_META[f.subj]||SUBJ_META.x).label}`)
     : `${x.s.name} · Classe ${f.cls}ª`;
   if(f.file){
     const url=fileUrl(f);
@@ -1481,7 +1592,9 @@ async function openReader(x){
   const {f}=x;
   $('#readBack').classList.add('open');
   document.body.classList.add('locked');
-  $('#rdKicker').textContent = x.kind==='saggio' ? `Saggio · ${SUBJ_META[f.subj].label}` : `${x.s.name} · ${f.cls}ª`;
+  $('#rdKicker').textContent = x.kind==='saggio'
+    ? (f.work?`«${f.work.title}» · Parte ${f.part||'?'}`:`Saggio · ${(SUBJ_META[f.subj]||SUBJ_META.x).label}`)
+    : `${x.s.name} · ${f.cls}ª`;
   $('#rdTitle').textContent=f.title;
   $('#rdPage').textContent='carico il PDF…';
   $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
@@ -1502,7 +1615,7 @@ async function openReader(x){
 }
 function closeReader(){
   $('#readBack').classList.remove('open');
-  if(!$('#modBack').classList.contains('open')) document.body.classList.remove('locked');
+  syncLock();
   rdState=null;
 }
 async function renderRdPage(n){
@@ -1533,7 +1646,13 @@ function rdZoom(m){
 }
 
 /* ══════════════════════════════════════════════════
-   AZIONI — preferiti, scheda
+   BLOCCO SCROLL — sincronizzato tra overlay
+   ══════════════════════════════════════════════════ */
+const anyOverlay=()=>['#readBack','#opBack','#modBack','#palBack','#teacherDrawer'].some(s=>$(s).classList.contains('open'));
+function syncLock(){ document.body.classList.toggle('locked', anyOverlay()); }
+
+/* ══════════════════════════════════════════════════
+   AZIONI — preferiti, schede
    ══════════════════════════════════════════════════ */
 function toggleFav(id){
   const on=!favs.has(id);
@@ -1558,10 +1677,17 @@ function fillModal(x){
   if(kind==='saggio'){
     const m=SUBJ_META[f.subj]||SUBJ_META.x;
     $('#mSlide').style.setProperty('--c',`var(${m.tint})`);
-    $('#msTop').textContent=`Saggio · ${m.label}`;
-    $('#msTitle').textContent=f.title;
-    $('#msFoot').textContent=`${f.pages||'—'} pagine · © Prof. Valerio Ciaco`;
-    $('#mKicker').textContent=`Saggio · ${m.label}${f.cls?` · ${f.cls}ª`:''}`;
+    if(f.work){
+      $('#msTop').textContent=`Opera · ${m.label}`;
+      $('#msTitle').textContent=f.work.title;
+      $('#msFoot').textContent=`Parte ${f.part||'—'} · ${f.pages||'—'} pagine · © Prof. Valerio Ciaco`;
+      $('#mKicker').textContent=`«${f.work.title}»${f.work.author?' — '+f.work.author:''} · Parte ${f.part||'—'}`;
+    }else{
+      $('#msTop').textContent=`Saggio · ${m.label}`;
+      $('#msTitle').textContent=f.title;
+      $('#msFoot').textContent=`${f.pages||'—'} pagine · © Prof. Valerio Ciaco`;
+      $('#mKicker').textContent=`Saggio · ${m.label}${f.cls?` · ${f.cls}ª`:''}`;
+    }
     $('#mFormat').textContent=`${fmtType(f.type)} · ${f.pages?f.pages+' pagine':'n.d.'}`;
   }else{
     const s=x.s;
@@ -1602,15 +1728,77 @@ function openFile(id){
 }
 function closeModal(silent){
   $('#modBack').classList.remove('open');
-  document.body.classList.remove('locked');
+  syncLock();
   currentFile=null;
   if(!silent) history.replaceState(null,'',location.pathname+location.search);
 }
 
 /* ══════════════════════════════════════════════════
-   RICERCA VELOCE (palette)
+   PAGINA DELL'OPERA
+   ══════════════════════════════════════════════════ */
+let currentOpera=null;
+function fillOpera(w){
+  currentOpera=w;
+  const m=SUBJ_META[w.subj]||SUBJ_META.x;
+  const op=$('#opBack .opera');
+  op.style.setProperty('--c',`var(${m.tint})`);
+  $('#opTop').textContent=`Opera · ${m.label}`;
+  $('#opTitle').textContent=w.title;
+  $('#opAuthor').textContent=w.author?('di '+w.author):'Saggio in più parti';
+  $('#opMeta').innerHTML=
+    `<b>${w.parts.length}</b> parti · ${m.sym} ${m.label}<br>`+
+    `ultima parte pubblicata: ${fmtDate(w.date)}<br>`+
+    `download totali: <b>${w.dl}</b>`;
+  $('#opDesc').textContent=w.desc||'Un percorso di saggistica diviso in parti numerate: la numerazione indica l\u2019ordine di lettura consigliato.';
+  $('#opList').innerHTML=w.parts.map((f,i)=>{
+    const n=f.part||i+1;
+    const pm=[fmtType(f.type),fmtDate(f.date),fmtSize(f.size),f.pages?f.pages+' pagine':''].filter(Boolean).join(' · ');
+    const isPdf=f.type==='pdf';
+    return `<li class="op-part" style="--c:var(${m.tint})">
+      <span class="op-num">${String(n).padStart(2,'0')}</span>
+      <span class="op-pbody">
+        <button class="op-pt" data-act="view" data-file="${f.id}">${esc(f.title)}</button>
+        <span class="op-pm">Parte ${n} · ${pm}</span>
+      </span>
+      <span class="f-dl" title="Scaricamenti"><i data-lucide="arrow-down-to-line"></i><b data-dl="${f.id}">${f.dl}</b></span>
+      <span class="f-actions">
+        ${isPdf?`<button class="ibtn" data-act="read" data-file="${f.id}" aria-label="Leggi questa parte"><i data-lucide="book-open"></i></button>`:''}
+        <button class="ibtn" data-act="view" data-file="${f.id}" aria-label="Apri la scheda"><i data-lucide="eye"></i></button>
+        <button class="ibtn" data-act="dl" data-file="${f.id}" aria-label="Scarica questa parte"><i data-lucide="download"></i></button>
+      </span>
+    </li>`;
+  }).join('');
+  icons();
+}
+function openOpera(id){
+  const w=WORKS.find(x=>x.id===id); if(!w)return;
+  fillOpera(w);
+  $('#opBack').classList.add('open');
+  document.body.classList.add('locked');
+  if(location.hash!=='#opera-'+id) location.hash='opera-'+id;
+  $('#opClose').focus();
+}
+function closeOpera(silent){
+  $('#opBack').classList.remove('open');
+  syncLock();
+  currentOpera=null;
+  if(!silent) history.replaceState(null,'',location.pathname+location.search);
+}
+async function downloadWholeOpera(){
+  if(!currentOpera)return;
+  toast(`Avvio il download di ${currentOpera.parts.length} file: se il browser chiede conferma per i download multipli, autorizzalo.`,'download');
+  for(const p of currentOpera.parts){
+    await downloadFile({f:p,kind:'saggio'});
+    await new Promise(r=>setTimeout(r,900));
+  }
+  toast('Tutte le parti sono state scaricate.','check');
+}
+
+/* ══════════════════════════════════════════════════
+   RICERCA VELOCE — lezioni, saggi, parti e opere
    ══════════════════════════════════════════════════ */
 let palActive=0, palItems=[];
+function openAny(e){ e&&e.kind==='opera' ? openOpera(e.id) : openFile(e.id); }
 function hl(t,q){
   if(!q)return esc(t);
   const i=norm(t).indexOf(norm(q));
@@ -1620,22 +1808,29 @@ function hl(t,q){
 function palRender(q){
   const box=$('#palRes');
   const query=(q||'').trim();
+  const pool=[...ALL];
+  WORKS.forEach(w=>pool.push({f:{id:w.id,title:w.title,date:w.date,type:'pdf'},w,kind:'opera'}));
   let list, label;
   if(!query){
-    list=[...ALL].sort((a,b)=>b.f.date.localeCompare(a.f.date)).slice(0,6);
+    list=pool.sort((a,b)=>b.f.date.localeCompare(a.f.date)).slice(0,6);
     label='Ultime aggiunte';
   }else{
-    list=ALL.filter(x=>norm(x.f.title+' '+(x.kind==='saggio'?SUBJ_META[x.f.subj].label:x.s.name)).includes(norm(query))).slice(0,9);
+    list=pool.filter(x=>{
+      const hay = x.kind==='opera'
+        ? x.f.title+' '+(x.w.author||'')+' '+(SUBJ_META[x.w.subj]||SUBJ_META.x).label
+        : x.f.title+' '+(x.kind==='saggio'?((SUBJ_META[x.f.subj]||SUBJ_META.x).label+' '+(x.f.work?x.f.work.title+' '+x.f.work.author:'')):x.s.name);
+      return norm(hay).includes(norm(query));
+    }).slice(0,9);
     label=list.length?`${list.length} risultat${list.length===1?'o':'i'}`:'';
   }
-  palActive=0; palItems=list.map(x=>x.f.id);
+  palActive=0; palItems=list.map(x=>({id:x.f.id,kind:x.kind}));
   if(!list.length){
     box.innerHTML=`<li class="p-empty"><i data-lucide="search-x"></i>Nessun risultato per «${esc(query)}»</li>`;
   }else{
     box.innerHTML=`<li class="p-label">${label}</li>`+list.map((x,i)=>{
       const m=kindMeta(x);
-      const ic=x.kind==='saggio'?'feather':icoType(x.f.type);
-      return `<li><button class="p-item ${i===0?'sel':''}" data-file="${x.f.id}" style="--c:var(${m.tint})">
+      const ic=x.kind==='opera'?'library':x.kind==='saggio'?'feather':icoType(x.f.type);
+      return `<li><button class="p-item ${i===0?'sel':''}" data-file="${x.f.id}" data-kind="${x.kind}" style="--c:var(${m.tint})">
         <span class="p-ico"><i data-lucide="${ic}"></i></span>
         <span class="p-t">${hl(x.f.title,query)}</span>
         <span class="p-m">${m.sub}</span>
@@ -1859,14 +2054,14 @@ function renderTwHome(){
       <span>oppure clicca per scegliere i file · .pptx e .pdf · anche più di uno</span>
     </div>
     <input type="file" id="fileInput" accept=".pptx,.pdf" multiple hidden>
-    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome del file inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b> o <b class="mono">saggio-</b> (es. <span class="mono">fil-4-kant.pptx</span>, <span class="mono">saggio-fil-nietzsche.pdf</span>), tipo, materia e anno si compilano da soli.</span></p>
+    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b> o <b class="mono">saggio-</b> (es. <span class="mono">fil-4-kant.pptx</span>) materia e anno si compilano da soli. Per le parti di un'opera aggiungi <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine.</span></p>
     <div id="twQueue" style="display:flex;flex-direction:column;gap:.9rem"></div>
     <div id="twQueueBar" hidden style="display:flex;justify-content:flex-end">
       <button class="btn accent" data-tw="puball"><i data-lucide="upload"></i> Pubblica tutto</button>
     </div>
     <div class="tw-card">
       <h3><i data-lucide="check"></i>Pubblicati nell'archivio</h3>
-      <p class="tw-line" style="margin-bottom:.6rem">Con la <b>matita</b> correggi titolo, anno, data e descrizione senza ricaricare il file.</p>
+      <p class="tw-line" style="margin-bottom:.6rem">Con la <b>matita</b> correggi titolo, anno, data, descrizione — e per i saggi anche opera, autore e numero di parte — senza ricaricare il file.</p>
       <div id="pubList"></div>
     </div>
     <div class="tw-foot-card">
@@ -1890,8 +2085,10 @@ function renderTwHome(){
 function renderTwMeta(){
   const el=$('#twMeta'); if(!el) return;
   const nL=(publishedData?.subjects||[]).reduce((a,s)=>a+s.files.length,0);
-  const nS=(publishedData?.essays||[]).length;
-  el.innerHTML=`<b class="mono">${TCFG.owner}/${TCFG.repo}</b> · branch <b class="mono">${TCFG.branch}</b> · <b>${nL}</b> lezioni · <b>${nS}</b> saggi`;
+  const ess=(publishedData?.essays||[]);
+  const nS=ess.length;
+  const nW=new Set(ess.filter(e=>e.work&&e.work.id).map(e=>e.work.id)).size;
+  el.innerHTML=`<b class="mono">${TCFG.owner}/${TCFG.repo}</b> · branch <b class="mono">${TCFG.branch}</b> · <b>${nL}</b> lezioni · <b>${nS}</b> saggi${nW?` in <b>${nW}</b> oper${nW===1?'a':'e'}`:''}`;
 }
 async function twReload(silent){
   try{
@@ -1911,7 +2108,7 @@ function renderPubList(){
     box.innerHTML='<p class="tw-line">Nessuna pubblicazione: trascina il primo file qui sopra.</p>';
     return;
   }
-  const editBtn=(sub,id)=>`<button class="ibtn" data-tw="edit" data-id="${id}" data-sub="${sub}" aria-label="Modifica titolo, anno, data e descrizione"><i data-lucide="pencil"></i></button>`;
+  const editBtn=(sub,id)=>`<button class="ibtn" data-tw="edit" data-id="${id}" data-sub="${sub}" aria-label="Modifica i dettagli"><i data-lucide="pencil"></i></button>`;
   const lezEditor=(s,f)=>`
     <div class="pub-edit" style="--c:var(${s.tint})">
       <p class="pub-h"><b>Modifica lezione</b> · il file online non viene rinominato</p>
@@ -1930,8 +2127,8 @@ function renderPubList(){
     const m=SUBJ_META[f.subj]||SUBJ_META.x;
     return `
     <div class="pub-edit" style="--c:var(${m.tint})">
-      <p class="pub-h"><b>Modifica saggio</b> · il file online non viene rinominato</p>
-      <label class="fld">Titolo<input class="pe-title" value="${esc(f.title)}"></label>
+      <p class="pub-h"><b>Modifica saggio / parte</b> · il file online non viene rinominato</p>
+      <label class="fld">Titolo${f.work?' (della parte)':''}<input class="pe-title" value="${esc(f.title)}"></label>
       <div class="fld-row">
         <label class="fld">Ambito<select class="pe-subj">
           <option value="fil" ${f.subj==='fil'?'selected':''}>φ · Filosofia</option>
@@ -1941,8 +2138,13 @@ function renderPubList(){
         <label class="fld">Anno di riferimento<select class="pe-cls">
           <option value="0">—</option>${[3,4,5].map(c=>`<option value="${c}" ${f.cls===c?'selected':''}>${c}ª</option>`).join('')}
         </select></label>
+        <label class="fld">Data<input class="pe-date" type="date" value="${esc(f.date||'')}"></label>
       </div>
-      <label class="fld">Data di pubblicazione<input class="pe-date" type="date" value="${esc(f.date||'')}"></label>
+      <div class="fld-row">
+        <label class="fld">Opera (vuoto = singolo)<input class="pe-work" value="${esc(f.work?.title||'')}" placeholder="Storia del fascismo"></label>
+        <label class="fld">Autore<input class="pe-author" value="${esc(f.work?.author||'')}" placeholder="Emilio Gentile"></label>
+        <label class="fld">Parte n°<input class="pe-part" type="number" min="0" value="${f.part||''}" placeholder="—"></label>
+      </div>
       <label class="fld">Descrizione<textarea class="pe-desc" rows="2">${esc(f.desc||'')}</textarea></label>
       <div class="q-actions">
         <button class="btn" data-tw="canceledit">Annulla</button>
@@ -1965,14 +2167,15 @@ function renderPubList(){
       </div>`).join('')
     + (ess.length?`
       <div class="pub-group">
-        <p class="pub-h"><b>Saggistica</b> · ${ess.length} ${ess.length===1?'saggio':'saggi'}</p>
+        <p class="pub-h"><b>Saggistica</b> · ${ess.length} ${ess.length===1?'voce':'voci'}</p>
         ${ess.map(f=>{
           if(editKey==='sag|'+f.id) return essEditor(f);
           const m=SUBJ_META[f.subj]||SUBJ_META.x;
+          const loc=f.work?`${esc(f.work.title)} · P.${f.part||'?'} · `:'';
           return `<div class="pub-row" style="--c:var(${m.tint})">
             <span class="e-badge sm" aria-hidden="true">${m.sym}</span>
             <b>${esc(f.title)}</b>
-            <span class="mono">${m.label}${f.cls?' · '+f.cls+'ª':''} · ${fmtDate(f.date)}</span>
+            <span class="mono">${loc}${fmtDate(f.date)}</span>
             ${editBtn('sag',f.id)}
             <button class="ibtn" data-tw="del" data-id="${f.id}" data-sub="sag" aria-label="Elimina dall'archivio"><i data-lucide="trash-2"></i></button>
           </div>`; }).join('')}
@@ -2003,6 +2206,11 @@ async function saveEdit(sub,id,wrap,btn){
         const ns=wrap.querySelector('.pe-subj'); if(ns) f.subj=ns.value;
         const nc=wrap.querySelector('.pe-cls'); f.cls=(nc&&+nc.value)?+nc.value:null;
         if(nd) f.date=nd;
+        const wv=(wrap.querySelector('.pe-work')||{}).value||'';
+        const av=(wrap.querySelector('.pe-author')||{}).value||'';
+        const pv=+((wrap.querySelector('.pe-part')||{}).value)||null;
+        if(wv.trim()){ f.work={id:slug(wv.trim()),title:wv.trim(),author:av.trim()}; f.part=pv; }
+        else { delete f.work; delete f.part; }
         f.desc=desc||('Saggio di approfondimento — '+(SUBJ_META[f.subj]||SUBJ_META.x).label+'.');
       }else{
         const s=j.subjects.find(x=>x.id===sub);
@@ -2016,21 +2224,25 @@ async function saveEdit(sub,id,wrap,btn){
       return j;
     },`Modifica i dettagli di «${title}»`);
     editKey=null; renderPubList();
-    toast('Dettagli aggiornati: titolo e data mostrati sono cambiati, il file online resta con lo stesso nome.','check');
+    toast('Dettagli aggiornati: il file online resta con lo stesso nome.','check');
   }catch(e){
     toast('Errore: '+e.message,'info');
     btn.disabled=false;
   }
 }
 
+/* — metadati automatici dal nome del file:
+   fil-4-kant.pptx · saggio-fascismo.pdf ·
+   saggio-storia-del-fascismo-p2.pdf (parte 2) — */
 function guessMeta(name,ext){
   let base=name.replace(new RegExp('\\.'+ext+'$','i'),'');
-  let kind='lezione', sub=null, cls='';
+  let kind='lezione', sub=null, cls='', work=null, part=null;
   let m=base.match(/^(sag|saggio)[\s\-_.]+/i);
   if(m){
     kind='saggio'; base=base.slice(m[0].length);
     const a=base.match(/^(fil|sto)[\s\-_.]+/i);
     if(a){ sub=a[1].toLowerCase(); base=base.slice(a[0].length); } else sub='x';
+    const pm=base.match/[\s\-_.]p(\d{1,2})$/i;
   }else{
     m=base.match(/^(fil|sto)[\s\-_.]*/i);
     if(m){ sub=m[1].toLowerCase(); base=base.slice(m[0].length); }
@@ -2039,7 +2251,9 @@ function guessMeta(name,ext){
   if(c){ cls=c[1]; base=base.slice(c[0].length); }
   base=base.replace(/^[\d\s\-_.]+/,'').replace(/_+/g,' ').trim();
   if(base) base=base.charAt(0).toUpperCase()+base.slice(1);
-  return { title: base||name.replace(/\.[^.]+$/,''), kind, sub: sub||(kind==='saggio'?'x':'fil'), cls, pages:null };
+  let title=base||name.replace(/\.[^.]+$/,'');
+  if(part){ work=title; title='Parte '+part; }
+  return { title, kind, sub: sub||(kind==='saggio'?'x':'fil'), cls, pages:null, work, part };
 }
 async function countPages(file,ext){
   try{
@@ -2071,7 +2285,15 @@ async function addFiles(files){
         <button type="button" data-k="lezione" class="${g.kind==='saggio'?'':'on'}">Lezione</button>
         <button type="button" data-k="saggio" class="${g.kind==='saggio'?'on':''}">Saggio</button>
       </div>
-      <label class="fld">Titolo<input class="q-title" value="${esc(g.title)}"></label>
+      <label class="fld">Titolo${g.part?' (della parte)':''}<input class="q-title" value="${esc(g.title)}"></label>
+      <div class="q-workbox" ${g.kind!=='saggio'?'hidden':''}>
+        <div class="fld-row">
+          <label class="fld">Opera (vuoto = saggio singolo)<input class="q-work" value="${esc(g.work||'')}" placeholder="Storia del fascismo"></label>
+          <label class="fld">Autore dell'opera<input class="q-author" value="" placeholder="Emilio Gentile"></label>
+          <label class="fld">Parte n°<input class="q-part" type="number" min="1" value="${g.part||''}" placeholder="auto"></label>
+        </div>
+        <p class="tw-hint"><i data-lucide="layers"></i><span>Riempi «Opera» per le raccolte in più parti: chi lascia vuoto il numero si numererà da solo in coda all'opera.</span></p>
+      </div>
       <div class="fld-row">
         <label class="fld q-lab-sub-lez" ${g.kind==='saggio'?'hidden':''}>Materia<select class="q-subj">
           <option value="fil" ${g.sub==='fil'?'selected':''}>Filosofia</option>
@@ -2109,12 +2331,27 @@ async function publishOne(card){
   let desc=card.querySelector('.q-desc').value.trim();
   const date=new Date().toISOString().slice(0,10);
   const size=+(file.size/1048576).toFixed(1);
-  let subj,cls,fname,id;
+  let subj,cls,fname,id,workObj=null,part=null;
   if(kind==='saggio'){
     subj=card.querySelector('.q-subj-sag').value;
     cls=+card.querySelector('.q-cls-sag').value||null;
-    id='saggio-'+slug(title); fname='saggio-'+slug(title)+'.'+ext;
-    if(!desc) desc='Saggio di approfondimento — '+SUBJ_META[subj].label+'.';
+    const workV=(card.querySelector('.q-work')||{}).value?.trim()||'';
+    const authorV=(card.querySelector('.q-author')||{}).value?.trim()||'';
+    part=+((card.querySelector('.q-part')||{}).value)||null;
+    if(workV){
+      const wid=slug(workV);
+      if(!part){
+        const nums=(publishedData?.essays||[]).filter(e=>e.work&&e.work.id===wid).map(e=>+e.part||0);
+        part=(nums.length?Math.max(...nums):0)+1;
+      }
+      workObj={id:wid,title:workV,author:authorV};
+      id='saggio-'+wid+'-p'+part;
+      fname='saggio-'+wid+'-p'+String(part).padStart(2,'0')+'.'+ext;
+      if(!desc) desc='Parte '+part+' del saggio «'+workV+'»'+(authorV?' di '+authorV:'')+'.';
+    }else{
+      id='saggio-'+slug(title); fname='saggio-'+slug(title)+'.'+ext;
+      if(!desc) desc='Saggio di approfondimento — '+SUBJ_META[subj].label+'.';
+    }
   }else{
     subj=card.querySelector('.q-subj').value;
     cls=+card.querySelector('.q-cls').value;
@@ -2134,6 +2371,7 @@ async function publishOne(card){
       const entry={id,title,type:ext,cls,date,size,pages,file:fname,desc};
       if(kind==='saggio'){
         entry.subj=subj;
+        if(workObj){ entry.work=workObj; entry.part=part; }
         const old=json.essays.find(x=>x.id===id);
         entry.dl=old?old.dl:0;
         const i=json.essays.findIndex(x=>x.id===id);
@@ -2238,8 +2476,15 @@ async function twSyncFolder(btn){
       plan.forEach(p=>{
         if(have.has(p.name)) return;
         if(p.g.kind==='saggio'){
-          const id=uniqueId('saggio-'+slug(p.g.title),taken); taken.add(id);
-          j.essays.push({id,title:p.g.title,type:p.ext,subj:p.g.sub,cls:p.g.cls?+p.g.cls:null,date:p.date,size:p.size,pages:null,dl:0,file:p.name,desc:'Saggio di approfondimento — '+SUBJ_META[p.g.sub].label+'.'});
+          if(p.g.part){
+            const id=uniqueId('saggio-'+slug(p.g.title)+'-p'+p.g.part,taken); taken.add(id);
+            j.essays.push({id,title:'Parte '+p.g.part,type:p.ext,subj:p.g.sub,cls:null,date:p.date,size:p.size,pages:null,dl:0,file:p.name,
+              desc:'Parte '+p.g.part+' del saggio «'+p.g.title+'».',
+              work:{id:slug(p.g.title),title:p.g.title,author:''},part:p.g.part});
+          }else{
+            const id=uniqueId('saggio-'+slug(p.g.title),taken); taken.add(id);
+            j.essays.push({id,title:p.g.title,type:p.ext,subj:p.g.sub,cls:p.g.cls?+p.g.cls:null,date:p.date,size:p.size,pages:null,dl:0,file:p.name,desc:'Saggio di approfondimento — '+SUBJ_META[p.g.sub].label+'.'});
+          }
         }else{
           const s=j.subjects.find(y=>y.id===p.g.sub);
           if(!s) return;
@@ -2298,13 +2543,12 @@ function bind(){
   $('#palInput').addEventListener('keydown',e=>{
     if(e.key==='ArrowDown'){e.preventDefault();palMove(1);}
     else if(e.key==='ArrowUp'){e.preventDefault();palMove(-1);}
-    else if(e.key==='Enter'){e.preventDefault(); if(palItems[palActive]) openFile(palItems[palActive]); }
+    else if(e.key==='Enter'){e.preventDefault(); if(palItems[palActive]) openAny(palItems[palActive]); }
   });
   $('#palRes').addEventListener('click',e=>{
     const b=e.target.closest('[data-file]');
-    if(b){ closePalette(); openFile(b.dataset.file); }
+    if(b){ closePalette(); openAny({id:b.dataset.file,kind:b.dataset.kind||'lezione'}); }
   });
-  /* le slide in evidenza dell'hero: click e tastiera */
   $('#heroStack').addEventListener('click',e=>{
     const s=e.target.closest('.slide[data-open]');
     if(s) openFile(s.dataset.open);
@@ -2345,10 +2589,20 @@ function bind(){
       window.open(act.dataset.url,'_blank','noopener');
       return;
     }
-    const id=act.dataset.file, x=fileMap.get(id);
-    if(act.dataset.act==='view')openFile(id);
-    else if(act.dataset.act==='dl')downloadFile(x);
-    else if(act.dataset.act==='fav')toggleFav(id);
+    if(act.dataset.act==='opera'){
+      e.preventDefault();
+      openOpera(act.dataset.opera);
+      return;
+    }
+    if(act.dataset.act==='read'){
+      const x=fileMap.get(act.dataset.file);
+      if(x) openReader(x);
+      return;
+    }
+    const id=act.dataset.file, x=id?fileMap.get(id):null;
+    if(act.dataset.act==='view'&&x)openFile(id);
+    else if(act.dataset.act==='dl'&&x)downloadFile(x);
+    else if(act.dataset.act==='fav'&&id)toggleFav(id);
   };
   $('#subjects').addEventListener('click',e=>{
     listHandler(e);
@@ -2364,6 +2618,7 @@ function bind(){
   $('#topList').addEventListener('click',e=>{
     const b=e.target.closest('[data-file]'); if(b)openFile(b.dataset.file);
   });
+  /* scheda lezione/saggio/parte */
   $('#mClose').addEventListener('click',()=>closeModal());
   $('#modBack').addEventListener('click',e=>{ if(e.target.id==='modBack')closeModal(); });
   $('#mRead').addEventListener('click',()=>{ if(currentFile)openReader(currentFile); });
@@ -2379,6 +2634,28 @@ function bind(){
     }
     toast('Link copiato: apre esattamente questo contenuto.','link-2');
   });
+  /* pagina dell'opera */
+  $('#opClose').addEventListener('click',()=>closeOpera());
+  $('#opBack').addEventListener('click',e=>{
+    if(e.target.id==='opBack'){ closeOpera(); return; }
+    const act=e.target.closest('[data-act]');
+    if(!act)return;
+    const id=act.dataset.file, x=id?fileMap.get(id):null;
+    if(act.dataset.act==='view'&&x)openFile(id);
+    else if(act.dataset.act==='read'&&x)openReader(x);
+    else if(act.dataset.act==='dl'&&x)downloadFile(x);
+  });
+  $('#opDlAll').addEventListener('click',downloadWholeOpera);
+  $('#opCopy').addEventListener('click',async()=>{
+    try{ await navigator.clipboard.writeText(location.href); }
+    catch{
+      const ta=document.createElement('textarea');
+      ta.value=location.href; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); ta.remove();
+    }
+    toast('Link all\u2019opera copiato: apre direttamente la sua pagina.','link-2');
+  });
+  /* lettore */
   $('#rdClose').addEventListener('click',closeReader);
   $('#readBack').addEventListener('click',e=>{ if(e.target.id==='readBack')closeReader(); });
   $('#rdPrev').addEventListener('click',()=>renderRdPage((rdState?.page||1)-1));
@@ -2386,6 +2663,7 @@ function bind(){
   $('#rdZoomIn').addEventListener('click',()=>rdZoom(1.2));
   $('#rdZoomOut').addEventListener('click',()=>rdZoom(1/1.2));
   $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}));
+  /* registro */
   $('#teacherBtn').addEventListener('click',openTeacher);
   $('#twClose').addEventListener('click',closeTeacher);
   $('#twBack').addEventListener('click',closeTeacher);
@@ -2399,6 +2677,7 @@ function bind(){
       card.querySelector('.q-lab-cls-lez').hidden = kind!=='lezione';
       card.querySelector('.q-lab-sub-sag').hidden = kind!=='saggio';
       card.querySelector('.q-lab-cls-sag').hidden = kind!=='saggio';
+      const wb=card.querySelector('.q-workbox'); if(wb) wb.hidden = kind!=='saggio';
       return;
     }
     const el=e.target.closest('[data-tw]'); if(!el)return;
@@ -2452,14 +2731,20 @@ function bind(){
       if($('#teacherDrawer').classList.contains('open'))closeTeacher();
       else if($('#palBack').classList.contains('open'))closePalette();
       else if($('#modBack').classList.contains('open'))closeModal();
+      else if($('#opBack').classList.contains('open'))closeOpera();
     }else if(e.key==='/'&&!e.target.matches('input,textarea,select,[contenteditable]')){
       e.preventDefault(); openPalette();
     }
   });
   window.addEventListener('hashchange',()=>{
     const m=location.hash.match(/^#(?:lezione|saggio)-(.+)$/);
-    if(m){ if(fileMap.has(m[1])){ fillModal(fileMap.get(m[1])); $('#modBack').classList.add('open'); document.body.classList.add('locked'); } }
-    else closeModal(true);
+    const mo=location.hash.match(/^#opera-(.+)$/);
+    if(mo){
+      const w=WORKS.find(x=>x.id===mo[1]);
+      if(w){ fillOpera(w); $('#opBack').classList.add('open'); document.body.classList.add('locked'); }
+    }
+    else if(m){ if(fileMap.has(m[1])){ fillModal(fileMap.get(m[1])); $('#modBack').classList.add('open'); document.body.classList.add('locked'); } }
+    else { closeModal(true); closeOpera(true); }
   });
 }
 
@@ -2501,6 +2786,8 @@ function boot(){
   idle(()=>{ ensurePdfJs().catch(()=>{}); });
   const m0=location.hash.match(/^#(?:lezione|saggio)-(.+)$/);
   if(m0&&fileMap.has(m0[1])) openFile(m0[1]);
+  const w0=location.hash.match(/^#opera-(.+)$/);
+  if(w0){ const w=WORKS.find(x=>x.id===w0[1]); if(w){ fillOpera(w); $('#opBack').classList.add('open'); document.body.classList.add('locked'); } }
 }
 try{ boot(); }
 catch(err){
