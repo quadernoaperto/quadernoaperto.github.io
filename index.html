@@ -2662,7 +2662,7 @@ function bind(){
       const wrap=el.closest('.pub-edit');
       saveEdit(el.dataset.sub,el.dataset.id,wrap,el);
     }
-    else if(act==='logout'){ store.del(TKEY); TCFG=null; publishedData=null; renderTeacher(); const tTop=$('#teacherTop'); if(tTop) tTop.hidden=true; toast('Disconnesso: token rimosso da questo browser.','log-out'); } da questo browser.','log-out'); }
+        else if(act==='logout'){ store.del(TKEY); TCFG=null; publishedData=null; renderTeacher(); const tTop=$('#teacherTop'); if(tTop) tTop.hidden=true; toast('Disconnesso: token rimosso da questo browser.','log-out'); }
     else if(act==='pub')publishOne(el.closest('.q-card'));
     else if(act==='puball')publishAll();
     else if(act==='rmq'){ el.closest('.q-card').remove(); updateQueueBar(); }
