@@ -1410,29 +1410,18 @@ function renderDiario(){
     ? `<div class="d-half">${items}</div><div class="d-half" aria-hidden="true">${items}</div>`
     : `<div class="d-half"><span class="d-item">Le prime pubblicazioni dell'archivio arriveranno presto.</span></div>`;
 }
-let statsDone=false;
 function setupStats(){
   const v={lessons:ALL.filter(x=>x.kind==='lezione').length, essays:ALL.filter(x=>x.kind==='saggio').length, pages:totalSlides};
-  $$('#stats [data-auto]').forEach(el=>el.dataset.count=v[el.dataset.auto]||0);
-  $('#stSaved').textContent=favs.size;
-  if(statsDone){ $$('#stats [data-count]').forEach(el=>el.textContent=el.dataset.count); return; }
-  const io=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(!e.isIntersecting)return;
-      io.disconnect(); statsDone=true;
-      $$('#stats [data-count]').forEach(el=>{
-        const target=+el.dataset.count;
-        if(REDUCED){ el.textContent=target; return; }
-        const t0=performance.now(),dur=1100;
-        (function tick(now){
-          const p=Math.min(1,(now-t0)/dur), ease=1-Math.pow(1-p,4);
-          el.textContent=Math.round(target*ease);
-          if(p<1)requestAnimationFrame(tick);
-        })(t0);
-      });
+  const saved=favs.size;
+  const write=()=>{
+    $('#stSaved').textContent=saved;
+    $$('#stats [data-auto]').forEach(el=>{
+      const target=+(el.dataset.count||0);
+      el.textContent=target;
     });
-  },{threshold:.4});
-  io.observe($('#stats'));
+  };
+  /* scrive subito i valori definitivi: niente attesa, niente animazione che può perdersi */
+  write();
 }
 const updateSavedStat=()=>{ $('#stSaved').textContent=favs.size; };
 
