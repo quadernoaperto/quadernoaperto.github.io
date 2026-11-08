@@ -642,18 +642,17 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
       <a href="#classifica">Classifica</a>
       <a href="#guida">Guida</a>
     </nav>
-    <div class="head-tools">
-            <button class="ibtn" id="teacherTop" hidden title="Registro del docente (Ctrl+Maiusc+D)" aria-label="Registro del docente">
+        <div class="head-tools">
+      <button class="ibtn" id="teacherTop" hidden title="Registro del docente (Ctrl+Maiusc+D)" aria-label="Registro del docente">
         <i data-lucide="lock"></i>
       </button>
-      <button class="ibtn" id="themeBtn" aria-label="Attiva la modalità serale">
+      <button class="search-pill" id="searchBtn" aria-label="Apri la ricerca">
         <i data-lucide="search"></i><span>Cerca</span><kbd>Ctrl K</kbd>
       </button>
       <button class="ibtn" id="themeBtn" aria-label="Attiva la modalità serale">
         <i data-lucide="moon" class="ico-moon"></i><i data-lucide="sun" class="ico-sun"></i>
       </button>
     </div>
-  </div>
 </header>
 <style>[data-theme="light"] .ico-sun{display:none}[data-theme="dark"] .ico-moon{display:none}</style>
 
@@ -1128,7 +1127,10 @@ function renderHeroSlides(){
   const items=pickHeroItems();
   [$('#heroS1'),$('#heroS2')].forEach((el,i)=>{
     const it=items[i];
-    if(!it){ el.hidden=true; return; }
+    el.classList.remove('has-thumb');
+    const old=el.querySelector('.thumb-wrap'); if(old) old.remove();
+    el.dataset.thumbSeq='0';
+    if(!it){ el.hidden=true; delete el.dataset.open; return; }
     el.hidden=false;
     el.dataset.open=it.f.id;
     const head = it.kind==='saggio'
@@ -1138,22 +1140,20 @@ function renderHeroSlides(){
     el.querySelector('.hero-sl-head').textContent=head;
     el.querySelector('.hero-sl-title').textContent=it.f.title;
     el.querySelector('.hero-sl-foot').textContent=`${fmtType(it.f.type)}${pages}`;
-       el.setAttribute('aria-label',`Apri: ${it.f.title}`);
+    el.setAttribute('aria-label',`Apri: ${it.f.title}`);
     heroThumb(el,it);
   });
 }
-let heroThumbSeq=0;
 async function heroThumb(el,item){
-  el.classList.remove('has-thumb');
-  const old=el.querySelector('.thumb-wrap'); if(old) old.remove();
   if(!(item.f.file&&item.f.type==='pdf')) return;
-  const my=++heroThumbSeq;
+  const my=(+el.dataset.thumbSeq||0)+1;
+  el.dataset.thumbSeq=String(my);
   const want=item.f.id;
   try{
     const doc=await loadPdf(fileUrl(item.f));
-    if(el.dataset.open!==want||my!==heroThumbSeq) return;
+    if(el.dataset.open!==want||el.dataset.thumbSeq!==String(my)) return;
     const page=await doc.getPage(1);
-    if(el.dataset.open!==want||my!==heroThumbSeq) return;
+    if(el.dataset.open!==want||el.dataset.thumbSeq!==String(my)) return;
     const base=page.getViewport({scale:1});
     const vp=page.getViewport({scale:360/base.width});
     const dpr=Math.min(2,window.devicePixelRatio||1);
@@ -1163,14 +1163,15 @@ async function heroThumb(el,item){
     const ctx=canvas.getContext('2d');
     ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
     await page.render({canvasContext:ctx,viewport:vp,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null}).promise;
-    if(el.dataset.open!==want||my!==heroThumbSeq) return;
+    if(el.dataset.open!==want||el.dataset.thumbSeq!==String(my)) return;
+    el.querySelectorAll('.thumb-wrap').forEach(t=>t.remove());
     const wrap=document.createElement('span');
     wrap.className='thumb-wrap';
     wrap.appendChild(canvas);
     const lines=el.querySelector('.lines');
     if(lines) lines.after(wrap); else el.appendChild(wrap);
     el.classList.add('has-thumb');
-  }catch(e){ /* resta lo schema */ }
+  }catch(e){ /* resta lo schema a righe */ }
 }
 
 /* ══════════════════════════════════════════════════
@@ -2452,13 +2453,33 @@ async function loadPublicData(){
   const urls=[];
   try{ urls.push(new URL('lezioni.json',location.href).href); }catch{}
   if(CONFIG.owner&&CONFIG.repo) urls.push(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch||'main'}/lezioni.json`);
+  const SNAP='qa-snapshot';
   for(const u of urls){
+    for(let tent=0;tent<3;tent++){
+      try{
+        const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        const j=normalizeArchive(await r.json());
+        if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length){
+          store.set(SNAP,JSON.stringify(j));
+          useData(j.subjects,j.essays);
+          return;
+        }
+        break;
+      }catch(e){
+        if(tent<2) await new Promise(r=>setTimeout(r,700*(tent+1)));
+      }
+    }
+  }
+  /* rete irraggiungibile: mostro l'ultima copia salvata nel browser */
+  const snap=store.get(SNAP,null);
+  if(snap){
     try{
-      const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
-      if(!r.ok) continue;
-      const j=normalizeArchive(await r.json());
-      if(publishedData) return;
-      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length){ useData(j.subjects,j.essays); return; }
+      const j=normalizeArchive(JSON.parse(snap));
+      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length){
+        useData(j.subjects,j.essays);
+        toast('Rete inaffidabile: mostro l\u2019ultima copia salvata dell\u2019archivio.','wifi-off');
+      }
     }catch{}
   }
 }
