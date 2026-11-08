@@ -123,12 +123,6 @@ kbd{
 .live{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--font-m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
 .live i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}55%{box-shadow:0 0 0 6px transparent}}
-.demo-chip{
-  display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-m);font-size:.6rem;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
-  border:1.5px dashed var(--line);border-radius:3px;padding:.18rem .55rem;
-}
-.demo-chip svg{width:12px;height:12px;color:var(--accent)}
 .hero-social{
   display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-m);font-size:.64rem;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;
@@ -328,24 +322,21 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .essay .f-actions{opacity:0}
 .essay:hover .f-actions,.essay:focus-within .f-actions{opacity:1}
 @media(hover:none){.essay .f-actions{opacity:1}}
-/* — opera (raccolta di parti) nella sezione saggistica — */
 .opera-row{
   padding:1.05rem 1.1rem;margin-bottom:1.15rem;
   border:1.5px solid color-mix(in srgb,var(--c) 45%,transparent);border-radius:8px;
   background:var(--paper-3);box-shadow:3px 3px 0 var(--hard);
   transition:transform .16s,box-shadow .16s;
 }
-.opera-row:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--hard);background:var(--paper-3)}
+.opera-row:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--hard)}
 .opera-row .e-title{font-size:1.18rem}
-/* — pagina dell'opera — */
 #opBack{z-index:395;display:flex;align-items:center;justify-content:center;padding:1rem}
 .opera{
-  position:static;width:min(880px,100%);max-height:88dvh;overflow-y:auto;
+  position:relative;width:min(880px,100%);max-height:88dvh;overflow-y:auto;
   background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;box-shadow:9px 9px 0 var(--hard);
 }
 #opBack:not(.open) .opera{display:none}
 .op-close{position:absolute;top:.8rem;right:.8rem;z-index:2}
-.opera{position:relative}
 .op-grid{display:grid;grid-template-columns:280px 1fr;gap:0}
 .op-side{background:var(--paper-3);border-right:1.5px solid var(--ink);padding:1.7rem 1.4rem 1.4rem;display:flex;flex-direction:column;min-height:360px}
 .op-top{font-family:var(--font-m);font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--c)}
@@ -671,9 +662,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <a class="hero-social" href="https://www.instagram.com/saggiogram" target="_blank" rel="noopener" title="Saggistica anche su Instagram">
             <i data-lucide="instagram"></i>@saggiogram
           </a>
-          <span class="demo-chip" id="demoChip" hidden title="Le lezioni mostrate sono di prova: spariscono appena l'indice delle lezioni reali viene creato dal Registro del docente.">
-            <i data-lucide="flask-conical"></i>Contenuto dimostrativo
-          </span>
         </div>
         <h1>Le lezioni non finiscono<br>con la <em class="hand">campanella<svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 42 2, 82 13, 120 7 S 192 3, 217 8"/></svg></em>.</h1>
         <p class="hero-lede">
@@ -701,16 +689,16 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
       <div class="hero-side">
         <div class="stack" id="heroStack">
           <article class="slide sl1 clickable" style="--r:-5deg" data-depth="12" id="heroS1" role="button" tabindex="0" aria-label="Apri la lezione in evidenza">
-            <header class="hero-sl-head">…</header>
-            <h3 class="hero-sl-title">…</h3>
+            <header class="hero-sl-head"></header>
+            <h3 class="hero-sl-title"></h3>
             <div class="lines" aria-hidden="true"><i style="width:88%"></i><i style="width:64%"></i><i style="width:76%"></i></div>
-            <footer><span class="hero-sl-foot">…</span><span class="hs-open">apri ↗</span></footer>
+            <footer><span class="hero-sl-foot"></span><span class="hs-open">apri ↗</span></footer>
           </article>
           <article class="slide sl2 clickable" style="--r:4deg" data-depth="22" id="heroS2" role="button" tabindex="0" aria-label="Apri la seconda lezione in evidenza">
-            <header class="hero-sl-head">…</header>
-            <h3 class="hero-sl-title">…</h3>
+            <header class="hero-sl-head"></header>
+            <h3 class="hero-sl-title"></h3>
             <div class="lines" aria-hidden="true"><i style="width:70%"></i><i style="width:82%"></i></div>
-            <footer><span class="hero-sl-foot">…</span><span class="hs-open">apri ↗</span></footer>
+            <footer><span class="hero-sl-foot"></span><span class="hs-open">apri ↗</span></footer>
           </article>
           <svg class="stamp" data-depth="-9" viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="circ" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
@@ -836,7 +824,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
             <span class="g-n">1</span>
             <div>
               <h3>Trova quello che cerchi</h3>
-              <p>Digita un argomento, un autore, una materia — oppure apri la ricerca veloce con <kbd>Ctrl</kbd><kbd>K</kbd>. Le slide in evidenza qui sopra aprono direttamente le lezioni più recenti; l'indice si filtra per anno.</p>
+              <p>Digita un argomento, un autore, una materia — oppure apri la ricerca veloce con <kbd>Ctrl</kbd><kbd>K</kbd>. Le slide in evidenza aprono direttamente le lezioni più recenti; l'indice si filtra per anno.</p>
             </div>
           </div>
           <div class="g-step">
@@ -949,7 +937,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   </div>
 </div>
 
-<!-- ══════════ PAGINA DELL'OPERA ══════════ -->
 <div class="overlay" id="opBack">
   <div class="opera" role="dialog" aria-modal="true" aria-labelledby="opTitle">
     <button class="ibtn op-close" id="opClose" aria-label="Chiudi l'opera"><i data-lucide="x"></i></button>
@@ -1044,68 +1031,6 @@ const DEFAULT_DESC={
 const OLD_DESC_STO='L\'Ottocento e il Novecento: fatti, cause e storiografia, con fonti, mappe e cronologie.';
 
 /* ══════════════════════════════════════════════════
-   DATI DIMOSTRATIVI — spariscono appena l'indice
-   reale (lezioni.json) è presente nel repository.
-   ══════════════════════════════════════════════════ */
-const F = (title,type,cls,date,size,pages,dl,desc)=>({ id:slug(title),title,type,cls,date,size,pages,dl,desc });
-const S = (title,subj,cls,date,size,pages,dl,desc)=>({ id:'saggio-'+slug(title),title,type:'pdf',subj,cls:cls||null,date,size,pages,dl,desc });
-
-const SUBJECTS = [
-  { id:'fil', name:'Filosofia', tint:'--t-fil',
-    desc:DEFAULT_DESC.fil,
-    files:[
-      F('Le origini della filosofia: i Presocratici','pptx',3,'2024-09-18',7.4,32,132,'Dai Milesi a Eraclito e Parmenide: il passaggio dal mito al logos e i primi modelli della physis.'),
-      F('Socrate: la cura dell\'anima','pptx',3,'2024-10-09',6.8,29,147,'Il metodo maieutico, l\'ironia e il processo: il filosofo che non ha scritto nulla e ha cambiato tutto.'),
-      F('Platone: il mondo delle idee','pptx',3,'2024-11-06',9.2,40,168,'La caverna, la dialettica e lo Stato giusto: il nucleo della teoria delle idee con letture guidate.'),
-      F('Aristotele: logica, fisica ed etica','pptx',3,'2024-12-04',8.5,37,151,'Le quattro cause, l\'entelechia e l\'etica del giusto mezzo: l\'enciclopedia vivente del sapere greco.'),
-      F('L\'ellenismo: epicureismo e stoicismo','pdf',3,'2024-12-18',1.9,10,89,'Felicità, atarassia e cosmopoli: le scuole dopo Aristotele, filosofie come guide per vivere.'),
-      F('La rivoluzione scientifica e Descartes','pptx',4,'2024-09-25',7.7,34,138,'Da Copernico a Galilei: il nuovo metodo, il dubbio, il cogito e il meccanicismo cartesiano.'),
-      F('Locke e Hume: l\'empirismo inglese','pptx',4,'2024-10-16',7.9,36,141,'Dalle idee semplici alla critica della causalità: il percorso inglese che porta alla domanda di Kant.'),
-      F('Rousseau e l\'Illuminismo','pptx',4,'2024-11-13',8.6,34,156,'La raison, l\'Encyclopédie, il contratto sociale e la critica della civilizzazione.'),
-      F('Kant: la Critica della ragion pura','pptx',4,'2025-01-15',8.3,38,204,'Gnoseologia rivoluzionaria: giudizi sintetici a priori, trascendentale e categorie.'),
-      F('La Critica del giudizio: bello e sublime','pdf',4,'2025-02-05',1.9,9,88,'Estetica e teleologia: il terzo momento critico spiegato con esempi.'),
-      F('Hegel e la dialettica','pptx',5,'2024-09-26',7.1,32,176,'Assoluto, dialettica e Fenomenologia dello spirito spiegata per immagini.'),
-      F('Schopenhauer: il mondo come volontà','pptx',5,'2024-10-17',6.5,29,128,'La volontà di vivere, il pessimismo e le vie dell\'ascesi e dell\'arte.'),
-      F('Kierkegaard e l\'esistenza','pdf',5,'2024-11-07',1.7,10,97,'Le tre fasi dell\'esistenza, l\'angoscia e la fede come salto.'),
-      F('Marx: teoria e critica della società','pptx',5,'2024-11-28',8.8,37,198,'Alienazione, plusvalore e lotta di classe: la lettura del Capitale.'),
-      F('Nietzsche: la crisi dei valori','pptx',5,'2025-01-16',7.9,35,221,'Morte di Dio, nichilismo, Übermensch e transvalutazione: lettura delle fonti.'),
-      F('Freud e l\'inconscio','pdf',5,'2025-02-04',2.0,10,134,'Le tre istanze dell\'Io, i sogni e le parole d\'ordine della psicoanalisi.'),
-      F('L\'esistenzialismo: da Heidegger a Sartre','pptx',5,'2025-02-25',6.9,31,142,'Esserci, essere-nel-mondo, libertà e responsabilità: la filosofia dell\'esistenza nel Novecento.')
-    ]},
-  { id:'sto', name:'Storia', tint:'--t-sto',
-    desc:DEFAULT_DESC.sto,
-    files:[
-      F('Comuni e rinascita dell\'anno Mille','pptx',3,'2024-09-17',7.2,30,139,'Sfruttamenti bonificati, città nuove e autonomie comunali: l\'Europa che riparte.'),
-      F('L\'impero di Federico II','pdf',3,'2024-10-02',1.8,9,84,'Stupor mundi: cultura, potere e scontro con il papato nella Sicilia del Duecento.'),
-      F('La crisi del Trecento','pptx',3,'2024-10-30',8.4,34,171,'Peste, carestie e rivolte: il crollo del sistema medievale.'),
-      F('Umanesimo e Rinascimento','pptx',3,'2024-11-27',9.1,38,188,'Dalla Firenze dei Medici alla corte di Federico da Montefeltro: arte, pensiero e mecenatismo.'),
-      F('Le grandi scoperte geografiche','pptx',3,'2024-12-18',7.6,31,158,'Colombo, Magellano e il mondo che diventa globale: conseguenze nei due emisferi.'),
-      F('Lutero e la Riforma protestante','pptx',3,'2025-01-15',8.0,35,203,'Le 95 tesi, la rottura con Roma e le guerre di religione.'),
-      F('La Controriforma e il Concilio di Trento','pdf',3,'2025-02-05',1.7,9,92,'La Chiesa che risponde: riforma interna, Inquisizione e nuovo catechismo.'),
-      F('Assolutismo ed Europa del Seicento','pptx',3,'2025-02-25',7.8,33,147,'Versailles, i Borboni e gli Asburgo: lo Stato moderno e le sue corti.'),
-      F('La Rivoluzione inglese e il parlamentarismo','pdf',4,'2024-09-24',1.9,10,96,'Dalla guerra civile alla Gloriosa: nasce la monarchia parlamentare.'),
-      F('Illuminismo e riforme settecentesche','pptx',4,'2024-10-22',8.2,36,167,'Filosofi, enciclopedie e sovrani riformatori: l\'Europa che cambia idea.'),
-      F('La Rivoluzione francese e Napoleone','pptx',4,'2024-11-26',10.6,42,224,'Dalla presa della Bastiglia a Waterloo: dieci anni che cambiano il mondo.'),
-      F('La Restaurazione e i moti risorgimentali','pptx',4,'2025-01-14',9.3,38,214,'Il Congresso di Vienna, i moti italiani e le guerre d\'indipendenza.'),
-      F('La Grande Guerra','pptx',4,'2025-02-05',11.2,42,238,'Cause, svolgimento e conseguenze: guerra di posizione, fronte interno e Versailles.'),
-      F('Fascismo e nazismo: origini e consenso','pptx',5,'2024-09-26',9.3,38,214,'Ideologie, propaganda e società totalitaria: un confronto storiografico.'),
-      F('La Seconda guerra mondiale','pptx',5,'2024-11-28',10.8,44,232,'Dall\'invasione della Polonia alla Shoah fino a Hiroshima: la guerra totale.'),
-      F('La Guerra Fredda','pdf',5,'2025-01-21',2.8,15,176,'Blocchi, crisi e distensione: da Yalta alla caduta del Muro, con mappe e cronologie.'),
-      F('Decolonizzazione e Terzo Mondo','pptx',5,'2025-02-11',6.7,30,121,'Bandung, Non Allineati e le indipendenze: nasce il Sud del mondo.'),
-      F('L\'Italia repubblicana','pdf',5,'2025-02-25',2.2,11,104,'Dalla Costituzione al miracolo economico, fino alla Prima Repubblica.')
-    ]}
-];
-
-const ESSAYS = [
-  S('La dialettica da Platone a Hegel','fil',null,'2024-11-02',1.5,11,87,'Un percorso trasversale su come il metodo dialettico cambia senso passando dall\'antichità all\'idealismo.'),
-  S('Il 1848 visto da basso','sto',3,'2024-10-21',1.4,9,66,'I moti del 1848 raccontati dalla parte di chi li fece: una storia sociale della primavera dei popoli.'),
-  S('Nietzsche e la crisi della cultura europea','fil',5,'2024-12-15',1.8,10,92,'Nichilismo, morte di Dio e diagnosi della modernità: il Nietzsche saggistico, tra stile e pensiero.'),
-  S('La Grande Guerra nella storiografia','sto',4,'2025-01-09',2.3,14,81,'Da Fischer alla storia culturale: cent\'anni di interpretazioni sulle origini del 1914.'),
-  S('Verità e metodo: che cosa resta di Gadamer','fil',5,'2025-01-27',2.1,13,74,'L\'ermeneutica come pratica della comprensione: una guida di lettura ragionata.'),
-  S('Che cosa intendiamo per «modernità»','x',null,'2025-02-14',1.7,12,58,'Un concetto al confine tra filosofia e storia: Weber, Benjamin e i maestri del sospetto.')
-];
-
-/* ══════════════════════════════════════════════════
    UTILITY
    ══════════════════════════════════════════════════ */
 const $  = s=>document.querySelector(s);
@@ -1132,11 +1057,19 @@ const store={
 const shortHost=u=>{ try{ return new URL(u).hostname; }catch{ return u; } };
 
 /* ══════════════════════════════════════════════════
-   STATO DATI — lezioni, saggi, opere
+   STATO DATI — solo contenuti reali, nessuna demo
    ══════════════════════════════════════════════════ */
-let SUBJECTS_NOW=[], ESSAYS_NOW=[], MODE='demo';
+let SUBJECTS_NOW=[], ESSAYS_NOW=[];
 const ALL=[]; const fileMap=new Map(); let totalSlides=0;
-let WORKS=[];               /* opere: saggi raggruppati */
+let WORKS=[];
+
+const seedArchive=()=>({
+  subjects:[
+    {id:'fil',name:'Filosofia',tint:'--t-fil',desc:DEFAULT_DESC.fil,files:[]},
+    {id:'sto',name:'Storia',tint:'--t-sto',desc:DEFAULT_DESC.sto,files:[]}
+  ],
+  essays:[]
+});
 
 function computeWorks(){
   const map=new Map();
@@ -1157,17 +1090,15 @@ function computeWorks(){
   }).sort((a,b)=>b.date.localeCompare(a.date));
 }
 
-function useData(subjects,essays,mode){
+function useData(subjects,essays){
   SUBJECTS_NOW = subjects.map(s=>({...s, files:(s.files||[])}));
   ESSAYS_NOW   = (essays||[]).map(e=>({...e}));
-  MODE=mode;
   ALL.length=0; fileMap.clear();
   SUBJECTS_NOW.forEach(s=>s.files.forEach(f=>ALL.push({f,s,kind:'lezione'})));
   ESSAYS_NOW.forEach(f=>ALL.push({f,s:null,kind:'saggio'}));
   ALL.forEach(x=>fileMap.set(x.f.id,x));
   totalSlides = ALL.reduce((a,x)=>a+(x.f.pages||0),0);
   computeWorks();
-  const chip=$('#demoChip'); if(chip) chip.hidden = mode!=='demo';
   renderProjects();
   renderHeroSlides();
   renderSubjects(); renderEssays(); renderDiario(); renderTop();
@@ -1175,7 +1106,7 @@ function useData(subjects,essays,mode){
 }
 
 /* ══════════════════════════════════════════════════
-   HERO — le due slide in evidenza
+   HERO — le due slide in evidenza (nascoste se vuoto)
    ══════════════════════════════════════════════════ */
 function pickHeroItems(){
   const pool=[...ALL].sort((a,b)=>b.f.date.localeCompare(a.f.date));
@@ -1185,24 +1116,23 @@ function pickHeroItems(){
   if(fil)out.push(fil);
   if(sto)out.push(sto);
   for(const x of pool){ if(out.length>=2)break; if(!out.includes(x))out.push(x); }
-  if(!out.length) out.push(...pool.slice(0,2));
   return out.slice(0,2);
 }
 function renderHeroSlides(){
   const items=pickHeroItems();
-  [{el:$('#heroS1')},{el:$('#heroS2')}].forEach((slot,i)=>{
+  [$('#heroS1'),$('#heroS2')].forEach((el,i)=>{
     const it=items[i];
-    if(!it){ slot.el.hidden=true; return; }
-    slot.el.hidden=false;
-    slot.el.dataset.open=it.f.id;
+    if(!it){ el.hidden=true; return; }
+    el.hidden=false;
+    el.dataset.open=it.f.id;
     const head = it.kind==='saggio'
       ? `Saggio · ${(SUBJ_META[it.f.subj]||SUBJ_META.x).sym} ${(SUBJ_META[it.f.subj]||SUBJ_META.x).label}`
       : `${it.s.name} · ${it.f.cls}ª`;
     const pages = it.f.pages ? ` · ${it.f.pages} ${it.f.type==='pptx'?'slide':'pagine'}` : '';
-    slot.el.querySelector('.hero-sl-head').textContent=head;
-    slot.el.querySelector('.hero-sl-title').textContent=it.f.title;
-    slot.el.querySelector('.hero-sl-foot').textContent=`${fmtType(it.f.type)}${pages}`;
-    slot.el.setAttribute('aria-label',`Apri: ${it.f.title}`);
+    el.querySelector('.hero-sl-head').textContent=head;
+    el.querySelector('.hero-sl-title').textContent=it.f.title;
+    el.querySelector('.hero-sl-foot').textContent=`${fmtType(it.f.type)}${pages}`;
+    el.setAttribute('aria-label',`Apri: ${it.f.title}`);
   });
 }
 
@@ -1272,13 +1202,10 @@ function renderSubjects(){
   const box=$('#subjects');
   const openIds=new Set($$('.subject.open').map(a=>a.dataset.id));
   box.innerHTML='';
-  if(!SUBJECTS_NOW.length){
-    box.innerHTML='<p class="empty-note">L\'archivio è in fase di allestimento: le prime lezioni arriveranno presto.</p>';
-    $('#indexTitle').textContent='Indice in allestimento.';
-    return;
-  }
   const lezN=ALL.filter(x=>x.kind==='lezione').length;
-  $('#indexTitle').textContent=`${SUBJECTS_NOW.map(s=>s.name).join(' & ')} · ${lezN} lezioni.`;
+  $('#indexTitle').textContent = lezN
+    ? `${SUBJECTS_NOW.map(s=>s.name).join(' & ')} · ${lezN} lezioni.`
+    : `${SUBJECTS_NOW.map(s=>s.name).join(' & ')} · indice in preparazione.`;
   SUBJECTS_NOW.forEach((s,i)=>{
     const classes=[...new Set(s.files.map(f=>f.cls))].sort();
     const groups=[3,4,5].filter(y=>s.files.some(f=>f.cls===y)||PROJECTS.some(p=>p.sub===s.id&&p.cls===y)).map(y=>
@@ -1479,46 +1406,24 @@ const fileUrl=f=> (CONFIG.owner&&CONFIG.repo)
   : 'lezioni/'+f.file;
 
 async function downloadFile(x){
-  const {f,kind}=x;
-  const label = kind==='saggio'
-    ? (f.work?`Parte ${f.part||'?'} di «${f.work.title}»`:`Saggio · ${(SUBJ_META[f.subj]||SUBJ_META.x).label}`)
-    : `${x.s.name} · Classe ${f.cls}ª`;
-  if(f.file){
-    const url=fileUrl(f);
-    toast(`Preparo il download di «${f.title}»…`,'download');
-    try{
-      const r=await fetch(url);
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      const blob=await r.blob();
-      const a=document.createElement('a');
-      const u=URL.createObjectURL(blob);
-      a.href=u; a.download=f.title+'.'+f.type;
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(u),5000);
-    }catch(e){
-      window.open(url,'_blank','noopener');
-      toast('Download diretto non riuscito: il file si apre in una nuova scheda, salvalo da lì.','info');
-    }
-    f.dl++; updateDl(f); renderTop();
-    return;
+  const {f}=x;
+  if(!f||!f.file) return;
+  const url=fileUrl(f);
+  toast(`Preparo il download di «${f.title}»…`,'download');
+  try{
+    const r=await fetch(url);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const blob=await r.blob();
+    const a=document.createElement('a');
+    const u=URL.createObjectURL(blob);
+    a.href=u; a.download=f.title+'.'+f.type;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(u),5000);
+  }catch(e){
+    window.open(url,'_blank','noopener');
+    toast('Download diretto non riuscito: il file si apre in una nuova scheda, salvalo da lì.','info');
   }
-  const txt=[
-    'QUADERNO APERTO — Prof. Valerio Ciaco','',
-    'FILE DIMOSTRATIVO','',
-    `Titolo:     ${f.title}`,
-    `Collocazione: ${label}`,
-    `Formato:    ${fmtType(f.type)} · ${f.pages||'—'} ${f.type==='pptx'?'slide':'pagine'} · ${fmtSize(f.size)}`,
-    `Pubblicata: ${fmtDate(f.date)}`,'',
-    'Apri il «Registro del docente» (footer del sito,',
-    'o Ctrl+Maiusc+D) per pubblicare i file reali.'
-  ].join('\n');
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));
-  a.download=f.id+' — demo.txt';
-  a.click();
-  URL.revokeObjectURL(a.href);
   f.dl++; updateDl(f); renderTop();
-  toast(`«${f.title}» — download dimostrativo avviato.`,'download');
 }
 
 /* ══════════════════════════════════════════════════
@@ -1613,6 +1518,11 @@ async function openReader(x){
     toast('Il visualizzatore non è partito: il PDF si apre in una nuova scheda.','info');
   }
 }
+function syncLock(){
+  const open=['#readBack','#opBack','#modBack','#palBack'].some(s=>$(s).classList.contains('open'))
+    || $('#teacherDrawer').classList.contains('open');
+  document.body.classList.toggle('locked',open);
+}
 function closeReader(){
   $('#readBack').classList.remove('open');
   syncLock();
@@ -1646,13 +1556,7 @@ function rdZoom(m){
 }
 
 /* ══════════════════════════════════════════════════
-   BLOCCO SCROLL — sincronizzato tra overlay
-   ══════════════════════════════════════════════════ */
-const anyOverlay=()=>['#readBack','#opBack','#modBack','#palBack','#teacherDrawer'].some(s=>$(s).classList.contains('open'));
-function syncLock(){ document.body.classList.toggle('locked', anyOverlay()); }
-
-/* ══════════════════════════════════════════════════
-   AZIONI — preferiti, schede
+   AZIONI — preferiti, scheda
    ══════════════════════════════════════════════════ */
 function toggleFav(id){
   const on=!favs.has(id);
@@ -1707,11 +1611,9 @@ function fillModal(x){
   const isPdf=!!(f.file&&f.type==='pdf');
   $('#mRead').hidden=!isPdf;
   $('#mDownload').classList.toggle('accent',!isPdf);
-  $('#mNote').lastElementChild.textContent = !f.file
-    ? 'Anteprima dimostrativa: pubblica i file veri dal «Registro del docente» e qui compariranno.'
-    : (f.type==='pdf'
-      ? 'Pubblicato nell\u2019archivio: «Leggi» lo sfoglia qui sul sito, pagina per pagina; «Scarica» salva il file originale.'
-      : 'Pubblicato nell\u2019archivio: «Scarica» salva il file; le slide PPTX si aprono con PowerPoint, LibreOffice o l\u2019app di Office.');
+  $('#mNote').lastElementChild.textContent = f.type==='pdf'
+    ? 'Pubblicato nell\u2019archivio: «Leggi» lo sfoglia qui sul sito, pagina per pagina; «Scarica» salva il file originale.'
+    : 'Pubblicato nell\u2019archivio: «Scarica» salva il file; le slide PPTX si aprono con PowerPoint, LibreOffice o l\u2019app di Office.';
   const pane=$('#msCover');
   pane.querySelectorAll('canvas').forEach(c=>c.remove());
   pane.classList.remove('has-thumb');
@@ -1855,7 +1757,7 @@ function openPalette(prefill){
 }
 function closePalette(){
   $('#palBack').classList.remove('open');
-  document.body.classList.remove('locked');
+  syncLock();
   lastFocus?.focus?.();
 }
 
@@ -1925,13 +1827,6 @@ const b64ToText=b64=>new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/
 const textToB64=t=>btoa(String.fromCharCode(...new TextEncoder().encode(t)));
 const fileToB64=file=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
 
-const seedArchive=()=>({
-  subjects:[
-    {id:'fil',name:'Filosofia',tint:'--t-fil',desc:DEFAULT_DESC.fil,files:[]},
-    {id:'sto',name:'Storia',tint:'--t-sto',desc:DEFAULT_DESC.sto,files:[]}
-  ],
-  essays:[]
-});
 function normalizeArchive(json){
   if(Array.isArray(json)) json={subjects:json,essays:[]};
   if(!Array.isArray(json.subjects)) json.subjects=[];
@@ -1960,7 +1855,7 @@ async function updatePublished(mutator,msg){
     try{
       await ghPut('lezioni.json',textToB64(JSON.stringify(next)),msg,null,sha);
       publishedData=next;
-      useData(next.subjects,next.essays,'published');
+      useData(next.subjects,next.essays);
       return next;
     }catch(e){ if(e.status===409||e.status===422) continue; throw e; }
   }
@@ -2054,7 +1949,7 @@ function renderTwHome(){
       <span>oppure clicca per scegliere i file · .pptx e .pdf · anche più di uno</span>
     </div>
     <input type="file" id="fileInput" accept=".pptx,.pdf" multiple hidden>
-    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b> o <b class="mono">saggio-</b> (es. <span class="mono">fil-4-kant.pptx</span>) materia e anno si compilano da soli. Per le parti di un'opera aggiungi <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine.</span></p>
+    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b> o <b class="mono">saggio-</b> materia e anno si compilano da soli. Per le parti di un'opera usa <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine.</span></p>
     <div id="twQueue" style="display:flex;flex-direction:column;gap:.9rem"></div>
     <div id="twQueueBar" hidden style="display:flex;justify-content:flex-end">
       <button class="btn accent" data-tw="puball"><i data-lucide="upload"></i> Pubblica tutto</button>
@@ -2094,7 +1989,7 @@ async function twReload(silent){
   try{
     const {json}=await ghGetPublished();
     publishedData=json;
-    useData(json.subjects,json.essays,'published');
+    useData(json.subjects,json.essays);
     renderPubList(); renderTwMeta(); fillDescFields();
     if(!silent) toast('Archivio ricaricato.','refresh-cw');
   }catch(e){ if(!silent) toast('Impossibile leggere l\u2019archivio: '+e.message,'info'); }
@@ -2233,7 +2128,9 @@ async function saveEdit(sub,id,wrap,btn){
 
 /* — metadati automatici dal nome del file:
    fil-4-kant.pptx · saggio-fascismo.pdf ·
-   saggio-storia-del-fascismo-p2.pdf (parte 2) — */
+   saggio-storia-del-fascismo-p2.pdf (opera «storia del fascismo», parte 2)
+   N.B. le regex qui sotto sono scritte con parentesi corrette:
+   un errore di sintassi qui bloccava l'intero sito. — */
 function guessMeta(name,ext){
   let base=name.replace(new RegExp('\\.'+ext+'$','i'),'');
   let kind='lezione', sub=null, cls='', work=null, part=null;
@@ -2242,14 +2139,15 @@ function guessMeta(name,ext){
     kind='saggio'; base=base.slice(m[0].length);
     const a=base.match(/^(fil|sto)[\s\-_.]+/i);
     if(a){ sub=a[1].toLowerCase(); base=base.slice(a[0].length); } else sub='x';
-    const pm=base.match/[\s\-_.]p(\d{1,2})$/i;
+    const pm=base.match(/[\s\-_.]p(?:arte)?[\-_. ]?(\d{1,2})$/i);
+    if(pm){ part=+pm[1]; base=base.slice(0,pm.index).replace(/[\s\-_.]+$/,'').trim(); }
   }else{
     m=base.match(/^(fil|sto)[\s\-_.]*/i);
     if(m){ sub=m[1].toLowerCase(); base=base.slice(m[0].length); }
+    const c=base.match(/^(\d)[\s\-_.]+/);
+    if(c){ cls=c[1]; base=base.slice(c[0].length); }
   }
-  const c=base.match(/^(\d)[\s\-_.]+/);
-  if(c){ cls=c[1]; base=base.slice(c[0].length); }
-  base=base.replace(/^[\d\s\-_.]+/,'').replace(/_+/g,' ').trim();
+  base=base.replace(/_+/g,' ').trim();
   if(base) base=base.charAt(0).toUpperCase()+base.slice(1);
   let title=base||name.replace(/\.[^.]+$/,'');
   if(part){ work=title; title='Parte '+part; }
@@ -2292,7 +2190,7 @@ async function addFiles(files){
           <label class="fld">Autore dell'opera<input class="q-author" value="" placeholder="Emilio Gentile"></label>
           <label class="fld">Parte n°<input class="q-part" type="number" min="1" value="${g.part||''}" placeholder="auto"></label>
         </div>
-        <p class="tw-hint"><i data-lucide="layers"></i><span>Riempi «Opera» per le raccolte in più parti: chi lascia vuoto il numero si numererà da solo in coda all'opera.</span></p>
+        <p class="tw-hint"><i data-lucide="layers"></i><span>Riempi «Opera» per le raccolte in più parti: chi lascia vuoto il numero si numererà da solo, in coda all'opera.</span></p>
       </div>
       <div class="fld-row">
         <label class="fld q-lab-sub-lez" ${g.kind==='saggio'?'hidden':''}>Materia<select class="q-subj">
@@ -2508,7 +2406,7 @@ async function twSyncFolder(btn){
 }
 
 /* ══════════════════════════════════════════════════
-   CARICAMENTO PUBBLICO
+   CARICAMENTO PUBBLICO — solo lezioni.json reale
    ══════════════════════════════════════════════════ */
 async function loadPublicData(){
   const urls=[];
@@ -2520,7 +2418,7 @@ async function loadPublicData(){
       if(!r.ok) continue;
       const j=normalizeArchive(await r.json());
       if(publishedData) return;
-      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length){ useData(j.subjects,j.essays,'published'); return; }
+      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length){ useData(j.subjects,j.essays); return; }
     }catch{}
   }
 }
@@ -2618,7 +2516,6 @@ function bind(){
   $('#topList').addEventListener('click',e=>{
     const b=e.target.closest('[data-file]'); if(b)openFile(b.dataset.file);
   });
-  /* scheda lezione/saggio/parte */
   $('#mClose').addEventListener('click',()=>closeModal());
   $('#modBack').addEventListener('click',e=>{ if(e.target.id==='modBack')closeModal(); });
   $('#mRead').addEventListener('click',()=>{ if(currentFile)openReader(currentFile); });
@@ -2634,7 +2531,6 @@ function bind(){
     }
     toast('Link copiato: apre esattamente questo contenuto.','link-2');
   });
-  /* pagina dell'opera */
   $('#opClose').addEventListener('click',()=>closeOpera());
   $('#opBack').addEventListener('click',e=>{
     if(e.target.id==='opBack'){ closeOpera(); return; }
@@ -2655,7 +2551,6 @@ function bind(){
     }
     toast('Link all\u2019opera copiato: apre direttamente la sua pagina.','link-2');
   });
-  /* lettore */
   $('#rdClose').addEventListener('click',closeReader);
   $('#readBack').addEventListener('click',e=>{ if(e.target.id==='readBack')closeReader(); });
   $('#rdPrev').addEventListener('click',()=>renderRdPage((rdState?.page||1)-1));
@@ -2663,7 +2558,6 @@ function bind(){
   $('#rdZoomIn').addEventListener('click',()=>rdZoom(1.2));
   $('#rdZoomOut').addEventListener('click',()=>rdZoom(1/1.2));
   $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}));
-  /* registro */
   $('#teacherBtn').addEventListener('click',openTeacher);
   $('#twClose').addEventListener('click',closeTeacher);
   $('#twBack').addEventListener('click',closeTeacher);
@@ -2742,6 +2636,7 @@ function bind(){
     if(mo){
       const w=WORKS.find(x=>x.id===mo[1]);
       if(w){ fillOpera(w); $('#opBack').classList.add('open'); document.body.classList.add('locked'); }
+      else { closeModal(true); closeOpera(true); }
     }
     else if(m){ if(fileMap.has(m[1])){ fillModal(fileMap.get(m[1])); $('#modBack').classList.add('open'); document.body.classList.add('locked'); } }
     else { closeModal(true); closeOpera(true); }
@@ -2776,7 +2671,8 @@ function parallax(){
 function boot(){
   const savedTheme=store.get('qa-theme',null);
   if(savedTheme)document.documentElement.dataset.theme=savedTheme;
-  useData(SUBJECTS,ESSAYS,'demo');
+  const seed=seedArchive();
+  useData(seed.subjects,[]);
   bind();
   parallax();
   icons();
@@ -2784,10 +2680,10 @@ function boot(){
   loadPublicData();
   const idle=window.requestIdleCallback||(cb=>setTimeout(cb,1500));
   idle(()=>{ ensurePdfJs().catch(()=>{}); });
-  const m0=location.hash.match(/^#(?:lezione|saggio)-(.+)$/);
-  if(m0&&fileMap.has(m0[1])) openFile(m0[1]);
   const w0=location.hash.match(/^#opera-(.+)$/);
   if(w0){ const w=WORKS.find(x=>x.id===w0[1]); if(w){ fillOpera(w); $('#opBack').classList.add('open'); document.body.classList.add('locked'); } }
+  const m0=location.hash.match(/^#(?:lezione|saggio)-(.+)$/);
+  if(m0&&fileMap.has(m0[1])) openFile(m0[1]);
 }
 try{ boot(); }
 catch(err){
