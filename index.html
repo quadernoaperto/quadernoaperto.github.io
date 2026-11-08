@@ -10,9 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   1. TEMA
-   ============================================================ */
 :root{
   --paper:#F6F1E6; --paper-2:#EEE7D6; --paper-3:#FFFDF6;
   --ink:#211D15; --ink-2:#6E6450; --line:rgba(33,29,21,.18); --line-soft:rgba(33,29,21,.08);
@@ -54,9 +51,6 @@ kbd{
   font-family:var(--font-m);font-size:.66rem;border:1.5px solid var(--line);border-bottom-width:2.5px;
   border-radius:3px;padding:.1rem .34rem;color:var(--ink-2);background:var(--paper-3);white-space:nowrap;
 }
-/* ============================================================
-   2. COMPONENTI
-   ============================================================ */
 .btn{
   display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:.9rem;
   padding:.7rem 1.15rem;border:1.5px solid var(--ink);border-radius:4px;background:var(--paper);
@@ -87,9 +81,6 @@ kbd{
 .seg button:last-child{border-right:none}
 .seg button:hover{color:var(--ink);background:var(--paper-2)}
 .seg button.on{background:var(--ink);color:var(--paper)}
-/* ============================================================
-   3. HEADER
-   ============================================================ */
 .site-head{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1.5px solid var(--ink)}
 .head-in{display:flex;align-items:center;gap:1.5rem;height:66px}
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
@@ -117,9 +108,6 @@ kbd{
 .search-pill span{font-size:.85rem;color:var(--ink-2)}
 @media(max-width:720px){.search-pill span,.search-pill kbd{display:none}}
 @media(max-width:660px){.site-nav{display:none}}
-/* ============================================================
-   4. HERO
-   ============================================================ */
 .hero{position:relative;overflow:hidden}
 .hero::before{
   content:"";position:absolute;inset:0;pointer-events:none;
@@ -188,7 +176,11 @@ h1 .hand path{
 .slide h3{font-family:var(--font-d);font-weight:600;font-size:clamp(1rem,1.7vw,1.35rem);line-height:1.12}
 .slide .lines{display:flex;flex-direction:column;gap:.4rem;margin-top:.2rem}
 .slide .lines i{height:6px;border-radius:3px;background:var(--line-soft)}
-.slide footer{margin-top:auto;font-family:var(--font-m);font-size:.62rem;color:var(--accent);letter-spacing:.06em}
+.slide footer{margin-top:auto;font-family:var(--font-m);font-size:.62rem;color:var(--accent);letter-spacing:.06em;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.slide.clickable{cursor:pointer}
+.slide.clickable:hover{box-shadow:10px 10px 0 var(--hard);border-color:var(--accent)}
+.slide.clickable:hover .hs-open{text-decoration:underline}
+.hs-open{color:var(--accent);font-weight:500}
 .sl1{width:60%;top:3%;left:4%;--r:-5deg;z-index:2;aspect-ratio:5/3.4}
 .sl2{width:52%;top:47%;left:38%;--r:4deg;z-index:3;aspect-ratio:5/3.4}
 .stamp{
@@ -199,9 +191,6 @@ h1 .hand path{
 .stamp .stamp-q{font-family:var(--font-d);font-size:32px;letter-spacing:0;font-weight:600}
 .stamp .spin{transform-origin:60px 60px;animation:spin 30s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* ============================================================
-   5. DIARIO DELLE AGGIUNTE
-   ============================================================ */
 .diario{border-block:1.5px solid var(--ink);background:var(--paper-2);display:flex;align-items:stretch}
 .diario-label{
   flex:none;display:flex;align-items:center;gap:.55rem;background:var(--accent);color:var(--accent-ink);
@@ -224,9 +213,6 @@ h1 .hand path{
 .d-date{font-family:var(--font-m);font-size:.72rem;color:var(--ink-2)}
 .d-sep{width:6px;height:6px;background:var(--accent);transform:rotate(45deg);flex:none;display:inline-block}
 @media(max-width:640px){.diario-label span{display:none}}
-/* ============================================================
-   6. PROGETTI
-   ============================================================ */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-top:1.6rem}
 .proj-card{
   border:1.5px solid var(--ink);border-radius:8px;background:var(--paper-3);
@@ -244,9 +230,6 @@ h1 .hand path{
 .proj-card p{color:var(--ink-2);font-size:.9rem;line-height:1.55}
 .proj-actions{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding-top:.7rem}
 .proj-actions .mono{font-size:.62rem;color:var(--ink-2)}
-/* ============================================================
-   7. INDICE DELLE MATERIE
-   ============================================================ */
 section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;border-top:3px double var(--ink);padding-top:1.2rem}
 .sec-note{max-width:38ch;color:var(--ink-2);font-size:.92rem}
@@ -317,9 +300,6 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .file:hover .f-actions,.file:focus-within .f-actions{opacity:1}
 @media(hover:none){.f-actions{opacity:1}}
 .empty-note{margin-top:1.5rem;padding:1.2rem 1.4rem;border:1.5px dashed var(--line);border-radius:6px;color:var(--ink-2);font-size:.92rem}
-/* ============================================================
-   8. SAGGISTICA
-   ============================================================ */
 #saggistica{position:relative;overflow:hidden}
 #saggistica::before{
   content:"¶";position:absolute;top:-3.5rem;right:-1.5rem;z-index:0;pointer-events:none;user-select:none;
@@ -348,9 +328,6 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .essay .f-actions{opacity:0}
 .essay:hover .f-actions,.essay:focus-within .f-actions{opacity:1}
 @media(hover:none){.essay .f-actions{opacity:1}}
-/* ============================================================
-   9. CLASSIFICA
-   ============================================================ */
 .band{background:var(--paper-2);border-block:1.5px solid var(--ink)}
 .top-list{list-style:none;margin-top:1.8rem}
 .top-row{
@@ -368,9 +345,6 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .t-go svg{width:17px;height:17px}
 .top-row:hover .t-go{opacity:1}
 @media(max-width:560px){.t-go{display:none}.t-rank{font-size:1.3rem}.top-row{grid-template-columns:2.2rem minmax(0,1fr) auto}}
-/* ============================================================
-   10. GUIDA
-   ============================================================ */
 .guide-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,5rem);margin-top:.5rem}
 .g-left{position:sticky;top:110px;align-self:start}
 .g-left p{color:var(--ink-2);margin-top:1rem;max-width:44ch}
@@ -387,9 +361,6 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .g-step h3{font-family:var(--font-d);font-weight:600;font-size:1.3rem;margin-bottom:.4rem}
 .g-step p{color:var(--ink-2);font-size:.94rem;max-width:52ch}
 .g-step kbd{margin:0 .1rem}
-/* ============================================================
-   11. FOOTER
-   ============================================================ */
 footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;margin-top:2rem}
 .f-word{font-family:var(--font-d);font-weight:600;font-variation-settings:"SOFT" 40,"WONK" 1;font-size:clamp(3rem,9vw,6rem);line-height:.95;letter-spacing:-.02em}
 .f-word .f-dot{color:var(--accent)}
@@ -408,9 +379,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .f-bottom button,.f-bottom a{color:#F0E8D5;display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-m);font-size:.72rem;text-decoration:none}
 .f-bottom button svg,.f-bottom a svg{width:13px;height:13px}
 .f-bottom button:hover,.f-bottom a:hover{color:var(--accent)}
-/* ============================================================
-   12. COMMAND PALETTE
-   ============================================================ */
 .overlay{
   position:fixed;inset:0;z-index:400;background:color-mix(in srgb,var(--hard) 45%,transparent);
   backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .2s;
@@ -439,9 +407,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .p-empty{display:flex;align-items:center;gap:.7rem;padding:1.4rem;color:var(--ink-2);font-size:.92rem}
 .p-empty svg{width:18px;height:18px;flex:none}
 .p-foot{display:flex;gap:1.2rem;align-items:center;padding:.6rem 1rem;border-top:1.5px solid var(--line);font-family:var(--font-m);font-size:.66rem;color:var(--ink-2)}
-/* ============================================================
-   13. MODAL + COPERTINA PDF
-   ============================================================ */
 .modal{
   position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.97);z-index:401;
   width:min(780px,calc(100% - 2rem));max-height:88dvh;overflow-y:auto;
@@ -482,9 +447,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .m-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.5rem}
 .m-note{display:flex;gap:.6rem;margin-top:1.3rem;padding:.75rem .85rem;border:1px dashed var(--line);border-radius:6px;color:var(--ink-2);font-size:.8rem}
 .m-note svg{width:15px;height:15px;flex:none;margin-top:.1rem;color:var(--accent)}
-/* ============================================================
-   13b. LETTORE PDF
-   ============================================================ */
 #readBack{z-index:430}
 .reader{
   position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.98);z-index:431;
@@ -510,9 +472,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .rd-page{font-family:var(--font-m);font-size:.78rem;color:var(--ink-2)}
 .rd-credit{font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
 @media(max-width:680px){.rd-credit{display:none}}
-/* ============================================================
-   14. TOAST + AVVISO DI AVVIO
-   ============================================================ */
 .toaster{position:fixed;bottom:1.2rem;right:1.2rem;z-index:500;display:flex;flex-direction:column;gap:.6rem;max-width:min(360px,calc(100vw - 2.4rem))}
 .toast{
   display:flex;gap:.7rem;align-items:flex-start;background:var(--ink);color:var(--paper);
@@ -529,9 +488,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   box-shadow:4px 4px 0 var(--hard);font-size:.9rem;color:var(--ink);line-height:1.6;
 }
 .boot-err .mono{font-family:var(--font-m);font-size:.8rem;color:var(--accent)}
-/* ============================================================
-   15. REGISTRO DEL DOCENTE
-   ============================================================ */
 #twBack{z-index:410}
 .drawer{
   position:fixed;top:0;right:0;bottom:0;width:min(600px,100vw);z-index:420;
@@ -601,9 +557,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 }
 .tw-foot-card{border:1.5px dashed var(--line);border-radius:6px;padding:1rem 1.1rem;font-size:.78rem;color:var(--ink-2);display:flex;flex-direction:column;gap:.55rem;line-height:1.5}
 .tw-foot-card .linkish{align-self:flex-start}
-/* ============================================================
-   16. RESPONSIVE
-   ============================================================ */
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr}
   .hero-side{max-width:520px}
@@ -639,7 +592,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   <div class="boot-err"><b>JavaScript è disattivato.</b> Questo archivio funziona con JavaScript attivo: abilitalo nelle impostazioni del browser per vedere l'indice delle lezioni e dei saggi.</div>
 </noscript>
 
-<!-- ══════════ HEADER ══════════ -->
 <header class="site-head">
   <div class="wrap head-in">
     <a class="brand" href="#top" aria-label="Quaderno Aperto — Prof. Valerio Ciaco, torna in cima">
@@ -667,7 +619,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 
 <main id="top">
 
-  <!-- ══════════ HERO ══════════ -->
   <section class="hero" style="padding-block:0">
     <div class="wrap hero-grid">
       <div class="hero-copy">
@@ -677,7 +628,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <a class="hero-social" href="https://www.instagram.com/saggiogram" target="_blank" rel="noopener" title="Saggistica anche su Instagram">
             <i data-lucide="instagram"></i>@saggiogram
           </a>
-          <span class="demo-chip" id="demoChip" hidden title="Le lezioni mostrate sono di prova: spariscono appena pubblichi le prime lezioni reali dal Registro del docente.">
+          <span class="demo-chip" id="demoChip" hidden title="Le lezioni mostrate sono di prova: spariscono appena l'indice delle lezioni reali viene creato dal Registro del docente.">
             <i data-lucide="flask-conical"></i>Contenuto dimostrativo
           </span>
         </div>
@@ -704,21 +655,21 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
         </div>
       </div>
 
-      <div class="hero-side" aria-hidden="true">
-        <div class="stack">
-          <article class="slide sl1" style="--r:-5deg" data-depth="12">
-            <header>Filosofia · 4ª</header>
-            <h3>Kant: la ragion pura</h3>
-            <div class="lines"><i style="width:88%"></i><i style="width:64%"></i><i style="width:76%"></i></div>
-            <footer>PPTX · 38 slide</footer>
+      <div class="hero-side">
+        <div class="stack" id="heroStack">
+          <article class="slide sl1 clickable" style="--r:-5deg" data-depth="12" id="heroS1" role="button" tabindex="0" aria-label="Apri la lezione in evidenza">
+            <header class="hero-sl-head">…</header>
+            <h3 class="hero-sl-title">…</h3>
+            <div class="lines" aria-hidden="true"><i style="width:88%"></i><i style="width:64%"></i><i style="width:76%"></i></div>
+            <footer><span class="hero-sl-foot">…</span><span class="hs-open">apri ↗</span></footer>
           </article>
-          <article class="slide sl2" style="--r:4deg" data-depth="22">
-            <header>Storia · 4ª</header>
-            <h3>La Grande Guerra</h3>
-            <div class="lines"><i style="width:70%"></i><i style="width:82%"></i></div>
-            <footer>PPTX · 42 slide</footer>
+          <article class="slide sl2 clickable" style="--r:4deg" data-depth="22" id="heroS2" role="button" tabindex="0" aria-label="Apri la seconda lezione in evidenza">
+            <header class="hero-sl-head">…</header>
+            <h3 class="hero-sl-title">…</h3>
+            <div class="lines" aria-hidden="true"><i style="width:70%"></i><i style="width:82%"></i></div>
+            <footer><span class="hero-sl-foot">…</span><span class="hs-open">apri ↗</span></footer>
           </article>
-          <svg class="stamp" data-depth="-9" viewBox="0 0 120 120">
+          <svg class="stamp" data-depth="-9" viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="circ" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
             <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="2.5"/>
             <circle cx="60" cy="60" r="33" fill="none" stroke="currentColor" stroke-width="1.5"/>
@@ -730,7 +681,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </section>
 
-  <!-- ══════════ DIARIO DELLE AGGIUNTE ══════════ -->
   <aside class="diario" aria-label="Ultime pubblicazioni">
     <span class="diario-label"><i data-lucide="history"></i><span>Diario delle aggiunte</span></span>
     <div class="diario-track">
@@ -738,7 +688,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </aside>
 
-  <!-- ══════════ PROGETTI ══════════ -->
   <section id="progetti">
     <div class="wrap">
       <div class="sec-head">
@@ -753,7 +702,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </section>
 
-  <!-- ══════════ INDICE: LE LEZIONI PER MATERIA E ANNO ══════════ -->
   <section id="materie">
     <div class="wrap">
       <div class="sec-head">
@@ -786,7 +734,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </section>
 
-  <!-- ══════════ SAGGISTICA ══════════ -->
   <section id="saggistica">
     <div class="wrap">
       <div class="sec-head">
@@ -810,7 +757,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </section>
 
-  <!-- ══════════ CLASSIFICA ══════════ -->
   <section class="band" id="classifica">
     <div class="wrap">
       <div class="sec-head" style="border-top-color:transparent;padding-top:0">
@@ -825,7 +771,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </section>
 
-  <!-- ══════════ GUIDA ══════════ -->
   <section id="guida">
     <div class="wrap">
       <div class="sec-head">
@@ -848,7 +793,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
             <span class="g-n">1</span>
             <div>
               <h3>Trova quello che cerchi</h3>
-              <p>Digita un argomento, un autore, una materia — oppure apri la ricerca veloce con <kbd>Ctrl</kbd><kbd>K</kbd>. L'indice delle lezioni si filtra per anno; i saggi hanno il loro scaffale con il filtro per ambito, e compaiono nella ricerca insieme alle lezioni.</p>
+              <p>Digita un argomento, un autore, una materia — oppure apri la ricerca veloce con <kbd>Ctrl</kbd><kbd>K</kbd>. Le slide in evidenza qui sopra aprono direttamente le lezioni più recenti; l'indice si filtra per anno.</p>
             </div>
           </div>
           <div class="g-step">
@@ -871,7 +816,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   </section>
 </main>
 
-<!-- ══════════ FOOTER ══════════ -->
 <footer>
   <div class="wrap">
     <h2 class="f-word">Valerio<br>Ciaco<span class="f-dot">.</span></h2>
@@ -912,7 +856,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   </div>
 </footer>
 
-<!-- ══════════ RICERCA VELOCE ══════════ -->
 <div class="overlay" id="palBack">
   <div class="palette" role="dialog" aria-modal="true" aria-label="Ricerca lezioni e saggi">
     <div class="p-bar">
@@ -929,7 +872,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   </div>
 </div>
 
-<!-- ══════════ SCHEDA LEZIONE / SAGGIO ══════════ -->
 <div class="overlay" id="modBack">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
     <button class="ibtn m-close" id="mClose" aria-label="Chiudi"><i data-lucide="x"></i></button>
@@ -964,7 +906,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   </div>
 </div>
 
-<!-- ══════════ LETTORE PDF ══════════ -->
 <div class="overlay" id="readBack">
   <div class="reader" role="dialog" aria-modal="true" aria-label="Lettore PDF">
     <div class="rd-head">
@@ -988,7 +929,6 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
   </div>
 </div>
 
-<!-- ══════════ REGISTRO DEL DOCENTE ══════════ -->
 <div class="overlay" id="twBack"></div>
 <aside class="drawer" id="teacherDrawer" role="dialog" aria-modal="true" aria-label="Registro del docente">
   <div class="tw-head">
@@ -1014,13 +954,15 @@ const norm = s=>String(s).toLowerCase()
 function slug(t){ return norm(t).replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 
 /* ══════════════════════════════════════════════════
-   CONFIGURAZIONE ARCHIVIO (opzionale)
+   CONFIGURAZIONE ARCHIVIO — precompilata con i dati
+   del tuo repository (valeriociaco-droid/lezioni).
+   Anche se cambi dominio del sito, i file continuano
+   a essere trovati; e il Registro si apre precompilato.
    ══════════════════════════════════════════════════ */
-const CONFIG = { owner:'', repo:'', branch:'main' };
+const CONFIG = { owner:'valeriociaco-droid', repo:'lezioni', branch:'main' };
 
 /* ══════════════════════════════════════════════════
    PROGETTI INTERATTIVI (siti esterni)
-   Per aggiungerne uno: una riga qui sotto.
    ══════════════════════════════════════════════════ */
 const PROJECTS = [
   { id:'bouvines', title:'La battaglia di Bouvines', sub:'sto', cls:3,
@@ -1038,9 +980,8 @@ const DEFAULT_DESC={
 const OLD_DESC_STO='L\'Ottocento e il Novecento: fatti, cause e storiografia, con fonti, mappe e cronologie.';
 
 /* ══════════════════════════════════════════════════
-   DATI DIMOSTRATIVI
-   Convenzione nomi file: fil-4-kant.pptx, sto-3-…,
-   saggio-fil-nietzsche.pdf
+   DATI DIMOSTRATIVI — spariscono appena l'indice
+   reale (lezioni.json) è presente nel repository.
    ══════════════════════════════════════════════════ */
 const F = (title,type,cls,date,size,pages,dl,desc)=>({ id:slug(title),title,type,cls,date,size,pages,dl,desc });
 const S = (title,subj,cls,date,size,pages,dl,desc)=>({ id:'saggio-'+slug(title),title,type:'pdf',subj,cls:cls||null,date,size,pages,dl,desc });
@@ -1143,8 +1084,42 @@ function useData(subjects,essays,mode){
   totalSlides = ALL.reduce((a,x)=>a+(x.f.pages||0),0);
   const chip=$('#demoChip'); if(chip) chip.hidden = mode!=='demo';
   renderProjects();
+  renderHeroSlides();
   renderSubjects(); renderEssays(); renderDiario(); renderTop();
   applyFilter(); setupStats();
+}
+
+/* ══════════════════════════════════════════════════
+   HERO — le due slide in evidenza: le lezioni più
+   recenti di Filosofia e Storia, cliccabili
+   ══════════════════════════════════════════════════ */
+function pickHeroItems(){
+  const pool=[...ALL].sort((a,b)=>b.f.date.localeCompare(a.f.date));
+  const out=[];
+  const fil=pool.find(x=>x.kind==='lezione'&&x.s.id==='fil');
+  const sto=pool.find(x=>x.kind==='lezione'&&x.s.id==='sto');
+  if(fil)out.push(fil);
+  if(sto)out.push(sto);
+  for(const x of pool){ if(out.length>=2)break; if(!out.includes(x))out.push(x); }
+  if(!out.length) out.push(...pool.slice(0,2));
+  return out.slice(0,2);
+}
+function renderHeroSlides(){
+  const items=pickHeroItems();
+  [{el:$('#heroS1')},{el:$('#heroS2')}].forEach((slot,i)=>{
+    const it=items[i];
+    if(!it){ slot.el.hidden=true; return; }
+    slot.el.hidden=false;
+    slot.el.dataset.open=it.f.id;
+    const head = it.kind==='saggio'
+      ? `Saggio · ${(SUBJ_META[it.f.subj]||SUBJ_META.x).sym} ${(SUBJ_META[it.f.subj]||SUBJ_META.x).label}`
+      : `${it.s.name} · ${it.f.cls}ª`;
+    const pages = it.f.pages ? ` · ${it.f.pages} ${it.f.type==='pptx'?'slide':'pagine'}` : '';
+    slot.el.querySelector('.hero-sl-head').textContent=head;
+    slot.el.querySelector('.hero-sl-title').textContent=it.f.title;
+    slot.el.querySelector('.hero-sl-foot').textContent=`${fmtType(it.f.type)}${pages}`;
+    slot.el.setAttribute('aria-label',`Apri: ${it.f.title}`);
+  });
 }
 
 /* ══════════════════════════════════════════════════
@@ -1168,7 +1143,6 @@ function renderProjects(){
   }).join('');
   icons();
 }
-/* riga-progetto dentro l'indice (es. Bouvines in Storia · 3ª) */
 function extRow(p){
   return `<li class="file file-ext" data-cls="${p.cls}" style="--c:var(${SUBJ_META[p.sub].tint})">
     <span class="f-ico"><i data-lucide="globe"></i></span>
@@ -1818,14 +1792,14 @@ function renderTwSetup(){
     <div class="tw-card">
       <h3><i data-lucide="key-round"></i>Collega il tuo archivio GitHub</h3>
       <ol class="tw-steps">
-        <li><span><b>Crea il repository</b> su <a class="linkish" href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>: nome a piacere (es. <span class="mono">archivio-ciaco</span>), <b>pubblico</b>, nient'altro.</span></li>
+        <li><span><b>Crea il repository</b> su <a class="linkish" href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>: nome a piacere, <b>pubblico</b>, nient'altro.</span></li>
         <li><span><b>Carica il sito</b>: nel repository, «Add file → Upload files» e trascina questo file rinominato <span class="mono">index.html</span>. Poi <b>Settings → Pages</b> → Branch <span class="mono">main</span>, cartella <span class="mono">/ (root)</span> → Save.</span></li>
         <li><span><b>Crea il token d'accesso</b> su <a class="linkish" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>: «Repository access» → solo il tuo repository; «Permissions → Contents» → <b>Read and write</b>. Genera e copia il codice.</span></li>
       </ol>
       <form id="twForm" style="display:flex;flex-direction:column;gap:.85rem">
         <div class="fld-row" style="grid-template-columns:1fr 1fr">
-          <label class="fld">Owner (il tuo username)<input id="twOwner" autocomplete="off" spellcheck="false" required placeholder="vciaco"></label>
-          <label class="fld">Repository<input id="twRepo" autocomplete="off" spellcheck="false" required placeholder="archivio-ciaco"></label>
+          <label class="fld">Owner (il tuo username)<input id="twOwner" autocomplete="off" spellcheck="false" required value="${esc(CONFIG.owner)}" placeholder="valeriociaco-droid"></label>
+          <label class="fld">Repository<input id="twRepo" autocomplete="off" spellcheck="false" required value="${esc(CONFIG.repo)}" placeholder="lezioni"></label>
         </div>
         <label class="fld">Token d'accesso (fine-grained)<input id="twToken" type="password" autocomplete="off" required placeholder="github_pat_…"></label>
         <p class="tw-hint"><i data-lucide="shield-check"></i><span>Il token resta soltanto in questo browser e può solo leggere/scrivere i file del repository scelto. Puoi revocarlo in qualsiasi momento da GitHub.</span></p>
@@ -1834,7 +1808,7 @@ function renderTwSetup(){
       </form>
     </div>`;
   icons();
-  $('#twOwner')?.focus();
+  $('#twToken')?.focus();
   $('#twForm').addEventListener('submit',async e=>{
     e.preventDefault();
     const owner=$('#twOwner').value.trim(), repo=$('#twRepo').value.trim(), token=$('#twToken').value.trim();
@@ -2049,7 +2023,6 @@ async function saveEdit(sub,id,wrap,btn){
   }
 }
 
-/* — metadati automatici dal nome del file — */
 function guessMeta(name,ext){
   let base=name.replace(new RegExp('\\.'+ext+'$','i'),'');
   let kind='lezione', sub=null, cls='';
@@ -2331,6 +2304,17 @@ function bind(){
     const b=e.target.closest('[data-file]');
     if(b){ closePalette(); openFile(b.dataset.file); }
   });
+  /* le slide in evidenza dell'hero: click e tastiera */
+  $('#heroStack').addEventListener('click',e=>{
+    const s=e.target.closest('.slide[data-open]');
+    if(s) openFile(s.dataset.open);
+  });
+  $('#heroStack').addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){
+      const s=e.target.closest('.slide[data-open]');
+      if(s){ e.preventDefault(); openFile(s.dataset.open); }
+    }
+  });
   $('#classFilter').addEventListener('click',e=>{
     const b=e.target.closest('[data-cls]'); if(!b)return;
     filterCls=b.dataset.cls;
@@ -2511,7 +2495,6 @@ function boot(){
   bind();
   parallax();
   icons();
-  /* l'anno del copyright si calcola da solo: non invecchia più */
   const cy=$('#copyYear'); if(cy) cy.textContent=String(new Date().getFullYear());
   loadPublicData();
   const idle=window.requestIdleCallback||(cb=>setTimeout(cb,1500));
