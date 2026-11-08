@@ -504,6 +504,11 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .rd-page{font-family:var(--font-m);font-size:.78rem;color:var(--ink-2)}
 .rd-credit{font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
 @media(max-width:680px){.rd-credit{display:none}}
+#readBack.open .reader.fs{
+  left:0;top:0;transform:none;
+  width:100vw;height:100vh;height:100dvh;
+  border:none;border-radius:0;box-shadow:none;
+}
 .toaster{position:fixed;bottom:1.2rem;right:1.2rem;z-index:500;display:flex;flex-direction:column;gap:.6rem;max-width:min(360px,calc(100vw - 2.4rem))}
 .toast{
   display:flex;gap:.7rem;align-items:flex-start;background:var(--ink);color:var(--paper);
@@ -975,9 +980,9 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
       <div class="rd-tools">
         <button class="ibtn" id="rdZoomOut" aria-label="Riduci"><i data-lucide="zoom-out"></i></button>
         <button class="ibtn" id="rdZoomIn" aria-label="Ingrandisci"><i data-lucide="zoom-in"></i></button>
+        <button class="ibtn" id="rdFull" aria-label="Schermo intero"><i data-lucide="maximize"></i></button>
         <button class="ibtn" id="rdClose" aria-label="Chiudi il lettore"><i data-lucide="x"></i></button>
       </div>
-    </div>
     <div class="rd-body" id="rdBody"><canvas id="rdCanvas" width="0" height="0"></canvas></div>
     <div class="rd-foot">
       <button class="btn" id="rdPrev"><i data-lucide="chevron-left"></i> Indietro</button>
@@ -1553,6 +1558,8 @@ function syncLock(){
 }
 function closeReader(){
   $('#readBack').classList.remove('open');
+  const r=$('#readBack .reader'); if(r) r.classList.remove('fs');
+  if(document.fullscreenElement){ try{ document.exitFullscreen(); }catch{} }
   syncLock();
   rdState=null;
 }
@@ -1582,6 +1589,39 @@ function rdZoom(m){
   if(!rdState||!rdState.doc)return;
   rdState.scale=Math.min(3,Math.max(.35,rdState.scale*m));
   renderRdPage(rdState.page);
+}
+function setFullIcon(on){
+  const b=$('#rdFull'); if(!b) return;
+  b.innerHTML=`<i data-lucide="${on?'minimize':'maximize'}"></i>`;
+  b.setAttribute('aria-label',on?'Esci da schermo intero':'Schermo intero');
+  icons();
+}
+function readerFsActive(){
+  const r=$('#readBack .reader');
+  return !!(r&&r.classList.contains('fs'));
+}
+async function toggleReaderFull(){
+  const r=$('#readBack .reader'); if(!r) return;
+  if(readerFsActive()){
+    r.classList.remove('fs');
+    setFullIcon(false);
+    if(document.fullscreenElement){ try{ await document.exitFullscreen(); }catch{} }
+  }else{
+    r.classList.add('fs');
+    setFullIcon(true);
+    if(r.requestFullscreen){ try{ await r.requestFullscreen(); }catch{} }
+  }
+  setTimeout(refitReader,150);
+}
+async function refitReader(){
+  const st=rdState;
+  if(!st||!st.doc) return;
+  const page=await st.doc.getPage(st.page||1);
+  const vp=page.getViewport({scale:1});
+  const avail=Math.max(320,($('#rdBody').clientHeight||600)-32);
+  const availW=Math.max(240,($('#rdBody').clientWidth||800)-32);
+  st.scale=Math.min(2.5,Math.max(.4,Math.min(avail/vp.height,availW/vp.width)));
+  renderRdPage(st.page);
 }
 
 /* ══════════════════════════════════════════════════
@@ -2607,6 +2647,15 @@ function bind(){
   $('#rdNext').addEventListener('click',()=>renderRdPage((rdState?.page||1)+1));
   $('#rdZoomIn').addEventListener('click',()=>rdZoom(1.2));
   $('#rdZoomOut').addEventListener('click',()=>rdZoom(1/1.2));
+  $('#rdFull').addEventListener('click',toggleReaderFull);
+  $('#rdBody').addEventListener('dblclick',e=>{ if(e.target.tagName==='CANVAS') toggleReaderFull(); });
+  document.addEventListener('fullscreenchange',()=>{
+    if(!document.fullscreenElement&&readerFsActive()){
+      const r=$('#readBack .reader'); if(r) r.classList.remove('fs');
+      setFullIcon(false);
+      setTimeout(refitReader,150);
+    }
+  });
   $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}));
     $('#teacherBtn').addEventListener('click',openTeacher);
   $('#teacherTop').addEventListener('click',openTeacher);
