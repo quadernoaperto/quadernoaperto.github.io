@@ -2647,13 +2647,17 @@ function bind(){
   $('#rdNext').addEventListener('click',()=>renderRdPage((rdState?.page||1)+1));
   $('#rdZoomIn').addEventListener('click',()=>rdZoom(1.2));
   $('#rdZoomOut').addEventListener('click',()=>rdZoom(1/1.2));
-  $('#rdFull').addEventListener('click',toggleReaderFull);
-  $('#rdBody').addEventListener('dblclick',e=>{ if(e.target.tagName==='CANVAS') toggleReaderFull(); });
+  const rdFullBtn=$('#rdFull');
+  if(rdFullBtn) rdFullBtn.addEventListener('click',()=>{ if(typeof toggleReaderFull==='function') toggleReaderFull(); });
+  const rdBodyEl=$('#rdBody');
+  if(rdBodyEl) rdBodyEl.addEventListener('dblclick',e=>{ if(e.target.tagName==='CANVAS'&&typeof toggleReaderFull==='function') toggleReaderFull(); });
   document.addEventListener('fullscreenchange',()=>{
-    if(!document.fullscreenElement&&readerFsActive()){
-      const r=$('#readBack .reader'); if(r) r.classList.remove('fs');
-      setFullIcon(false);
-      setTimeout(refitReader,150);
+    if(document.fullscreenElement) return;
+    const r=document.querySelector('#readBack .reader');
+    if(r&&r.classList.contains('fs')){
+      r.classList.remove('fs');
+      if(typeof setFullIcon==='function') setFullIcon(false);
+      if(typeof refitReader==='function') setTimeout(refitReader,150);
     }
   });
   $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}));
