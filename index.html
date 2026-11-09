@@ -356,6 +356,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .rd-tools{display:flex;gap:.5rem;flex:none}
 .rd-body{flex:1;overflow:auto;background:#26221B;display:flex;padding:1rem}
 .rd-body canvas{flex:none;margin:auto;background:#fff;box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.rd-body iframe{flex:1;width:100%;height:100%;border:none;background:#fff;margin:auto}
 .rd-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.65rem 1.1rem;border-top:1.5px solid var(--ink);background:var(--paper-2)}
 .rd-page{font-family:var(--font-m);font-size:.78rem;color:var(--ink-2)}
 .rd-credit{font-family:var(--font-m);font-size:.6rem;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
@@ -1319,20 +1320,14 @@ function syncLock(){
     || $('#teacherDrawer').classList.contains('open');
   document.body.classList.toggle('locked',open);
 }
-async function loadPdfAnyWay(url){
-  try{
-    return await loadPdf(url);
-  }catch(e1){
-    const r=await fetch(url);
-    if(!r.ok) throw e1;
-    const blob=await r.blob();
-    const fixed=new Blob([blob],{type:'application/pdf'});
-    const u=URL.createObjectURL(fixed);
-    return await window.pdfjsLib.getDocument({url:u}).promise;
-  }
-}
+/* — apertura del lettore: ordine corretto e doppia rete di sicurezza.
+   L'indirizzo del file viene salvato in una variabile locale PRIMA di
+   qualsiasi chiusura: l'errore di ieri (leggere rdState.url dopo
+   closeReader che lo azzera) non può più ripetersi. — */
 async function openReader(x){
   const {f}=x;
+  if(!f||!f.file){ toast('File non disponibile per la lettura.','info'); return; }
+  const url=fileUrl(f);
   const body=$('#rdBody');
   if(body && !body.querySelector('#rdCanvas')){
     body.innerHTML='<canvas id="rdCanvas" width="0" height="0"></canvas>';
@@ -1345,26 +1340,28 @@ async function openReader(x){
   $('#rdTitle').textContent=f.title;
   $('#rdPage').textContent='carico il PDF…';
   $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
-  rdState={x,url:fileUrl(f),doc:null,page:1,num:0,scale:1,rid:0};
+  rdState={x,url,doc:null,page:1,num:0,scale:1,rid:0};
   try{
-    rdState.doc=await loadPdfAnyWay(rdState.url);
+    rdState.doc=await loadPdf(url);
     rdState.num=rdState.doc.numPages;
     await refitReader();
     await renderRdPage(1);
   }catch(e){
+    /* primo ripiego: visualizzatore nativo del browser, dentro il sito */
     try{
-      const r=await fetch(rdState.url);
+      const r=await fetch(url);
       if(!r.ok) throw new Error('HTTP '+r.status);
       const blob=await r.blob();
       const bu=URL.createObjectURL(new Blob([blob],{type:'application/pdf'}));
-      $('#rdBody').innerHTML='<iframe src="'+bu+'" title="lettura" style="flex:1;width:100%;height:100%;border:none;background:#fff"></iframe>';
-      $('#rdPage').textContent='lettura nativa · pagine e zoom nella barra del PDF';
+      const b2=$('#rdBody');
+      if(b2) b2.innerHTML='<iframe src="'+bu+'" title="lettura del documento"></iframe>';
+      $('#rdPage').textContent='lettura integrata del browser';
       $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
       rdState=null;
-      toast('Aperto col lettore integrato del browser: usa la barra interna del PDF per pagine e zoom.','info');
+      toast('Aperto col lettore integrato del browser: pagine e zoom dalla barra interna del PDF.','info');
     }catch(e2){
       closeReader();
-      toast('Non riesco ad aprire questo PDF: usa «Scarica». Dettaglio: '+(e2.message||e.message||'sconosciuto'),'info');
+      toast('Non riesco ad aprire questo PDF in lettura: usa «Scarica».','info');
     }
   }
 }
@@ -1372,28 +1369,10 @@ function closeReader(){
   $('#readBack').classList.remove('open');
   const r=$('#readBack .reader'); if(r) r.classList.remove('fs');
   if(document.fullscreenElement){ try{ document.exitFullscreen(); }catch{} }
-  syncLock();
-  rdState=null;
-}
-async function loadPdfWithFallback(url){
-  try{
-    return await loadPdf(url);
-  }catch(e1){
-    /* riprova forzando il tipo giusto: certi file su GitHub arrivano
-       con etichetta sbagliata e il visualizzatore li rifiuta */
-    const r=await fetch(url);
-    if(!r.ok) throw e1;
-    const blob=await r.blob();
-    const fixed=new Blob([blob],{type:'application/pdf'});
-    const u=URL.createObjectURL(fixed);
-    const doc=await window.pdfjsLib.getDocument({url:u}).promise;
-    return doc;
+  const body=$('#rdBody');
+  if(body && !body.querySelector('#rdCanvas')){
+    body.innerHTML='<canvas id="rdCanvas" width="0" height="0"></canvas>';
   }
-}
-function closeReader(){
-  $('#readBack').classList.remove('open');
-  const r=$('#readBack .reader'); if(r) r.classList.remove('fs');
-  if(document.fullscreenElement){ try{ document.exitFullscreen(); }catch{} }
   syncLock();
   rdState=null;
 }
@@ -1406,6 +1385,7 @@ async function renderRdPage(n){
   if(st.rid!==my) return;
   const vp=page.getViewport({scale:st.scale});
   const canvas=$('#rdCanvas');
+  if(!canvas) return;
   const dpr=Math.min(2,window.devicePixelRatio||1);
   canvas.width=Math.floor(vp.width*dpr);
   canvas.height=Math.floor(vp.height*dpr);
