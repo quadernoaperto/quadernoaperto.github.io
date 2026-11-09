@@ -1328,6 +1328,31 @@ async function openReader(x){
   const {f}=x;
   if(!f||!f.file){ toast('File non disponibile per la lettura.','info'); return; }
   const url=fileUrl(f);
+  /* Su smartphone e tablet: il lettore PDF nativo del telefono
+     è l'esperienza migliore (zoom a pinzetta). La finestra si
+     apre PRIMA dell'attesa di rete, per non far scattare il
+     blocco dei pop-up. */
+  const mobile = matchMedia('(pointer:coarse)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(mobile){
+    const w=window.open('','_blank');
+    try{
+      const r=await fetch(url);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const blob=await r.blob();
+      const bu=URL.createObjectURL(new Blob([blob],{type:'application/pdf'}));
+      if(w){ w.location.href=bu; }
+      else{
+        const a=document.createElement('a');
+        a.href=bu; a.target='_blank'; a.rel='noopener';
+        document.body.appendChild(a); a.click(); a.remove();
+      }
+      toast('PDF aperto nel lettore del telefono.','book-open');
+    }catch(e){
+      if(w) w.location.href=url;
+      else window.open(url,'_blank','noopener');
+    }
+    return;
+  }
   const body=$('#rdBody');
   if(body && !body.querySelector('#rdCanvas')){
     body.innerHTML='<canvas id="rdCanvas" width="0" height="0"></canvas>';
@@ -1347,7 +1372,6 @@ async function openReader(x){
     await refitReader();
     await renderRdPage(1);
   }catch(e){
-    /* primo ripiego: visualizzatore nativo del browser, dentro il sito */
     try{
       const r=await fetch(url);
       if(!r.ok) throw new Error('HTTP '+r.status);
