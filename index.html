@@ -1331,14 +1331,29 @@ async function openReader(x){
   $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
   rdState={x,url:fileUrl(f),doc:null,page:1,num:0,scale:1,rid:0};
   try{
-    rdState.doc=await loadPdf(rdState.url);
+    rdState.doc=await loadPdfWithFallback(rdState.url);
     rdState.num=rdState.doc.numPages;
     await refitReader();
     await renderRdPage(1);
   }catch(e){
-    const u=rdState.url; closeReader();
-    window.open(u,'_blank','noopener');
-    toast('Il visualizzatore non è partito: il PDF si apre in una nuova scheda.','info');
+    closeReader();
+    window.open(rdState.url,'_blank','noopener');
+    toast('Lettore non disponibile per questo file: si apre in una scheda, da cui puoi leggere o scaricare.','info');
+  }
+}
+async function loadPdfWithFallback(url){
+  try{
+    return await loadPdf(url);
+  }catch(e1){
+    /* riprova forzando il tipo giusto: certi file su GitHub arrivano
+       con etichetta sbagliata e il visualizzatore li rifiuta */
+    const r=await fetch(url);
+    if(!r.ok) throw e1;
+    const blob=await r.blob();
+    const fixed=new Blob([blob],{type:'application/pdf'});
+    const u=URL.createObjectURL(fixed);
+    const doc=await window.pdfjsLib.getDocument({url:u}).promise;
+    return doc;
   }
 }
 function closeReader(){
