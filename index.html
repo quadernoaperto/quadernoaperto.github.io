@@ -1319,8 +1319,24 @@ function syncLock(){
     || $('#teacherDrawer').classList.contains('open');
   document.body.classList.toggle('locked',open);
 }
+async function loadPdfAnyWay(url){
+  try{
+    return await loadPdf(url);
+  }catch(e1){
+    const r=await fetch(url);
+    if(!r.ok) throw e1;
+    const blob=await r.blob();
+    const fixed=new Blob([blob],{type:'application/pdf'});
+    const u=URL.createObjectURL(fixed);
+    return await window.pdfjsLib.getDocument({url:u}).promise;
+  }
+}
 async function openReader(x){
   const {f}=x;
+  const body=$('#rdBody');
+  if(body && !body.querySelector('#rdCanvas')){
+    body.innerHTML='<canvas id="rdCanvas" width="0" height="0"></canvas>';
+  }
   $('#readBack').classList.add('open');
   document.body.classList.add('locked');
   $('#rdKicker').textContent = x.kind==='saggio'
@@ -1331,15 +1347,33 @@ async function openReader(x){
   $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
   rdState={x,url:fileUrl(f),doc:null,page:1,num:0,scale:1,rid:0};
   try{
-    rdState.doc=await loadPdfWithFallback(rdState.url);
+    rdState.doc=await loadPdfAnyWay(rdState.url);
     rdState.num=rdState.doc.numPages;
     await refitReader();
     await renderRdPage(1);
   }catch(e){
-    closeReader();
-    window.open(rdState.url,'_blank','noopener');
-    toast('Lettore non disponibile per questo file: si apre in una scheda, da cui puoi leggere o scaricare.','info');
+    try{
+      const r=await fetch(rdState.url);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const blob=await r.blob();
+      const bu=URL.createObjectURL(new Blob([blob],{type:'application/pdf'}));
+      $('#rdBody').innerHTML='<iframe src="'+bu+'" title="lettura" style="flex:1;width:100%;height:100%;border:none;background:#fff"></iframe>';
+      $('#rdPage').textContent='lettura nativa · pagine e zoom nella barra del PDF';
+      $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
+      rdState=null;
+      toast('Aperto col lettore integrato del browser: usa la barra interna del PDF per pagine e zoom.','info');
+    }catch(e2){
+      closeReader();
+      toast('Non riesco ad aprire questo PDF: usa «Scarica». Dettaglio: '+(e2.message||e.message||'sconosciuto'),'info');
+    }
   }
+}
+function closeReader(){
+  $('#readBack').classList.remove('open');
+  const r=$('#readBack .reader'); if(r) r.classList.remove('fs');
+  if(document.fullscreenElement){ try{ document.exitFullscreen(); }catch{} }
+  syncLock();
+  rdState=null;
 }
 async function loadPdfWithFallback(url){
   try{
