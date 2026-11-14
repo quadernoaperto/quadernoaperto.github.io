@@ -2341,7 +2341,7 @@ async function publishOne(card){
     id=slug(title); fname=subj+'-'+slug(title)+'.'+ext;
     if(!desc) desc='Lezione del corso di '+(subj==='fil'?'Filosofia':'Storia')+' (Prof. Valerio Ciaco).';
   }
-  const st=card.querySelector('.q-status-row'), bar=card.querySelector('.q-prog b'), msg=card.querySelector('.q-msg');
+  const st=card.querySelector('.q-status'), bar=card.querySelector('.q-prog b'), msg=card.querySelector('.q-msg');
   const setP=(t,p)=>{ st.hidden=false; msg.textContent=t; if(p!=null) bar.style.width=Math.round(p*100)+'%'; };
   card.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);
   try{
