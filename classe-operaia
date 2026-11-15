@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La classe operaia va in paradiso (1971) — Scheda Didattica</title>
+    <meta name="description" content="Fabbrica, alienazione e conflitto sociale nell’Italia tra miracolo economico e Autunno caldo" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --paper: #F7F4EE;
+        --limestone: #EBE6DF;
+        --card: #FBF9F5;
+        --parchment: #D6CEBE;
+        --ink: #1C1917;
+        --muted: #57534E;
+        --accent: #9A3412;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; background: var(--paper); color: var(--ink); font-family: "Source Serif 4", Georgia, serif; }
+      body { margin: 0; line-height: 1.65; }
+      .site-header { position: sticky; top: 0; z-index: 40; background: rgba(247, 244, 238, 0.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--parchment); }
+      .header-inner { max-width: 1152px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+      .brand { font-family: "Playfair Display", Georgia, serif; font-size: 1.125rem; font-weight: 600; color: var(--ink); text-decoration: none; white-space: nowrap; }
+      .nav-links { display: flex; align-items: center; gap: 22px; overflow-x: auto; }
+      .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; padding-bottom: 2px; border-bottom: 1.5px solid transparent; transition: color 0.15s, border-color 0.15s; }
+      .nav-links a:hover, .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+      .btn-print { background: var(--accent); color: var(--paper); border: none; padding: 8px 16px; font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; cursor: pointer; white-space: nowrap; }
+      .btn-print:hover { background: #7C2D12; }
+      .progress-track { height: 2px; background: var(--limestone); width: 100%; }
+      .progress-bar { height: 100%; background: var(--accent); width: 0%; transition: width 0.1s linear; }
+      main { max-width: 1152px; margin: 0 auto; padding: 48px 24px; }
+      section { padding: 44px 0; border-bottom: 1px solid var(--parchment); scroll-margin-top: 84px; }
+      section:last-of-type { border-bottom: none; }
+      .hero { padding-top: 8px; }
+      h1 { font-family: "Playfair Display", Georgia, serif; font-size: clamp(2.1rem, 4vw, 3.25rem); line-height: 1.1; margin: 0; font-weight: 600; }
+      h2 { font-family: "Playfair Display", Georgia, serif; font-size: 1.75rem; line-height: 1.25; margin: 6px 0 0; font-weight: 600; }
+      h3 { font-family: "Playfair Display", Georgia, serif; font-size: 1.25rem; margin: 12px 0 8px; font-weight: 600; }
+      h4 { font-family: "Playfair Display", Georgia, serif; font-size: 1.05rem; margin: 4px 0; font-weight: 600; }
+      .subtitle { font-size: 1.125rem; color: var(--muted); max-width: 65ch; margin: 14px 0 0; }
+      .meta-strip { margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--parchment); font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; }
+      .kicker, .mono-accent { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 500; }
+      .mono-muted { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--muted); }
+      .mono-label { font-family: "IBM Plex Mono", monospace; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+      .drop-cap::first-letter { font-family: "Playfair Display", Georgia, serif; font-size: 3rem; font-weight: 700; float: left; line-height: 0.85; margin: 4px 10px 0 0; color: var(--accent); }
+      .two-col { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+      .two-col-even { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 40px; align-items: start; margin-top: 24px; }
+      .dl-list { margin: 24px 0; border-top: 1px solid var(--parchment); border-bottom: 1px solid var(--parchment); }
+      .dl-row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--parchment); }
+      .dl-row:last-child { border-bottom: none; }
+      .dl-row dt { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+      .dl-row dd { margin: 0; font-size: 0.92rem; }
+      .aside-box { background: rgba(235, 230, 223, 0.55); border: 1px solid var(--parchment); padding: 20px; font-size: 0.92rem; }
+      .timeline { border-top: 1px solid var(--ink); padding-top: 12px; }
+      .timeline-item { padding: 12px 0; border-bottom: 1px solid var(--parchment); }
+      .timeline-item:last-child { border-bottom: none; }
+      .muted-text { color: var(--muted); font-size: 0.92rem; margin: 4px 0 0; }
+      .char-list { border-top: 1px solid var(--parchment); border-bottom: 1px solid var(--parchment); }
+      .char-item { padding: 14px 0; border-bottom: 1px solid var(--parchment); }
+      .char-item:last-child { border-bottom: none; }
+      .char-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+      .scene-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 20px 0; }
+      .scene-filter button { border: 1px solid var(--parchment); background: var(--card); color: var(--muted); padding: 6px 12px; font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; cursor: pointer; }
+      .scene-filter button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+      .scenes-stack { display: flex; flex-direction: column; gap: 28px; margin-top: 24px; }
+      .scene-card { border: 1px solid var(--parchment); background: var(--card); padding: 28px; }
+      .scene-card.hidden { display: none; }
+      .scene-top { border-bottom: 1px solid var(--parchment); padding-bottom: 10px; }
+      .scene-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 12px; }
+      .scene-figure { margin: 0; }
+      .scene-figure img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid var(--parchment); display: block; }
+      .scene-figure figcaption { font-size: 0.72rem; font-style: italic; color: var(--muted); margin-top: 6px; }
+      .cine-note { font-size: 0.9rem; font-style: italic; color: var(--muted); }
+      .scene-question { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--parchment); }
+      .question-label { display: block; font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-style: italic; color: var(--accent); margin-bottom: 8px; }
+      .note-area { width: 100%; border: 1px solid var(--parchment); background: #fff; padding: 10px 12px; font-family: "Source Serif 4", Georgia, serif; font-size: 0.9rem; color: var(--ink); resize: vertical; }
+      .teacher-key { margin-top: 10px; font-size: 0.88rem; color: var(--ink); }
+      .teacher-key summary { font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); cursor: pointer; }
+      .teacher-key p { background: rgba(235, 230, 223, 0.55); border: 1px solid var(--parchment); padding: 10px 14px; margin: 8px 0 0; }
+      .themes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 24px; }
+      .theme-card { border: 1px solid var(--parchment); background: rgba(235, 230, 223, 0.45); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.92rem; }
+      .theme-head { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--parchment); padding-bottom: 8px; }
+      .theme-foot { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--parchment); }
+      .quote-box { margin: 36px 0 0; padding: 24px 16px; border-top: 1px solid var(--parchment); border-bottom: 1px solid var(--parchment); text-align: center; }
+      .quote-box p { font-family: "Playfair Display", Georgia, serif; font-size: 1.35rem; font-style: italic; max-width: 720px; margin: 0 auto; }
+      .quote-box footer { margin-top: 10px; font-family: "IBM Plex Mono", monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+      .bib-group { margin-top: 28px; }
+      .bib-head { border-bottom: 1px solid var(--ink); padding-bottom: 6px; }
+      .italic-muted { font-size: 0.8rem; font-style: italic; color: var(--muted); margin: 2px 0 0; }
+      .bib-list { list-style: none; padding: 0; margin: 0; }
+      .bib-list li { padding: 12px 0; border-bottom: 1px solid var(--parchment); }
+      .bib-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 0.92rem; }
+      .bib-title { font-style: italic; margin: 4px 0; font-size: 0.92rem; }
+      .bib-note { color: var(--muted); font-size: 0.82rem; margin: 0; }
+      .legal-note { font-size: 0.78rem; font-style: italic; color: var(--muted); margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--parchment); }
+      .site-footer { padding-top: 24px; border-top: 1px solid var(--parchment); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--muted); }
+      @media (max-width: 900px) {
+        .two-col, .two-col-even, .scene-grid, .themes-grid { grid-template-columns: 1fr; }
+        .dl-row { grid-template-columns: 1fr; gap: 4px; }
+        .nav-links { display: none; }
+      }
+      @media print {
+        .site-header, .scene-filter, .teacher-key { display: none !important; }
+        html, body { background: #fff !important; font-size: 9.5pt; line-height: 1.44; }
+        .scene-card { break-inside: avoid; background: #fff; padding: 14px; }
+        .note-area { border-style: dotted; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="#inizio" class="brand">Quaderno Aperto · Filmoteca</a>
+        <nav class="nav-links" aria-label="Sezioni della scheda">
+          <a href="#sezione-1">Scheda</a>
+          <a href="#sezione-2">Contesto</a>
+          <a href="#sezione-3">Trama</a>
+          <a href="#sezione-4">Sequenze</a>
+          <a href="#sezione-5">Temi</a>
+          <a href="#sezione-6">Bibliografia</a>
+        </nav>
+        <button type="button" class="btn-print" onclick="window.print()">Stampa / PDF</button>
+      </div>
+      <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+    </header>
+
+    <main id="inizio">
+      <section class="hero">
+        <h1>La classe operaia va in paradiso</h1>
+        <p class="subtitle">Fabbrica, alienazione e conflitto sociale nell’Italia tra miracolo economico e Autunno caldo</p>
+        <div class="meta-strip">
+          <span>Regia: Elio Petri</span>
+          <span>·</span>
+          <span>Anno: 1971</span>
+          <span>·</span>
+          <span>Durata: 115 min</span>
+          <span>·</span>
+          <span>Palma d’Oro, Cannes 1972</span>
+        </div>
+      </section>
+
+      <section id="sezione-1">
+        <div class="two-col">
+          <div>
+            <span class="kicker">Sezione 01</span>
+            <h2>Scheda filmografica e collocazione nel cinema politico italiano</h2>
+            <dl class="dl-list">
+      <div class="dl-row">
+        <dt>Regia</dt>
+        <dd>Elio Petri</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Soggetto e sceneggiatura</dt>
+        <dd>Elio Petri, Ugo Pirro</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Anno e durata</dt>
+        <dd>1971 · 115 minuti · Colore (Technicolor)</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Produzione e set</dt>
+        <dd>Euro International Film (Ugo Tucci); girato negli stabilimenti Falconi di Novara</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Fotografia e montaggio</dt>
+        <dd>Luigi Kuveiller (fotografia); Ruggero Mastroianni (montaggio)</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Colonna sonora</dt>
+        <dd>Ennio Morricone (con Gruppo di Improvvisazione Nuova Consonanza)</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Scenografia</dt>
+        <dd>Dante Ferretti</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Interpreti principali</dt>
+        <dd>Gian Maria Volonté (Ludovico “Lulu” Massa), Mariangela Melato (Lidia), Salvo Randone (Militina), Gino Pernice (sindacalista), Luigi Diberti (Bassi), Donato Castellaneta (Marx), Flavio Bucci (operaio)</dd>
+      </div>
+      <div class="dl-row">
+        <dt>Riconoscimenti</dt>
+        <dd>Grand Prix / Palma d’Oro al 25° Festival di Cannes (1972, ex aequo con Il caso Mattei di F. Rosi); David di Donatello Speciale e Nastro d’Argento (1972) a Mariangela Melato; Globo d’Oro al miglior film</dd>
+      </div></dl>
+            <h3>La “trilogia della nevrosi” e la rottura espressionista</h3>
+            <p class="drop-cap">Opera centrale della cosiddetta “trilogia della nevrosi” — stretta fra Indagine su un cittadino al di sopra di ogni sospetto (1970, patologia dell’autorità statale) e La proprietà non è più un furto (1973, feticismo del denaro) — il film rappresenta il vertice più spigoloso del cinema politico italiano degli anni Settanta.</p>
+            <p>Mentre una parte consistente del cinema civile di quegli anni sceglieva l’inchiesta giornalistica o la ricostruzione processuale (Francesco Rosi, Damiano Damiani) e il neorealismo tardivo di Ermanno Olmi (Il posto, 1961) osservava con pudore l’ingresso nel terziario impiegatizio, Elio Petri e lo sceneggiatore Ugo Pirro rifiutano sia l’elegia populista sia il bozzetto della commedia all’italiana.</p><p>La fabbrica di Petri non è un semplice sfondo sociologico, ma un dispositivo espressionista che deforma la percezione, il linguaggio e i legami affettivi. L’uso sistematico di grandangoli ravvicinati, di una recitazione parossistica e stridente affidata a Gian Maria Volonté e della partitura industriale di Ennio Morricone — costruita su percussioni metalliche e sirene di reparto — impedisce allo spettatore qualsiasi identificazione consolatoria: l’operaio non è idealizzato come eroe puro, bensì ritratto nella sua scissione interiore fra orgoglio produttivo, sudditanza psicologica e rabbia esplosiva.</p>
+          </div>
+          <aside class="aside-box">
+            <span class="mono-label">NOTA DI POETICA E SUONO</span>
+            <h4>La partitura meccanica di Ennio Morricone</h4>
+            <p>Prima delle riprese, Morricone e il Gruppo di Improvvisazione Nuova Consonanza registrarono reali rumori di presse, torni e sirene negli stabilimenti di Novara. La musica non commenta l’azione dall’esterno: imita il battito ossessivo del reparto fino a trasformarsi in allucinazione acustica.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="sezione-2">
+        <div class="two-col">
+          <div>
+            <span class="kicker">Sezione 02</span>
+            <h2>Contesto storico: miracolo economico, migrazione interna e conflitto operaio (1968–1973)</h2>
+            <p class="drop-cap">Per comprendere la tensione che attraversa ogni fotogramma del film di Petri occorre collocare il 1971 sul crinale esatto fra l’esaurimento del “miracolo economico” italiano e il culmine della conflittualità operaia. Tra il 1958 e il 1963 l’espansione industriale aveva trasformato il Paese da società prevalentemente agricola a economia manifatturiera avanzata, ma questo salto poggiava su un equilibrio asimmetrico: produttività crescente ottenuta mediante l’intensificazione dei ritmi di lavoro e salari mantenuti a lungo sotto la media europea.</p><p class="">Sulle linee di montaggio del Nord giunge una forza lavoro profondamente mutata dalla migrazione interna. L’“operaio massa” — spesso giovane, proveniente dal Sud o dalle campagne, privo di cultura artigiana di mestiere e inserito in mansioni parcellizzate — non condivide la tradizionale etica produttivistica della vecchia guardia qualificata. Quando il ciclo espansivo rallenta e i costi abitativi e sociali delle periferie esplodono, questa composizione sociale diventa l’epicentro di un conflitto inedito.</p><p class="">Tra il 1968 e il 1973 la fabbrica cessa di essere un luogo privato governato dall’arbitrio gerarchico per trasformarsi in laboratorio politico nazionale. Nel film questo passaggio è leggibile nella compresenza di tre linguaggi in conflitto davanti ai cancelli: il pragmatismo contrattuale del sindacato confederale, la parola d’ordine rivoluzionaria dei gruppi extraparlamentari e degli studenti armati di megafono, e il disagio psicosomatico di chi, come Lulu, ha interiorizzato per anni il cronometro padronale prima di esserne espulso.</p>
+          </div>
+          <div class="timeline">
+            <span class="mono-label">CRONOLOGIA ESSENZIALE</span>
+            
+      <div class="timeline-item">
+        <div class="mono-accent">1958–1963</div>
+        <h4>Il “miracolo economico” e l’importazione del taylorismo</h4>
+        <p class="muted-text">L’Italia diventa potenza manifatturiera grazie a bassi salari, compressione sindacale negli anni Cinquanta e razionalizzazione dei reparti sul modello fordista: catena di montaggio, cronometraggio scientifico dei gesti e cottimo individuale.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="mono-accent">1955–1971</div>
+        <h4>La grande migrazione interna verso il triangolo industriale</h4>
+        <p class="muted-text">Oltre due milioni di lavoratori lasciano il Mezzogiorno e le campagne venete verso Torino, Milano, Genova e le cinture padane (come Novara). Sradicamento culturale, periferie dormitorio e tensione tra operai qualificati settentrionali e il nuovo “operaio massa” dequalificato.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="mono-accent">1968–1969</div>
+        <h4>Saldatura studenti-operai e “Autunno caldo”</h4>
+        <p class="muted-text">Le lotte spontanee del 1968 confluiscono nell’Autunno caldo del 1969: nascono i Consigli di fabbrica e i delegati di reparto. Si contesta non solo la busta paga, ma l’organizzazione stessa del lavoro e la monetizzazione del rischio (“la salute non si vende”).</p>
+      </div>
+      <div class="timeline-item">
+        <div class="mono-accent">1970–1973</div>
+        <h4>Statuto dei lavoratori, tensioni politiche e crisi petrolifera</h4>
+        <p class="muted-text">La Legge 300/1970 (Statuto dei lavoratori) sancisce diritti fondamentali contro licenziamenti arbitrari e controllo interno, mentre il Paese è attraversato dalla strategia della tensione (Piazza Fontana, 1969) e dalla frattura tra sindacati confederali, PCI e sinistra extraparlamentare (Potere Operaio, Lotta Continua), fino allo shock petrolifero del 1973.</p>
+      </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sezione-3">
+        <span class="kicker">Sezione 03</span>
+        <h2>Trama essenziale e sistema dei personaggi</h2>
+        <div class="two-col-even">
+          <div class="aside-box">
+            <span class="mono-label">ARCO NARRATIVO DEL FILM</span>
+            <p>Ludovico “Lulu” Massa ha trentun anni ed è l’operaio più veloce e docile della fabbrica metalmeccanica BAN. Convinto che l’iper-produttività al cottimo sia l’unico strumento per garantire a sé e alla compagna Lidia gli oggetti del benessere consumistico, Lulu accetta turni massacranti e ritmi ossessivi che permettono ai cronometristi della direzione di alzare costantemente la soglia di produzione imposta a tutto il reparto. Proprio per questo è disprezzato dai colleghi e ridotto, nella sfera privata, a un’impotenza fisica ed emotiva che contrasta con la frenesia esibita davanti alla pressa.</p><p>L’equilibrio precario si spezza quando un incidente sul lavoro gli trancia un dito. La menomazione fisica trasforma di colpo il “campione” del cottimo in scarto umano sostituibile e fa esplodere in lui una rabbia cieca: Lulu passa bruscamente dall’obbedienza stakanovista all’agitazione più radicale, avvicinandosi al gruppo studentesco ed extraparlamentare che presidia i cancelli e contribuendo a inasprire gli scontri con la polizia e con la linea prudente del sindacato.</p><p>Licenziato per rappresaglia, abbandonato da Lidia e isolato perfino dagli studenti che lo considerano un caso ormai “bruciato”, Lulu sprofonda in una crisi nervosa che lo spinge a visitare in manicomio l’ex collega Militina. Solo un compromesso sindacale gli consente infine il reintegro in fabbrica, ma non più al vecchio posto: assegnato alla catena di montaggio, in un frastuono che impedisce qualsiasi parola articolata, Lulu racconta ai compagni un sogno onirico di liberazione dietro un muro avvolto nella nebbia.</p>
+          </div>
+          <div>
+            <span class="mono-label">PERSONAGGI E FUNZIONI DRAMMATICHE</span>
+            <div class="char-list">
+      <article class="char-item">
+        <div class="char-head">
+          <h4>Ludovico “Lulu” Massa</h4>
+          <span class="mono-muted">Gian Maria Volonté</span>
+        </div>
+        <p class="mono-accent small">Operaio specializzato al reparto presse, poi addetto alla catena di montaggio</p>
+        <p>Corpo nervoso, logorato e iper-reattivo. Incarna la contraddizione storica dell’operaio integrato nel sistema dei consumi: disprezza i compagni meno rapidi, trasforma il gesto meccanico in compensazione erotica e, dopo l’infortunio, abbraccia la rivolta con la stessa foga maniacale con cui prima serviva il padrone.</p>
+      </article>
+      <article class="char-item">
+        <div class="char-head">
+          <h4>Militina</h4>
+          <span class="mono-muted">Salvo Randone</span>
+        </div>
+        <p class="mono-accent small">Anziano operaio della BAN ricoverato in ospedale psichiatrico</p>
+        <p>Coscienza tragica e memoria vivente dell’usura industriale. La sua follia non è fuga dalla realtà ma eccesso di lucidità: impazzisce ponendosi la domanda proibita dalla divisione del lavoro — “Che cos’è che produciamo?” — che Lulu non aveva mai osato formulare.</p>
+      </article>
+      <article class="char-item">
+        <div class="char-head">
+          <h4>Lidia</h4>
+          <span class="mono-muted">Mariangela Melato</span>
+        </div>
+        <p class="mono-accent small">Parrucchiera, compagna convivente di Lulu</p>
+        <p>Vittima simmetrica della medesima alienazione sul versante domestico e consumistico. Misura il valore affettivo in pellicce, televisori e suppellettili a rate; respinge tanto la nevrosi da fabbrica quanto la successiva militanza disordinata di Lulu, rivelando come l’ideologia piccolo-borghese penetri dentro la casa operaia.</p>
+      </article>
+      <article class="char-item">
+        <div class="char-head">
+          <h4>Il sindacalista e gli studenti ai cancelli</h4>
+          <span class="mono-muted">Gino Pernice, Donato Castellaneta e altri</span>
+        </div>
+        <p class="mono-accent small">Mediatore sindacale interno e agitatori della sinistra extraparlamentare</p>
+        <p>Rappresentano due retoriche politiche concorrenti ma entrambe astratte rispetto all’esperienza vissuta del reparto: il sindacalista privilegia l’equilibrio tattico e la trattativa istituzionale; gli studenti al megafono trattano la classe operaia come soggetto teorico pronto alla rivoluzione, abbandonando il singolo operaio quando il caso individuale non serve più alla propaganda.</p>
+      </article>
+      <article class="char-item">
+        <div class="char-head">
+          <h4>I cronometristi e la Direzione</h4>
+          <span class="mono-muted">Presenze tecniche e voce all’altoparlante</span>
+        </div>
+        <p class="mono-accent small">Apparato di sorveglianza, misurazione dei tempi e disciplina aziendale</p>
+        <p>Il capitale nel film non ha quasi mai volto umano né psicologia padronale ottocentesca: si manifesta come sguardo misuratore con il cronometro in mano e come voce suadente all’altoparlante che raccomanda la “sicurezza” mentre accelera la velocità delle presse.</p>
+      </article></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sezione-4">
+        <span class="kicker">Sezione 04</span>
+        <h2>Analisi di cinque sequenze chiave</h2>
+        <p class="muted-text">Durante la visione, osservate inquadrature, montaggio e sonoro delle seguenti sequenze e rispondete per iscritto alla domanda guida.</p>
+        <div class="scene-filter" role="tablist" aria-label="Filtra sequenze">
+          <button type="button" class="active" data-filter="all">Tutte le sequenze</button>
+          <button type="button" data-filter="scena-1">01</button><button type="button" data-filter="scena-2">02</button><button type="button" data-filter="scena-3">03</button><button type="button" data-filter="scena-4">04</button><button type="button" data-filter="scena-5">05</button>
+        </div>
+        <div class="scenes-stack">
+      <article class="scene-card" data-scene="scena-1">
+        <div class="scene-top">
+          <span class="mono-accent">Sequenza 01</span>
+        </div>
+        <h3>La sveglia alle 5:30, il bus nella nebbia e il rito del cartellino</h3>
+        <div class="scene-single">
+          <div>
+            <p>Nel buio gelido dell’alba invernale, il suono della sveglia strappa Lulu dal sonno. Mentre si rade e percorre la strada innevata fino all’autobus affollato di corpi intirizziti, la sua voce fuori campo scompone il proprio organismo in un inventario di parti meccaniche destinate ad altri: un occhio per la televisione, le braccia per la pressa, il resto per la famiglia e le rate da pagare. Davanti ai cancelli della BAN, la colonna scura degli operai viene inghiottita dalla portineria dove il colpo secco della timbratrice scandisce l’ingresso nel tempo aziendale, sotto un cartello che invita al sorriso e alla prevenzione degli infortuni.</p>
+            <p class="cine-note">
+              <span class="mono-label">REGIA E SONORO:</span>
+              Luce livida azzurro-cenere, montaggio serrato sui volti assonnati e sui cappotti identici; la musica di Morricone introduce subito una scansione ritmica simile a un orologio industriale.
+            </p>
+          </div>
+          
+        </div>
+        <div class="scene-question">
+          <label for="note-scena-1" class="question-label">Che cosa ci dice questa scena?</label>
+          <textarea id="note-scena-1" class="note-area" data-note-id="scena-1" rows="3" placeholder="Annota qui le tue osservazioni durante o dopo la visione..."></textarea>
+          <details class="teacher-key">
+            <summary>Chiave di lettura</summary>
+            <p>Mostra che l’espropriazione non comincia alle 6:00 davanti alla macchina, ma invade già la sfera domestica e il risveglio biologico: l’operaio si percepisce come assemblaggio di organi funzionali al capitale prima ancora di timbrare il cartellino.</p>
+          </details>
+        </div>
+      </article>
+      <article class="scene-card" data-scene="scena-2">
+        <div class="scene-top">
+          <span class="mono-accent">Sequenza 02</span>
+        </div>
+        <h3>La sfida del cottimo alla pressa: Lulu come “macchina perfetta”</h3>
+        <div class="scene-single">
+          <div>
+            <p>Al centro del reparto assordante, Lulu aziona la pressa a un ritmo frenetico, inserendo ed estraendo i pezzi d’acciaio in una coreografia ossessiva. Mentre i compagni lo insultano perché le sue medie altissime serviranno alla direzione per ridurre i tempi concessi a tutti, i cronometristi osservano in silenzio e prendono nota. Per mantenere la concentrazione, Lulu recita mentalmente una sequenza oscena in cui sovrappone la meccanica dello stampo al corpo femminile — “un pezzo, un culo” — sudando e ansimando in una sorta di eccitazione parossistica fusa col rumore dell’officina.</p>
+            <p class="cine-note">
+              <span class="mono-label">REGIA E SONORO:</span>
+              Primi piani grandangolari che schiacciano il volto di Volonté contro il metallo lucido della pressa; tagli di montaggio rapidissimi che annullano la distinzione tra movimento dell’arto umano e discesa del pistone.
+            </p>
+          </div>
+          
+        </div>
+        <div class="scene-question">
+          <label for="note-scena-2" class="question-label">Che cosa ci dice questa scena?</label>
+          <textarea id="note-scena-2" class="note-area" data-note-id="scena-2" rows="3" placeholder="Annota qui le tue osservazioni durante o dopo la visione..."></textarea>
+          <details class="teacher-key">
+            <summary>Chiave di lettura</summary>
+            <p>Svela l’introiezione psichica del dominio: la violenza del taylorismo non è solo costrizione esterna, ma produce una perversione del desiderio e spezza la solidarietà di classe trasformando il compagno di lavoro in concorrente.</p>
+          </details>
+        </div>
+      </article>
+      <article class="scene-card" data-scene="scena-3">
+        <div class="scene-top">
+          <span class="mono-accent">Sequenza 03</span>
+        </div>
+        <h3>L’infortunio alla pressa e l’esplosione collettiva del reparto</h3>
+        <div class="scene-single">
+          <div>
+            <p>Sotto la pressione di un ritmo ormai insostenibile e di una macchina difettosa, un pezzo si inceppa nello stampo. Lulu infila istintivamente la mano per non perdere il ritmo del cottimo; la pressa scende e gli trancia di netto un dito. L’urlo rompe la cadenza del reparto. Mentre Lulu viene soccorso fra macchie di sangue sull’olio industriale, gli altri operai spengono le macchine e circondano la direzione: quel dito spezzato, che fino a un attimo prima era lo strumento della sua superiorità individuale, diventa la prova materiale che l’infortunio non è “fatalità”, ma esito strutturale della velocità imposta.</p>
+            <p class="cine-note">
+              <span class="mono-label">REGIA E SONORO:</span>
+              Passaggio brusco dal montaggio sincopato al caos spaziale della camera a mano: l’officina si svuota dal rumore meccanico e si riempie delle voci urlate della protesta.
+            </p>
+          </div>
+          
+        </div>
+        <div class="scene-question">
+          <label for="note-scena-3" class="question-label">Che cosa ci dice questa scena?</label>
+          <textarea id="note-scena-3" class="note-area" data-note-id="scena-3" rows="3" placeholder="Annota qui le tue osservazioni durante o dopo la visione..."></textarea>
+          <details class="teacher-key">
+            <summary>Chiave di lettura</summary>
+            <p>Segna il fallimento dell’illusione meritocratica dello stakanovista: la carne ferita smentisce l’idea di essere “invincibile” come l’acciaio e trasforma un trauma individuale in detonatore della coscienza collettiva.</p>
+          </details>
+        </div>
+      </article>
+      <article class="scene-card" data-scene="scena-4">
+        <div class="scene-top">
+          <span class="mono-accent">Sequenza 04</span>
+        </div>
+        <h3>La visita a Militina nell’ospedale psichiatrico</h3>
+        <div class="scene-single">
+          <div>
+            <p>Licenziato e abbandonato anche da Lidia, Lulu va a trovare il vecchio compagno di fabbrica Militina in manicomio. In un ambiente asettico in cui gli altoparlanti diffondono una musichetta dolciastra identica a quella dei supermercati, Militina — lucido nella sua alienazione clinica — racconta a Lulu che l’origine della propria pazzia è stata una domanda elementare: dopo trent’anni passati a stampare sempre lo stesso ingranaggio, si era chiesto “che cazzo produciamo?”. Non vedendo mai il prodotto finito né il senso sociale del proprio gesto, la mente ha ceduto.</p>
+            <p class="cine-note">
+              <span class="mono-label">REGIA E SONORO:</span>
+              Campi lunghi statici, simmetria ospedaliera fredda che richiama l’architettura della fabbrica; l’uso ironico della musica leggera sottolinea la continuità tra reclusione psichiatrica e anestesia consumistica.
+            </p>
+          </div>
+          
+        </div>
+        <div class="scene-question">
+          <label for="note-scena-4" class="question-label">Che cosa ci dice questa scena?</label>
+          <textarea id="note-scena-4" class="note-area" data-note-id="scena-4" rows="3" placeholder="Annota qui le tue osservazioni durante o dopo la visione..."></textarea>
+          <details class="teacher-key">
+            <summary>Chiave di lettura</summary>
+            <p>Traduce in forma narrativa esemplare l’estraniazione dal prodotto teorizzata da Marx: la parcellizzazione taylorista separa il lavoratore dall’oggetto complessivo, rendendo il lavoro incomprensibile e psichicamente distruttivo.</p>
+          </details>
+        </div>
+      </article>
+      <article class="scene-card" data-scene="scena-5">
+        <div class="scene-top">
+          <span class="mono-accent">Sequenza 05</span>
+        </div>
+        <h3>Il ritorno alla catena di montaggio e il sogno del muro nella nebbia</h3>
+        <div class="scene-single">
+          <div>
+            <p>Reintegrato grazie alla mediazione sindacale ma assegnato alla catena di montaggio — ancora più spersonalizzante delle presse — Lulu lavora gomito a gomito con gli altri operai lungo il nastro che scorre inarrestabile. Per farsi sentire sopra il frastuono assordante delle macchine che rende impossibile qualsiasi dialogo normale, Lulu grida ai vicini il sogno fatto la notte prima: un immenso muro bianco che crolla, svelando una nebbia luminosa nella quale tutti i compagni, insieme a Militina, avanzano finalmente liberi in “paradiso”. Eppure, mentre pronuncia la visione utopica, le sue mani non smettono un solo secondo di avvitare pezzi sul nastro.</p>
+            <p class="cine-note">
+              <span class="mono-label">REGIA E SONORO:</span>
+              Carrellata insistita lungo la linea produttiva fino al fermo immagine sonoro dominato dal fragore meccanico: l’utopia è enunciata urlando dentro la prigione materiale che continua a funzionare.
+            </p>
+          </div>
+          
+        </div>
+        <div class="scene-question">
+          <label for="note-scena-5" class="question-label">Che cosa ci dice questa scena?</label>
+          <textarea id="note-scena-5" class="note-area" data-note-id="scena-5" rows="3" placeholder="Annota qui le tue osservazioni durante o dopo la visione..."></textarea>
+          <details class="teacher-key">
+            <summary>Chiave di lettura</summary>
+            <p>Evita ogni lieto fine ideologico: la reintegrazione sindacale restituisce il salario ma lascia intatta l’alienazione del lavoro salariato; il “paradiso” della classe operaia resta una promessa onirica scissa dalla realtà corporea della catena.</p>
+          </details>
+        </div>
+      </article></div>
+        
+      </section>
+
+      <section id="sezione-5">
+        <span class="kicker">Sezione 05</span>
+        <h2>Nuclei filosofici fondamentali</h2>
+        <div class="themes-grid">
+      <article class="theme-card">
+        <div>
+          <div class="theme-head">
+            <span class="mono-accent">Asse 01</span>
+            <span class="mono-muted">Karl Marx · György Lukács</span>
+          </div>
+          <h3>L’alienazione marxiana (Manoscritti economico-filosofici del 1844)</h3>
+          <p>Nei Manoscritti del 1844, Marx analizza il lavoro salariato capitalistico attraverso quattro forme interconnesse di estraniazione (Entfremdung): estraniazione dal prodotto, dall’attività produttiva, dall’essenza generica umana (Gattungswesen) e dagli altri esseri umani. Nel Novecento, Lukács (Storia e coscienza di classe, 1923) approfondisce questo processo tramite la categoria di reificazione: l’uomo stesso diventa cosa misurabile tra le cose.</p>
+        </div>
+        <div class="theme-foot">
+          <span class="mono-label">VERIFICA NEL FILM</span>
+          <p>Nel film tutte e quattro le dimensioni sono visibili concretamente: Lulu e Militina ignorano quale oggetto finale compongano i loro pezzi (prodotto); l’atto del lavoro è vissuto come coazione cronometrata e mutilazione (attività); la vita fuori turno si riduce al riposo biologico e al consumo compulsivo (essenza umana); la gara del cottimo rende nemici gli operai dello stesso reparto (altri uomini).</p>
+        </div>
+      </article>
+      <article class="theme-card">
+        <div>
+          <div class="theme-head">
+            <span class="mono-accent">Asse 02</span>
+            <span class="mono-muted">Michel Foucault · Simone Weil · Operaismo italiano</span>
+          </div>
+          <h3>Il corpo operaio tra disciplina biomeccanica, usura e desiderio</h3>
+          <p>La fabbrica moderna non sfrutta una forza lavoro astratta, ma plasma un corpo storico concreto. Come mostrerà Michel Foucault in Sorvegliare e punire (1975), l’apparato produttivo condivide con la caserma e il manicomio una “microfisica del potere” fatta di gesti prescritti, posture obbligate e sorveglianza capillare; Simone Weil (La condizione operaia) aveva già descritto dall’interno come la ripetitività meccanica spenga la facoltà di pensare.</p>
+        </div>
+        <div class="theme-foot">
+          <span class="mono-label">VERIFICA NEL FILM</span>
+          <p>Petri mette in scena il corpo di Lulu come campo di battaglia: l’infortunio alla pressa svela l’usura fisica nascosta dietro i cartelli aziendali sulla sicurezza, mentre l’impotenza sessuale nella camera da letto di Lidia dimostra che la macchina ha sequestrato l’energia erotica del lavoratore, costringendolo a cercare eccitazione soltanto nella sincronia con il metallo.</p>
+        </div>
+      </article>
+      <article class="theme-card">
+        <div>
+          <div class="theme-head">
+            <span class="mono-accent">Asse 03</span>
+            <span class="mono-muted">E. P. Thompson · Scuola di Francoforte</span>
+          </div>
+          <h3>Il tempo di produzione e la colonizzazione del “tempo libero”</h3>
+          <p>Con il capitalismo industriale, il tempo circolare e qualitativo legato ai cicli naturali cede il posto al tempo lineare, omogeneo e quantificato dell’orologio (E. P. Thompson). Come osservano Adorno e Horkheimer nella Dialettica dell’Illuminismo, anche il tempo libero cessa di essere autonomia: l’industria culturale e il consumo di massa riproducono fuori dai cancelli la stessa passività e standardizzazione del reparto.</p>
+        </div>
+        <div class="theme-foot">
+          <span class="mono-label">VERIFICA NEL FILM</span>
+          <p>La timbratrice iniziale non delimita davvero l’orario di lavoro: nella casa di Lulu, la televisione sempre accesa, i soprammobili kitsch e le rate della pelliccia di Lidia funzionano come prolungamento del cottimo. Si lavora a ritmi disumani per pagare merci che servono unicamente a compensare la frustrazione prodotta dal lavoro stesso.</p>
+        </div>
+      </article></div>
+        <blockquote class="quote-box">
+          <p>“L’operaio diventa tanto più povero quanto più ricchezza produce; quanto più la sua produzione cresce in potenza e in estensione, tanto più egli diventa una merce a buon mercato.”</p>
+          <footer>Karl Marx · Manoscritti economico-filosofici del 1844 (Primo manoscritto, Il lavoro estraniato)</footer>
+        </blockquote>
+      </section>
+
+      <section id="sezione-6">
+        <span class="kicker">Sezione 06</span>
+        <h2>Bibliografia essenziale: dal cinema industriale al pensiero critico contemporaneo</h2>
+        <p class="muted-text">Percorso ragionato di testi primari e studi critici per approfondire il nesso fra organizzazione industriale del lavoro, storia dell’Italia repubblicana e trasformazioni contemporanee della soggettività lavorativa.</p>
+        
+      <div class="bib-group">
+        <div class="bib-head">
+          <h3>A. Pensiero critico classico e teoria dell’alienazione</h3>
+          <p class="italic-muted">Testi fondativi per l’analisi filosofica del lavoro industriale</p>
+        </div>
+        <ul class="bib-list">
+          
+            <li>
+              <div class="bib-row">
+                <strong>Karl Marx <span class="mono-accent">(1844 / 1867)</span></strong>
+                <span class="mono-muted">Einaudi, Torino (varie edizioni)</span>
+              </div>
+              <p class="bib-title">Manoscritti economico-filosofici del 1844; Il Capitale (Libro I, cap. XIII: Macchine e grande industria)</p>
+              <p class="bib-note">Fondamentale per la quadruplice definizione dell’estraniazione e per l’analisi del rovesciamento tra uomo e macchina.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>György Lukács <span class="mono-accent">(1923)</span></strong>
+                <span class="mono-muted">SugarCo / Pgreco, Milano</span>
+              </div>
+              <p class="bib-title">Storia e coscienza di classe (in particolare il saggio “La reificazione e la coscienza del proletariato”)</p>
+              <p class="bib-note">Collega il calcolo razionale del tempo di fabbrica alla trasformazione dei rapporti umani in relazioni tra cose.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Simone Weil <span class="mono-accent">(1951 (postumo))</span></strong>
+                <span class="mono-muted">SE / Edizioni di Comunità, Milano</span>
+              </div>
+              <p class="bib-title">La condizione operaia</p>
+              <p class="bib-note">Diario filosofico dall’esperienza diretta in officina (Renault, 1934–35): analisi lucidissima dello spegnimento del pensiero sotto il ritmo della pressa.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Mario Tronti <span class="mono-accent">(1966)</span></strong>
+                <span class="mono-muted">DeriveApprodi, Roma (nuova ed. 2006)</span>
+              </div>
+              <p class="bib-title">Operai e capitale</p>
+              <p class="bib-note">Testo cardine dell’operaismo italiano per comprendere il concetto di “operaio massa” e la centralità conflittuale della fabbrica.</p>
+            </li>
+        </ul>
+      </div>
+      <div class="bib-group">
+        <div class="bib-head">
+          <h3>B. Biopolitica, tempo sociale e critica del lavoro contemporaneo</h3>
+          <p class="italic-muted">Ponti concettuali tra fabbrica novecentesca e società post-fordista</p>
+        </div>
+        <ul class="bib-list">
+          
+            <li>
+              <div class="bib-row">
+                <strong>Michel Foucault <span class="mono-accent">(1975)</span></strong>
+                <span class="mono-muted">Einaudi, Torino</span>
+              </div>
+              <p class="bib-title">Sorvegliare e punire. Nascita della prigione (Parte III: Disciplina)</p>
+              <p class="bib-note">Indispensabile per leggere l’architettura, l’orario e la docilità corporea in fabbrica come dispositivi disciplinari.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Edward P. Thompson <span class="mono-accent">(1967)</span></strong>
+                <span class="mono-muted">In Società patrizia, cultura plebea, Einaudi, Torino 1981</span>
+              </div>
+              <p class="bib-title">Tempo, disciplina del lavoro e capitalismo industriale</p>
+              <p class="bib-note">Ricostruzione storica fondamentale del passaggio dal tempo naturale orientato al compito al tempo misurato dall’orologio.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Franco “Bifo” Berardi <span class="mono-accent">(2001 / 2010)</span></strong>
+                <span class="mono-muted">DeriveApprodi, Roma</span>
+              </div>
+              <p class="bib-title">La fabbrica dell’infelicità / L’anima al lavoro</p>
+              <p class="bib-note">Permette di confrontare la sofferenza fisica del corpo fordista in Petri con la patologia psichica e cognitiva del lavoro contemporaneo.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Byung-Chul Han <span class="mono-accent">(2010)</span></strong>
+                <span class="mono-muted">Nottetempo, Roma 2012</span>
+              </div>
+              <p class="bib-title">La società della stanchezza</p>
+              <p class="bib-note">Utile in sede di verifica finale per contrapporre la società disciplinare esterna (il cronometrista) all’auto-sfruttamento della prestazione odierna.</p>
+            </li>
+        </ul>
+      </div>
+      <div class="bib-group">
+        <div class="bib-head">
+          <h3>C. Storia dell’Italia repubblicana e cinema politico di Elio Petri</h3>
+          <p class="italic-muted">Inquadramento storiografico ed estetico del film</p>
+        </div>
+        <ul class="bib-list">
+          
+            <li>
+              <div class="bib-row">
+                <strong>Paul Ginsborg <span class="mono-accent">(1989)</span></strong>
+                <span class="mono-muted">Einaudi, Torino</span>
+              </div>
+              <p class="bib-title">Storia d’Italia dal dopoguerra a oggi (capp. VII–IX)</p>
+              <p class="bib-note">Quadro organico su miracolo economico, migrazioni interne, ciclo 1968–1973 e nascita dello Statuto dei lavoratori.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Guido Crainz <span class="mono-accent">(2003)</span></strong>
+                <span class="mono-muted">Donzelli, Roma</span>
+              </div>
+              <p class="bib-title">Il paese mancato. Dal miracolo economico agli anni Ottanta</p>
+              <p class="bib-note">Analisi attenta alle trasformazioni culturali, al disagio delle periferie industriali e al rapporto tra consumi e conflitto sociale.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Jean A. Gili <span class="mono-accent">(2000)</span></strong>
+                <span class="mono-muted">Bulzoni / Il Castoro (varie edizioni su Petri)</span>
+              </div>
+              <p class="bib-title">Elio Petri e il cinema politico italiano</p>
+              <p class="bib-note">Esamina la poetica grottesca della “trilogia della nevrosi” e il rapporto tra regia, montaggio e colonna sonora morriconiana.</p>
+            </li>
+            <li>
+              <div class="bib-row">
+                <strong>Federico Rossin (a cura di) <span class="mono-accent">(2006)</span></strong>
+                <span class="mono-muted">Edizioni Il Principe Costante / saggi monografici</span>
+              </div>
+              <p class="bib-title">Elio Petri: cinema, politica e nevrosi</p>
+              <p class="bib-note">Approfondisce la lavorazione negli stabilimenti Falconi di Novara e la ricezione contrastata del film tra sinistra extraparlamentare e sindacati.</p>
+            </li>
+        </ul>
+      </div>
+      </section>
+
+      <footer class="site-footer">
+        <span>Quaderno Aperto · Sezione Filmoteca (quadernoaperto.github.io)</span>
+        <span>La classe operaia va in paradiso (Elio Petri, 1971)</span>
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        var bar = document.getElementById('progressBar');
+        var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+        var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+
+        function onScroll() {
+          var top = window.scrollY;
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          if (bar && h > 0) bar.style.width = Math.min(100, Math.max(0, (top / h) * 100)) + '%';
+
+          var currentId = '';
+          sections.forEach(function (sec) {
+            if (sec.getBoundingClientRect().top <= 140) currentId = sec.id;
+          });
+          links.forEach(function (a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+          });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        var filterBtns = document.querySelectorAll('.scene-filter button');
+        var sceneCards = document.querySelectorAll('.scene-card');
+        filterBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var target = btn.getAttribute('data-filter');
+            filterBtns.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            sceneCards.forEach(function (card) {
+              var show = target === 'all' || card.getAttribute('data-scene') === target;
+              card.classList.toggle('hidden', !show);
+            });
+          });
+        });
+
+        var storageKey = 'quadernoaperto_petri_1971_notes';
+        try {
+          var saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+          document.querySelectorAll('.note-area').forEach(function (ta) {
+            var id = ta.getAttribute('data-note-id');
+            if (!ta.value && saved[id]) ta.value = saved[id];
+            ta.addEventListener('input', function () {
+              saved[id] = ta.value;
+              localStorage.setItem(storageKey, JSON.stringify(saved));
+            });
+          });
+        } catch (e) {}
+      })();
+    </script>
+  </body>
+</html>
