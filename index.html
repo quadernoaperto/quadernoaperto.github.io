@@ -633,7 +633,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <button data-fsub="sto">Σ Storia</button>
           <button data-fsub="x">¶ Trasversali</button>
         </div>
-        <span class="mono" style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)">PDF · schede di visione</span>
+        <span class="mono" style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)">pagine vive e PDF · schede di visione</span>
       </div>
       <div class="essays" id="films"></div>
       <p class="empty-note" id="filmEmpty" hidden>Nessuna scheda di film ancora: la Filmoteca si inaugurerà con la prima pubblicazione.</p>
@@ -683,7 +683,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
             <span class="g-n">2</span>
             <div>
               <h3>Leggi o scarica</h3>
-              <p>Apri la scheda: i PDF mostrano in miniatura la prima pagina e si sfogliano qui sul sito con <b>«Leggi»</b>, con zoom e schermo intero; le opere in più parti si aprono sulla loro pagina, con l'ordine di lettura numerato e lo stato di pubblicazione.</p>
+              <p>Apri la scheda: i PDF si sfogliano qui sul sito con <b>«Leggi»</b>, con zoom e schermo intero; le pagine vive della Filmoteca si aprono in una nuova scheda; le opere in più parti hanno l'ordine di lettura numerato e lo stato di pubblicazione.</p>
             </div>
           </div>
           <div class="g-step">
@@ -1151,7 +1151,7 @@ function applyFilter(){
   $('#emptyNote').hidden = total!==0;
 }
 
-/* ════════ SAGGISTICA (opere + saggi) ════════ */
+/* ════════ SAGGISTICA ════════ */
 let essayFilter='all', essaysExist=false;
 function statusBadge(w){
   if(!w||!w.status||w.status!=='done'){
@@ -1265,6 +1265,7 @@ function renderFilms(){
   icons();
   applyFilmFilter();
 }
+function applyFilmFilter(){
   if(!filmsExist) return;
   let n=0;
   $$('#films .essay').forEach(el=>{
@@ -2467,7 +2468,7 @@ async function publishOne(card){
     setP('Pubblicata',1);
     card.classList.add('done');
     renderPubList(); renderTwMeta();
-    toast(`«${esc(title)}» è pubblicat${kind==='film'?'a':kind==='saggio'?'o':'a'}: già visibile sul sito.`,'check');
+    toast(`«${esc(title)}» è pubblicata: già visibile sul sito.`,'check');
     setTimeout(()=>{
       card.style.transition='opacity .3s,transform .3s';
       card.style.opacity='0'; card.style.transform='translateX(12px)';
