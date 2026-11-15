@@ -1241,10 +1241,12 @@ function renderFilms(){
   $('#filmEmpty').hidden=true;
   box.innerHTML=list.map(f=>{
     const m=SUBJ_META[f.subj]||SUBJ_META.x;
-    const parts=['🎬 scheda di visione', m.label];
+    const isLink=!!f.link;
+    const parts=[isLink?'🎬 pagina viva':'🎬 scheda di visione', m.label];
     if(f.cls) parts.push(f.cls+'ª');
     if(f.director) parts.push('regia di '+f.director);
-    parts.push(f.pages?f.pages+' pagine':'', fmtSize(f.size), fmtDate(f.date));
+    if(!isLink) parts.push(f.pages?f.pages+' pagine':'', fmtSize(f.size));
+    parts.push(fmtDate(f.date));
     return `<div class="essay" data-id="${f.id}" data-subj="${f.subj}" style="--c:var(${m.tint})">
       <span class="e-badge" aria-hidden="true">🎬</span>
       <div class="e-body">
@@ -1252,18 +1254,17 @@ function renderFilms(){
         <span class="e-sub">${parts.filter(Boolean).join(' · ')}</span>
         <span class="e-desc">${esc(f.desc)}</span>
       </div>
-      <span class="f-dl" title="Scaricamenti"><i data-lucide="arrow-down-to-line"></i><b data-dl="${f.id}">${f.dl}</b></span>
+      <span class="f-dl" title="${isLink?'Aperture':'Scaricamenti'}"><i data-lucide="${isLink?'external-link':'arrow-down-to-line'}"></i><b data-dl="${f.id}">${f.dl}</b></span>
       <span class="f-actions">
         <button class="ibtn fav ${favs.has(f.id)?'on':''}" data-act="fav" data-file="${f.id}" aria-label="Salva tra le preferite"><i data-lucide="star"></i></button>
-        <button class="ibtn" data-act="view" data-file="${f.id}" aria-label="Apri la scheda"><i data-lucide="eye"></i></button>
-        <button class="ibtn" data-act="dl" data-file="${f.id}" aria-label="Scarica la scheda"><i data-lucide="download"></i></button>
+        <button class="ibtn" data-act="view" data-file="${f.id}" aria-label="Apri la scheda"><i data-lucide="${isLink?'external-link':'eye'}"></i></button>
+        ${isLink?'':`<button class="ibtn" data-act="dl" data-file="${f.id}" aria-label="Scarica la scheda"><i data-lucide="download"></i></button>`}
       </span>
     </div>`;
   }).join('');
   icons();
   applyFilmFilter();
 }
-function applyFilmFilter(){
   if(!filmsExist) return;
   let n=0;
   $$('#films .essay').forEach(el=>{
@@ -1630,6 +1631,11 @@ function fillModal(x){
 function hashFor(x){ return (x.kind==='saggio'?'#saggio-':x.kind==='film'?'#film-':'#lezione-')+x.f.id; }
 function openFile(id){
   const x=fileMap.get(id); if(!x)return;
+  if(x.kind==='film'&&x.f.link){
+    x.f.dl=(x.f.dl||0)+1; updateDl(x.f); renderTop();
+    window.open(x.f.link,'_blank','noopener');
+    return;
+  }
   fillModal(x);
   $('#modBack').classList.add('open');
   document.body.classList.add('locked');
@@ -1943,6 +1949,9 @@ function renderTwHome(){
       <span>oppure clicca per scegliere i file · .pptx e .pdf · anche più di uno</span>
     </div>
     <input type="file" id="fileInput" accept=".pptx,.pdf" multiple hidden>
+    <div style="display:flex;justify-content:center">
+      <button class="btn" data-tw="addfilmlink"><i data-lucide="clapperboard"></i> Scheda film con link — pagina viva</button>
+    </div>
     <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b>, <b class="mono">saggio-</b> o <b class="mono">film-</b> il tipo si compila da solo. Per le parti di un'opera usa <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine.</span></p>
     <div id="twQueue" style="display:flex;flex-direction:column;gap:.9rem"></div>
     <div id="twQueueBar" hidden style="display:flex;justify-content:flex-end">
@@ -2291,11 +2300,90 @@ async function addFiles(files){
     if(n){ const inp=card.querySelector('.q-pages'); if(!inp.value) inp.value=n; }
   }
 }
+function addLinkFilmCard(){
+  const card=document.createElement('div');
+  card.className='q-card'; card.dataset.kind='film'; card._file=null;
+  card.innerHTML=`
+    <div class="q-top">
+      <span class="q-ico" style="--c:var(--t-sag)"><i data-lucide="clapperboard"></i></span>
+      <span class="q-fileinfo"><b>Scheda film · pagina viva</b><span>nessun file da caricare: si pubblica il link</span></span>
+      <button class="ibtn" data-tw="rmq" aria-label="Rimuovi dalla coda"><i data-lucide="x"></i></button>
+    </div>
+    <label class="fld">Titolo della scheda<input class="q-title" placeholder="La classe operaia va in paradiso — scheda di analisi"></label>
+    <div class="fld-row">
+      <label class="fld">Film<input class="q-film" placeholder="La classe operaia va in paradiso"></label>
+      <label class="fld">Regista<input class="q-director" placeholder="Elio Petri"></label>
+      <label class="fld">Anno del film<input class="q-year" placeholder="1971"></label>
+    </div>
+    <div class="fld-row">
+      <label class="fld">Ambito<select class="q-subj-sag">
+        <option value="fil">φ · Filosofia</option>
+        <option value="sto">Σ · Storia</option>
+        <option value="x" selected>¶ · Trasversale</option>
+      </select></label>
+      <label class="fld">Anno di riferimento<select class="q-cls-sag">
+        <option value="0">—</option><option>3</option><option>4</option><option>5</option>
+      </select></label>
+    </div>
+    <label class="fld">Link della pagina (es. schede/classe-operaia.html)<input class="q-link" placeholder="schede/classe-operaia.html"></label>
+    <label class="fld">Descrizione breve<textarea class="q-desc" rows="2" placeholder="Di cosa parla la scheda? (comparirà nella Filmoteca)"></textarea></label>
+    <div class="q-actions"><button class="btn accent" data-tw="pub"><i data-lucide="upload"></i> Pubblica</button></div>
+    <div class="q-status" hidden><span class="q-prog"><b></b></span><span class="q-msg"></span></div>`;
+  $('#twQueue').appendChild(card);
+  updateQueueBar(); icons();
+  card.querySelector('.q-title').focus();
+}
+async function publishFilmLink(card){
+  const title=card.querySelector('.q-title').value.trim();
+  if(!title){ card.querySelector('.q-title').focus(); toast('Dai un titolo alla scheda prima di pubblicare.','info'); return false; }
+  const link=card.querySelector('.q-link').value.trim();
+  if(!link){ card.querySelector('.q-link').focus(); toast('Inserisci il link della pagina (es. schede/nome.html).','info'); return false; }
+  let desc=card.querySelector('.q-desc').value.trim();
+  const subj=card.querySelector('.q-subj-sag').value;
+  const cls=+card.querySelector('.q-cls-sag').value||null;
+  const filmT=card.querySelector('.q-film').value.trim()||title;
+  const dir=card.querySelector('.q-director').value.trim()||'';
+  const yr=card.querySelector('.q-year').value.trim()||'';
+  const date=new Date().toISOString().slice(0,10);
+  const st=card.querySelector('.q-status'), bar=card.querySelector('.q-prog b'), msg=card.querySelector('.q-msg');
+  const setP=(t,p)=>{ st.hidden=false; msg.textContent=t; if(p!=null) bar.style.width=Math.round(p*100)+'%'; };
+  card.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=true);
+  if(!desc) desc='Scheda di analisi del film «'+filmT+'»'+(dir?', regia di '+dir:'')+'.';
+  const id='film-'+slug(filmT);
+  try{
+    setP('Aggiorno l\u2019indice…',.4);
+    await updatePublished(json=>{
+      if(!Array.isArray(json.films)) json.films=[];
+      const old=json.films.find(x=>x.id===id);
+      const entry={id,title,type:'link',cls,date,size:0,pages:null,link,desc,
+        subj,film:filmT,director:dir,year:yr,dl:old?old.dl:0};
+      const i=json.films.findIndex(x=>x.id===id);
+      if(i>=0)json.films[i]=entry;else json.films.push(entry);
+      return json;
+    },`Indice: + scheda film (pagina viva) «${title}»`);
+    setP('Pubblicata',1);
+    card.classList.add('done');
+    renderPubList(); renderTwMeta();
+    toast(`«${esc(title)}» è pubblicata: dalla Filmoteca si apre la pagina viva.`,'check');
+    setTimeout(()=>{
+      card.style.transition='opacity .3s,transform .3s';
+      card.style.opacity='0'; card.style.transform='translateX(12px)';
+      setTimeout(()=>{ card.remove(); updateQueueBar(); },300);
+    },900);
+    return true;
+  }catch(e){
+    card.querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=false);
+    card.classList.add('err');
+    setP('Errore: '+(e.message||'riprova'),null);
+    return false;
+  }
+}
 const updateQueueBar=()=>{ const b=$('#twQueueBar'); if(b) b.hidden=!( $('#twQueue') && $('#twQueue').children.length ); };
 
 async function publishOne(card){
   const file=card._file;
   const kind=card.dataset.kind||'lezione';
+  if(kind==='film'&&!file){ return publishFilmLink(card); }
   const title=card.querySelector('.q-title').value.trim();
   if(!title){ card.querySelector('.q-title').focus(); toast('Dai un titolo prima di pubblicare.','info'); return false; }
   const ext=(file.name.split('.').pop()||'').toLowerCase();
@@ -2720,7 +2808,8 @@ function bind(){
     }
     const el=e.target.closest('[data-tw]'); if(!el)return;
     const act=el.dataset.tw;
-    if(act==='reload')twReload();
+    if(act==='addfilmlink')addLinkFilmCard();
+    else if(act==='reload')twReload();
     else if(act==='sync')twSyncFolder(el);
     else if(act==='savedesc'){
       const fil=$('#descFil').value.trim()||DEFAULT_DESC.fil;
