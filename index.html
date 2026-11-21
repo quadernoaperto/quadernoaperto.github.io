@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quaderno Aperto — Prof. Valerio Ciaco · Filosofia &amp; Storia, archivio del triennio</title>
-<meta name="description" content="Il repository didattico del Prof. Valerio Ciaco: lezioni, saggi e schede di film di Filosofia e Storia per il triennio, da consultare e scaricare.">
+<meta name="description" content="Il repository didattico del Prof. Valerio Ciaco: lezioni, saggi, riassunti e schede di film di Filosofia e Storia per il triennio, da consultare e scaricare.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23C33A1E'/><text x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23FFF6EC'>Q</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -236,6 +236,7 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .op-status.wip{color:var(--accent);border:1px solid var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
 .op-status.done{color:var(--ink-2);border:1px solid var(--line)}
 .op-status.done svg{width:11px;height:11px}
+.rias-chip{display:inline-flex;align-items:center;font-family:var(--font-m);font-size:.54rem;letter-spacing:.09em;text-transform:uppercase;color:var(--c,var(--accent));border:1px solid color-mix(in srgb,var(--c,var(--accent)) 40%,transparent);border-radius:3px;padding:.06rem .34rem;vertical-align:middle;margin-left:.4rem}
 #opBack{z-index:395;display:flex;align-items:center;justify-content:center;padding:1rem}
 .opera{position:relative;width:min(880px,100%);max-height:88dvh;overflow-y:auto;background:var(--paper);border:1.5px solid var(--ink);border-radius:8px;box-shadow:9px 9px 0 var(--hard)}
 #opBack:not(.open) .opera{display:none}
@@ -349,7 +350,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 .m-meta{display:grid;grid-template-columns:1fr 1fr;gap:.8rem 1.5rem;margin-top:1.3rem;padding-top:1.2rem;border-top:1.5px dashed var(--line)}
 .m-meta dt{font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 .m-meta dd{font-weight:600;font-size:.92rem;margin-top:.15rem}
-.m-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.5rem}
+.m-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.5rem;align-items:center}
 .m-note{display:flex;gap:.6rem;margin-top:1.3rem;padding:.75rem .85rem;border:1px dashed var(--line);border-radius:6px;color:var(--ink-2);font-size:.8rem}
 .m-note svg{width:15px;height:15px;flex:none;margin-top:.1rem;color:var(--accent)}
 #readBack{z-index:430}
@@ -495,7 +496,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
         </div>
         <h1>Le lezioni non finiscono<br>con la <em class="hand">campanella<svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 42 2, 82 13, 120 7 S 192 3, 217 8"/></svg></em>.</h1>
         <p class="hero-lede">
-          Le lezioni di Filosofia e Storia del triennio, la saggistica, la Filmoteca —
+          Le lezioni di Filosofia e Storia del triennio, la saggistica, i riassunti di ripasso, la Filmoteca —
           PPTX e PDF raccolti dal Prof. Valerio Ciaco in un unico archivio aperto:
           cerca per argomento, sfoglia l'indice per materia e anno, leggi e scarica.
         </p>
@@ -569,7 +570,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <p class="kicker">§ L'indice — le lezioni</p>
           <h2 class="sec-title" id="indexTitle">…</h2>
         </div>
-        <p class="sec-note">Prima la materia, poi l'anno: ogni voce si apre sul posto, si legge e si scarica senza ostacoli. Saggi, Filmoteca e Progetti hanno i loro scaffali.</p>
+        <p class="sec-note">Prima la materia, poi l'anno: ogni voce si apre sul posto, si legge e si scarica senza ostacoli. Molte lezioni hanno anche il riassunto schematico, col chip dedicato.</p>
       </div>
       <div class="toolbar">
         <div class="seg" id="classFilter" role="group" aria-label="Filtra per anno">
@@ -601,7 +602,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <p class="kicker">¶ La saggistica</p>
           <h2 class="sec-title">Oltre la lezione.</h2>
         </div>
-        <p class="sec-note">Saggi singoli e opere in più parti, con stato di pubblicazione dichiarato. Ogni giorno anche su Instagram: <a class="linkish" href="https://www.instagram.com/saggiogram" target="_blank" rel="noopener">@saggiogram</a>. <span class="mono" id="essayStats"></span></p>
+        <p class="sec-note">Saggi singoli e opere in più parti, con anno di riferimento, descrizione e stato di pubblicazione dichiarati. Ogni giorno anche su Instagram: <a class="linkish" href="https://www.instagram.com/saggiogram" target="_blank" rel="noopener">@saggiogram</a>. <span class="mono" id="essayStats"></span></p>
       </div>
       <div class="toolbar">
         <div class="seg" id="essayFilter" role="group" aria-label="Filtra i saggi per ambito">
@@ -682,8 +683,8 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <div class="g-step">
             <span class="g-n">2</span>
             <div>
-              <h3>Leggi o scarica</h3>
-              <p>Apri la scheda: i PDF si sfogliano qui sul sito con <b>«Leggi»</b>, con zoom e schermo intero; le pagine vive della Filmoteca si aprono in una nuova scheda; le opere in più parti hanno l'ordine di lettura numerato e lo stato di pubblicazione.</p>
+              <h3>Leggi, ripassa o scarica</h3>
+              <p>Apri la scheda: i PDF si sfogliano qui sul sito con <b>«Leggi»</b>, con zoom e schermo intero; dove vedi il chip <b>«riassunto»</b> c'è anche lo schema di ripasso, col pulsante dedicato; le pagine vive della Filmoteca si aprono in una nuova scheda; le opere hanno l'ordine di lettura numerato e lo stato di pubblicazione.</p>
             </div>
           </div>
           <div class="g-step">
@@ -778,6 +779,8 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
         </dl>
         <div class="m-actions">
           <button class="btn accent" id="mRead"><i data-lucide="book-open"></i> Leggi</button>
+          <button class="btn" id="mRias" hidden title="Apri il riassunto di ripasso"><i data-lucide="clipboard-list"></i> Riassunto</button>
+          <button class="ibtn" id="mRiasDl" hidden aria-label="Scarica il riassunto" title="Scarica il riassunto"><i data-lucide="download"></i></button>
           <button class="btn" id="mDownload"><i data-lucide="download"></i> Scarica</button>
           <button class="btn" id="mCopy"><i data-lucide="link-2"></i> Copia link</button>
           <button class="btn" id="mFav"><i data-lucide="star"></i> <span id="mFavTxt">Salva</span></button>
@@ -935,11 +938,11 @@ function computeWorks(){
   const map=new Map();
   ESSAYS_NOW.forEach(f=>{
     if(!(f.work&&f.work.id)) return;
-    if(!map.has(f.work.id)) map.set(f.work.id,{id:f.work.id,title:f.work.title||'Opera',author:'',desc:'',subj:f.subj||'x',parts:[],dl:0,date:'',size:0,status:(f.work.status||'wip')});
+    if(!map.has(f.work.id)) map.set(f.work.id,{id:f.work.id,title:f.work.title||'Opera',author:'',desc:'',subj:f.subj||'x',parts:[],dl:0,date:'',size:0,status:(f.work.status||'wip'),cls:null});
     const w=map.get(f.work.id);
     w.parts.push(f);
     if(!w.author&&f.work.author) w.author=f.work.author;
-    if(!w.desc&&(f.work.desc||'')) w.desc=f.work.desc;
+    if(f.work.desc) w.desc=f.work.desc;
     w.status=f.work.status||w.status||'wip';
     w.dl+=f.dl||0;
     if(!w.date||f.date>w.date) w.date=f.date;
@@ -947,6 +950,11 @@ function computeWorks(){
   });
   WORKS=[...map.values()].map(w=>{
     w.parts.sort((a,b)=>((a.part||999)-(b.part||999))||a.date.localeCompare(b.date));
+    /* anno di riferimento dell'opera: il più presente tra le parti */
+    const cc={};
+    w.parts.forEach(p=>{ if(p.cls) cc[p.cls]=(cc[p.cls]||0)+1; });
+    const best=Object.entries(cc).sort((a,b)=>b[1]-a[1])[0];
+    w.cls=best?+best[0]:null;
     return w;
   }).sort((a,b)=>b.date.localeCompare(a.date));
 }
@@ -1081,7 +1089,7 @@ function fileRow(f,s){
     <span class="f-ico"><i data-lucide="${icoType(f.type)}"></i></span>
     <span class="f-body">
       <button class="f-title" data-act="view" data-file="${f.id}"><span class="f-sec">§</span>${esc(f.title)}</button>
-      <span class="f-sub">${fmtType(f.type)} · ${fmtDate(f.date)} · ${fmtSize(f.size)} · ${f.pages||'—'} ${f.type==='pptx'?'slide':'pagine'}</span>
+      <span class="f-sub">${fmtType(f.type)} · ${fmtDate(f.date)} · ${fmtSize(f.size)} · ${f.pages||'—'} ${f.type==='pptx'?'slide':'pagine'}${f.riassunto?' · <span class="rias-chip">riassunto</span>':''}</span>
     </span>
     <span class="f-dl" title="Scaricamenti"><i data-lucide="arrow-down-to-line"></i><b data-dl="${f.id}">${f.dl}</b></span>
     <span class="f-actions">
@@ -1174,7 +1182,7 @@ function renderEssays(){
   const workRows=WORKS.map(w=>{
     const m=SUBJ_META[w.subj]||SUBJ_META.x;
     const n=w.parts.length;
-    const sub=['opera in '+n+(n===1?' parte':' parti'), w.author?'di '+w.author:'', `${m.sym} ${m.label}`, 'agg. '+fmtDateShort(w.date)].filter(Boolean).join(' · ');
+    const sub=['opera in '+n+(n===1?' parte':' parti'), w.author?'di '+w.author:'', w.cls?w.cls+'ª':'', `${m.sym} ${m.label}`, 'agg. '+fmtDateShort(w.date)].filter(Boolean).join(' · ');
     return `<article class="essay opera-row" data-subj="${w.subj}" style="--c:var(${m.tint})">
       <span class="e-badge" aria-hidden="true">${m.sym}</span>
       <div class="e-body">
@@ -1193,6 +1201,7 @@ function renderEssays(){
     const parts=[fmtType(f.type),m.label];
     if(f.cls) parts.push(f.cls+'ª');
     parts.push(f.pages?f.pages+' pagine':'', fmtSize(f.size), fmtDate(f.date));
+    if(f.riassunto) parts.push('<span class="rias-chip">riassunto</span>');
     return `<div class="essay" data-id="${f.id}" data-subj="${f.subj}" style="--c:var(${m.tint})">
       <span class="e-badge" aria-hidden="true">${m.sym}</span>
       <div class="e-body">
@@ -1328,9 +1337,15 @@ function setupStats(){
 const updateSavedStat=()=>{ $('#stSaved').textContent=favs.size; };
 
 /* ════════ DOWNLOAD ════════ */
-const fileUrl=f=> (CONFIG.owner&&CONFIG.repo)
-  ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/lezioni/${f.file}`
-  : 'lezioni/'+f.file;
+/* i percorsi con cartella (es. riassunti/) sono già completi;
+   quelli semplici restano nella cartella lezioni/ */
+const fileUrl=f=>{
+  const p=f.file||'';
+  const rel=p.includes('/')?p:('lezioni/'+p);
+  return (CONFIG.owner&&CONFIG.repo)
+    ? `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${rel}`
+    : rel;
+};
 
 async function downloadFile(x){
   const {f}=x;
@@ -1343,14 +1358,14 @@ async function downloadFile(x){
     const blob=await r.blob();
     const a=document.createElement('a');
     const u=URL.createObjectURL(blob);
-    a.href=u; a.download=f.title+'.'+f.type;
+    a.href=u; a.download=f.title+'.'+(f.type||'pdf');
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(u),5000);
   }catch(e){
     window.open(url,'_blank','noopener');
     toast('Download diretto non riuscito: il file si apre in una nuova scheda, salvalo da lì.','info');
   }
-  f.dl++; updateDl(f); renderTop();
+  f.dl=(f.dl||0)+1; updateDl(f); renderTop();
 }
 
 /* ════════ VISUALIZZATORE PDF ════════ */
@@ -1454,11 +1469,13 @@ async function openReader(x){
   }
   $('#readBack').classList.add('open');
   document.body.classList.add('locked');
-  $('#rdKicker').textContent = x.kind==='saggio'
-    ? (f.work?`«${f.work.title}» · Parte ${f.part||'?'}`:`Saggio · ${(SUBJ_META[f.subj]||SUBJ_META.x).label}`)
-    : x.kind==='film'
-      ? `Scheda film · ${f.film||''}`
-      : `${x.s.name} · ${f.cls}ª`;
+  $('#rdKicker').textContent = x.kind==='riassunto'
+    ? `Riassunto · ${x.parent?.f?.title||''}`
+    : x.kind==='saggio'
+      ? (f.work?`«${f.work.title}» · Parte ${f.part||'?'}`:`Saggio · ${(SUBJ_META[f.subj]||SUBJ_META.x).label}`)
+      : x.kind==='film'
+        ? `Scheda film · ${f.film||''}`
+        : `${x.s.name} · ${f.cls}ª`;
   $('#rdTitle').textContent=f.title;
   $('#rdPage').textContent='carico il PDF…';
   $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
@@ -1620,9 +1637,14 @@ function fillModal(x){
   setFavBtn(favs.has(f.id));
   const isPdf=!!(f.file&&f.type==='pdf');
   $('#mRead').hidden=!isPdf;
+  const hasRias=!!(f.riassunto&&f.riassunto.file);
+  $('#mRias').hidden=!hasRias;
+  $('#mRiasDl').hidden=!hasRias;
   $('#mDownload').classList.toggle('accent',!isPdf);
   $('#mNote').lastElementChild.textContent = f.type==='pdf'
-    ? 'Pubblicato nell\u2019archivio: «Leggi» lo sfoglia qui sul sito, pagina per pagina; «Scarica» salva il file originale.'
+    ? (hasRias
+      ? 'Pubblicato nell\u2019archivio: «Leggi» sfoglia le slide; «Riassunto» apre lo schema di ripasso collegato; «Scarica» salva il file originale.'
+      : 'Pubblicato nell\u2019archivio: «Leggi» lo sfoglia qui sul sito, pagina per pagina; «Scarica» salva il file originale.')
     : 'Pubblicato nell\u2019archivio: «Scarica» salva il file; le slide PPTX si aprono con PowerPoint, LibreOffice o l\u2019app di Office.';
   const pane=$('#msCover');
   pane.querySelectorAll('canvas').forEach(c=>c.remove());
@@ -1662,7 +1684,7 @@ function fillOpera(w){
   $('#opAuthor').textContent=w.author?('di '+w.author):'Saggio in più parti';
   $('#opMeta').innerHTML=
     statusBadge(w)+'<br>'+
-    `<b>${w.parts.length}</b> parti · ${m.sym} ${m.label}<br>`+
+    `<b>${w.parts.length}</b> parti · ${m.sym} ${m.label}${w.cls?' · '+w.cls+'ª':''}<br>`+
     `ultima parte pubblicata: ${fmtDate(w.date)}<br>`+
     `download totali: <b>${w.dl}</b>`;
   $('#opDesc').textContent=w.desc||'Un percorso di saggistica diviso in parti numerate: la numerazione indica l\u2019ordine di lettura consigliato.';
@@ -1677,7 +1699,7 @@ function fillOpera(w){
       <span class="op-num">${String(n).padStart(2,'0')}</span>
       <span class="op-pbody">
         <button class="op-pt" data-act="view" data-file="${f.id}">${esc(f.title)}</button>
-        <span class="op-pm">Parte ${n} · ${pm}</span>
+        <span class="op-pm">Parte ${n} · ${pm}${f.riassunto?' · <span class="rias-chip">riassunto</span>':''}</span>
       </span>
       <span class="f-dl" title="Scaricamenti"><i data-lucide="arrow-down-to-line"></i><b data-dl="${f.id}">${f.dl}</b></span>
       <span class="f-actions">
@@ -1953,14 +1975,14 @@ function renderTwHome(){
     <div style="display:flex;justify-content:center">
       <button class="btn" data-tw="addfilmlink"><i data-lucide="clapperboard"></i> Scheda film con link — pagina viva</button>
     </div>
-    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b>, <b class="mono">saggio-</b> o <b class="mono">film-</b> il tipo si compila da solo. Per le parti di un'opera usa <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine.</span></p>
+    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b>, <b class="mono">saggio-</b> o <b class="mono">film-</b> il tipo si compila da solo. Per le parti di un'opera usa <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine. I riassunti si collegano dopo, con la matita.</span></p>
     <div id="twQueue" style="display:flex;flex-direction:column;gap:.9rem"></div>
     <div id="twQueueBar" hidden style="display:flex;justify-content:flex-end">
       <button class="btn accent" data-tw="puball"><i data-lucide="upload"></i> Pubblica tutto</button>
     </div>
     <div class="tw-card">
       <h3><i data-lucide="check"></i>Pubblicati nell'archivio</h3>
-      <p class="tw-line" style="margin-bottom:.6rem">Con la <b>matita</b> correggi tutti i dettagli — per le opere anche lo stato di pubblicazione — senza ricaricare il file.</p>
+      <p class="tw-line" style="margin-bottom:.6rem">Con la <b>matita</b> correggi tutti i dettagli, colleghi il riassunto di ripasso e — per le opere — descrizione, anno e stato di pubblicazione.</p>
       <div id="pubList"></div>
     </div>
     <div class="tw-foot-card">
@@ -2010,6 +2032,15 @@ function renderPubList(){
     return;
   }
   const editBtn=(sub,id)=>`<button class="ibtn" data-tw="edit" data-id="${id}" data-sub="${sub}" aria-label="Modifica i dettagli"><i data-lucide="pencil"></i></button>`;
+  const riasBlock=(sub,f)=>`
+      <div class="fld-row" style="grid-template-columns:1fr 1fr">
+        <label class="fld">Riassunto / schema (PDF)<input class="pe-rias" type="file" accept=".pdf,.pptx"></label>
+        <label class="fld">Titolo del riassunto<input class="pe-rias-title" value="${esc(f.riassunto?.title||'Riassunto e schema')}"></label>
+      </div>
+      ${f.riassunto
+        ? `<p class="tw-hint"><i data-lucide="check"></i><span>Riassunto collegato: <b>${esc(f.riassunto.title||'Riassunto')}</b>${f.riassunto.size?' ('+fmtSize(f.riassunto.size)+')':''} — caricane uno nuovo per sostituirlo, o rimuovilo.</span></p>
+           <div class="q-actions"><button class="btn" data-tw="delrias" data-sub="${sub}" data-id="${f.id}"><i data-lucide="trash-2"></i> Rimuovi riassunto</button></div>`
+        : `<p class="tw-hint"><i data-lucide="clipboard-list"></i><span>Facoltativo: il riassunto schematico comparirà accanto alla lezione nell'indice e nella sua scheda, con pulsante dedicato.</span></p>`}`;
   const lezEditor=(s,f)=>`
     <div class="pub-edit" style="--c:var(${s.tint})">
       <p class="pub-h"><b>Modifica lezione</b> · il file online non viene rinominato</p>
@@ -2018,6 +2049,7 @@ function renderPubList(){
         <label class="fld">Anno<select class="pe-cls">${[3,4,5].map(c=>`<option value="${c}" ${f.cls===c?'selected':''}>${c}ª</option>`).join('')}</select></label>
         <label class="fld">Data di pubblicazione<input class="pe-date" type="date" value="${esc(f.date||'')}"></label>
       </div>
+      ${riasBlock(s.id,f)}
       <label class="fld">Descrizione<textarea class="pe-desc" rows="2">${esc(f.desc||'')}</textarea></label>
       <div class="q-actions">
         <button class="btn" data-tw="canceledit">Annulla</button>
@@ -2033,7 +2065,8 @@ function renderPubList(){
           <option value="wip" ${(f.work?.status||'wip')==='wip'?'selected':''}>In pubblicazione</option>
           <option value="done" ${f.work?.status==='done'?'selected':''}>Completa</option>
         </select></label>
-      </div>`;
+      </div>
+      <label class="fld">Descrizione dell'opera (comparirà nella saggistica, sotto il titolo)<textarea class="pe-workdesc" rows="2">${esc(f.work?.desc||'')}</textarea></label>`;
   const essEditor=f=>{
     const m=SUBJ_META[f.subj]||SUBJ_META.x;
     return `
@@ -2052,6 +2085,7 @@ function renderPubList(){
         <label class="fld">Data<input class="pe-date" type="date" value="${esc(f.date||'')}"></label>
       </div>
       ${workFields(f)}
+      ${riasBlock('sag',f)}
       <label class="fld">Descrizione<textarea class="pe-desc" rows="2">${esc(f.desc||'')}</textarea></label>
       <div class="q-actions">
         <button class="btn" data-tw="canceledit">Annulla</button>
@@ -2080,6 +2114,7 @@ function renderPubList(){
         </select></label>
         <label class="fld">Data<input class="pe-date" type="date" value="${esc(f.date||'')}"></label>
       </div>
+      <label class="fld">Link della pagina (per le schede con pagina viva)<input class="pe-link" value="${esc(f.link||'')}" placeholder="schede/classe-operaia.html"></label>
       <label class="fld">Descrizione<textarea class="pe-desc" rows="2">${esc(f.desc||'')}</textarea></label>
       <div class="q-actions">
         <button class="btn" data-tw="canceledit">Annulla</button>
@@ -2094,7 +2129,7 @@ function renderPubList(){
           ? lezEditor(s,f)
           : `<div class="pub-row" style="--c:var(${s.tint})">
               <span class="f-ico"><i data-lucide="${icoType(f.type)}"></i></span>
-              <b>${esc(f.title)}</b>
+              <b>${esc(f.title)}${f.riassunto?' <span class="rias-chip">riassunto</span>':''}</b>
               <span class="mono">${f.cls}ª · ${fmtDate(f.date)}</span>
               ${editBtn(s.id,f.id)}
               <button class="ibtn" data-tw="del" data-id="${f.id}" data-sub="${s.id}" aria-label="Elimina dall'archivio"><i data-lucide="trash-2"></i></button>
@@ -2109,7 +2144,7 @@ function renderPubList(){
           const loc=f.work?`${esc(f.work.title)} · P.${f.part||'?'} · `:'';
           return `<div class="pub-row" style="--c:var(${m.tint})">
             <span class="e-badge sm" aria-hidden="true">${m.sym}</span>
-            <b>${esc(f.title)}</b>
+            <b>${esc(f.title)}${f.riassunto?' <span class="rias-chip">riassunto</span>':''}</b>
             <span class="mono">${loc}${fmtDate(f.date)}</span>
             ${editBtn('sag',f.id)}
             <button class="ibtn" data-tw="del" data-id="${f.id}" data-sub="sag" aria-label="Elimina dall'archivio"><i data-lucide="trash-2"></i></button>
@@ -2147,6 +2182,19 @@ async function saveEdit(sub,id,wrap,btn){
   const nd=/^\d{4}-\d{2}-\d{2}$/.test(ndRaw)?ndRaw:null;
   btn.disabled=true;
   try{
+    /* eventuale riassunto caricato (lezioni e saggi) */
+    let riasObj=null;
+    const riasInput=wrap.querySelector('.pe-rias');
+    if(riasInput&&riasInput.files&&riasInput.files[0]){
+      const rf=riasInput.files[0];
+      const rext=(rf.name.split('.').pop()||'').toLowerCase();
+      const rtitle=(wrap.querySelector('.pe-rias-title')||{}).value?.trim()||'Riassunto e schema';
+      toast('Carico il riassunto…','upload');
+      const rb64=await fileToB64(rf);
+      const rfname='riassunti/'+id+'-riassunto.'+rext;
+      await ghPut(rfname,rb64,`Aggiorna riassunto di «${title}»`);
+      riasObj={file:rfname,title:rtitle,type:rext,size:+(rf.size/1048576).toFixed(1),date:new Date().toISOString().slice(0,10)};
+    }
     await updatePublished(j=>{
       if(isFilm){
         const f=(j.films||[]).find(x=>x.id===id);
@@ -2158,6 +2206,9 @@ async function saveEdit(sub,id,wrap,btn){
         f.film=(wrap.querySelector('.pe-film')||{}).value?.trim()||f.film;
         f.director=(wrap.querySelector('.pe-director')||{}).value?.trim()||'';
         f.year=(wrap.querySelector('.pe-year')||{}).value?.trim()||'';
+        const nl=(wrap.querySelector('.pe-link')||{}).value?.trim()||'';
+        if(nl){ f.link=nl; delete f.file; }
+        else if(f.link){ delete f.link; }
         f.desc=desc||'Scheda di visione del film «'+(f.film||f.title)+'».';
       }else if(isSag){
         const f=j.essays.find(x=>x.id===id);
@@ -2170,8 +2221,10 @@ async function saveEdit(sub,id,wrap,btn){
         const av=(wrap.querySelector('.pe-author')||{}).value||'';
         const pv=+((wrap.querySelector('.pe-part')||{}).value)||null;
         const sv=(wrap.querySelector('.pe-status')||{}).value||'wip';
-        if(wv.trim()){ f.work={id:slug(wv.trim()),title:wv.trim(),author:av.trim(),status:sv}; f.part=pv; }
+        const wdv=(wrap.querySelector('.pe-workdesc')||{}).value?.trim()||'';
+        if(wv.trim()){ f.work={id:slug(wv.trim()),title:wv.trim(),author:av.trim(),status:sv,desc:wdv}; f.part=pv; }
         else { delete f.work; delete f.part; }
+        if(riasObj) f.riassunto=riasObj;
         f.desc=desc||('Saggio di approfondimento — '+(SUBJ_META[f.subj]||SUBJ_META.x).label+'.');
       }else{
         const s=j.subjects.find(x=>x.id===sub);
@@ -2180,15 +2233,37 @@ async function saveEdit(sub,id,wrap,btn){
         f.title=title;
         f.cls=+wrap.querySelector('.pe-cls').value||f.cls;
         if(nd) f.date=nd;
+        if(riasObj) f.riassunto=riasObj;
         f.desc=desc||('Lezione del corso di '+(s.id==='fil'?'Filosofia':'Storia')+' (Prof. Valerio Ciaco).');
       }
       return j;
     },`Modifica i dettagli di «${title}»`);
     editKey=null; renderPubList();
-    toast('Dettagli aggiornati: il file online resta con lo stesso nome.','check');
+    toast(riasObj?'Dettagli e riassunto aggiornati: già visibili sul sito.':'Dettagli aggiornati: il file online resta con lo stesso nome.','check');
   }catch(e){
     toast('Errore: '+e.message,'info');
     btn.disabled=false;
+  }
+}
+async function removeRiassunto(sub,id,btn){
+  if(btn.dataset.arm!=='1'){ btn.dataset.arm='1'; btn.textContent='Sicuro?'; return; }
+  btn.disabled=true; btn.textContent='…';
+  let rfile=null;
+  try{
+    await updatePublished(j=>{
+      let target=null;
+      if(sub==='sag') target=j.essays.find(x=>x.id===id);
+      else if(sub==='flm') target=(j.films||[]).find(x=>x.id===id);
+      else { const s=j.subjects.find(x=>x.id===sub); target=s&&s.files.find(x=>x.id===id); }
+      if(target&&target.riassunto){ rfile=target.riassunto.file; delete target.riassunto; }
+      return j;
+    },'Rimuove il riassunto');
+    if(rfile){ try{ await ghDeleteFile(rfile,'Elimina file riassunto'); }catch{} }
+    toast('Riassunto rimosso.','trash-2');
+    renderPubList();
+  }catch(e){
+    toast('Errore: '+e.message,'info');
+    btn.dataset.arm=''; btn.disabled=false; btn.textContent='Rimuovi riassunto';
   }
 }
 
@@ -2734,6 +2809,16 @@ function bind(){
   $('#mClose').addEventListener('click',()=>closeModal());
   $('#modBack').addEventListener('click',e=>{ if(e.target.id==='modBack')closeModal(); });
   $('#mRead').addEventListener('click',()=>{ if(currentFile)openReader(currentFile); });
+  $('#mRias').addEventListener('click',()=>{
+    if(currentFile&&currentFile.f.riassunto&&currentFile.f.riassunto.file){
+      openReader({f:currentFile.f.riassunto,kind:'riassunto',parent:currentFile});
+    }
+  });
+  $('#mRiasDl').addEventListener('click',()=>{
+    if(currentFile&&currentFile.f.riassunto&&currentFile.f.riassunto.file){
+      downloadFile({f:currentFile.f.riassunto,kind:'riassunto'});
+    }
+  });
   $('#mDownload').addEventListener('click',()=>{ if(currentFile)downloadFile(currentFile); });
   $('#mFav').addEventListener('click',()=>{ if(currentFile)toggleFav(currentFile.f.id); });
   $('#mCopy').addEventListener('click',async()=>{
@@ -2834,6 +2919,7 @@ function bind(){
       const wrap=el.closest('.pub-edit');
       saveEdit(el.dataset.sub,el.dataset.id,wrap,el);
     }
+    else if(act==='delrias')removeRiassunto(el.dataset.sub,el.dataset.id,el);
     else if(act==='logout'){
       store.del(TKEY); TCFG=null; publishedData=null; renderTeacher();
       const tT=$('#teacherTop'); if(tT) tT.hidden=true;
