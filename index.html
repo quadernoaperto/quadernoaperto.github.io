@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quaderno Aperto — Prof. Valerio Ciaco · Filosofia &amp; Storia, archivio del triennio</title>
-<meta name="description" content="Il repository didattico del Prof. Valerio Ciaco: lezioni, saggi, riassunti e schede di film di Filosofia e Storia per il triennio, da consultare e scaricare.">
+<meta name="description" content="Il repository didattico del Prof. Valerio Ciaco: lezioni, saggi, riassunti, schede di film e pagine sparse di Filosofia e Storia per il triennio, da consultare e scaricare.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23C33A1E'/><text x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23FFF6EC'>Q</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -211,10 +211,11 @@ section{padding-block:clamp(3.2rem,7vh,5.5rem)}
 .file:hover .f-actions,.file:focus-within .f-actions{opacity:1}
 @media(hover:none){.f-actions{opacity:1}}
 .empty-note{margin-top:1.5rem;padding:1.2rem 1.4rem;border:1.5px dashed var(--line);border-radius:6px;color:var(--ink-2);font-size:.92rem}
-#saggistica,#filmoteca{position:relative;overflow:hidden}
+#saggistica,#filmoteca,#approfondimenti{position:relative;overflow:hidden}
 #saggistica::before{content:"¶";position:absolute;top:-3.5rem;right:-1.5rem;z-index:0;pointer-events:none;user-select:none;font-family:var(--font-d);font-style:italic;font-size:clamp(13rem,26vw,22rem);line-height:1;color:var(--line-soft)}
 #filmoteca::before{content:"🎬";position:absolute;top:-1rem;right:-1rem;z-index:0;pointer-events:none;user-select:none;font-size:clamp(10rem,20vw,17rem);line-height:1;opacity:.5;filter:grayscale(1)}
-#saggistica .wrap,#filmoteca .wrap{position:relative;z-index:1}
+#approfondimenti::before{content:"✦";position:absolute;top:-3rem;right:-1.5rem;z-index:0;pointer-events:none;user-select:none;font-family:var(--font-d);font-style:italic;font-size:clamp(13rem,26vw,22rem);line-height:1;color:var(--line-soft)}
+#saggistica .wrap,#filmoteca .wrap,#approfondimenti .wrap{position:relative;z-index:1}
 .essays{margin-top:.4rem}
 @media(min-width:940px){.essays{columns:2;column-gap:3rem}}
 .essay{break-inside:avoid;display:grid;grid-template-columns:2.3rem minmax(0,1fr) auto auto;gap:.9rem;align-items:start;padding:1rem .2rem;border-bottom:1px dashed var(--line);transition:background .15s}
@@ -463,6 +464,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
       <a href="#materie">Indice</a>
       <a href="#saggistica">Saggi</a>
       <a href="#filmoteca">Filmoteca</a>
+      <a href="#approfondimenti">Approfondimenti</a>
       <a href="#classifica">Classifica</a>
       <a href="#guida">Guida</a>
     </nav>
@@ -496,7 +498,8 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
         </div>
         <h1>Le lezioni non finiscono<br>con la <em class="hand">campanella<svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 10 C 42 2, 82 13, 120 7 S 192 3, 217 8"/></svg></em>.</h1>
         <p class="hero-lede">
-          Le lezioni di Filosofia e Storia del triennio, la saggistica, i riassunti di ripasso, la Filmoteca —
+          Le lezioni di Filosofia e Storia del triennio, la saggistica, i riassunti di ripasso,
+          la Filmoteca, le pagine sparse sull'attualità —
           PPTX e PDF raccolti dal Prof. Valerio Ciaco in un unico archivio aperto:
           cerca per argomento, sfoglia l'indice per materia e anno, leggi e scarica.
         </p>
@@ -512,6 +515,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <div class="stat"><b><span data-auto="lessons">0</span></b><span>lezioni</span></div>
           <div class="stat"><b><span data-auto="essays">0</span></b><span>saggi e parti</span></div>
           <div class="stat"><b><span data-auto="films">0</span></b><span>schede di film</span></div>
+          <div class="stat"><b><span data-auto="apps">0</span></b><span>pagine sparse</span></div>
           <div class="stat"><b><span id="stSaved">0</span><i data-lucide="star"></i></b><span>salvate da te</span></div>
         </div>
       </div>
@@ -641,6 +645,29 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
     </div>
   </section>
 
+  <section id="approfondimenti">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="kicker">✦ Approfondimenti</p>
+          <h2 class="sec-title">Pagine sparse.</h2>
+        </div>
+        <p class="sec-note">Estratti, articoli e temi di attualità ed educazione civica: finestre sul presente collegate agli argomenti del programma, aperte a tutte le classi.</p>
+      </div>
+      <div class="toolbar">
+        <div class="seg" id="appFilter" role="group" aria-label="Filtra gli approfondimenti per ambito">
+          <button data-asub="all" class="on">Tutti</button>
+          <button data-asub="fil">φ Filosofia</button>
+          <button data-asub="sto">Σ Storia</button>
+          <button data-asub="x">¶ Trasversali</button>
+        </div>
+        <span class="mono" style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)">PDF · con fonte dichiarata</span>
+      </div>
+      <div class="essays" id="apps"></div>
+      <p class="empty-note" id="appEmpty" hidden>Nessun approfondimento ancora: le prime pagine sparse arriveranno dal Registro del docente.</p>
+    </div>
+  </section>
+
   <section class="band" id="classifica">
     <div class="wrap">
       <div class="sec-head" style="border-top-color:transparent;padding-top:0">
@@ -648,7 +675,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
           <p class="kicker">§ Classifica</p>
           <h2 class="sec-title">Le più scaricate.</h2>
         </div>
-        <p class="sec-note">Lezioni, saggi, parti di opere e schede di film insieme: il podio di ciò che gli studenti scaricano di più.</p>
+        <p class="sec-note">Lezioni, saggi, schede di film e pagine sparse insieme: il podio di ciò che gli studenti scaricano di più.</p>
       </div>
       <ol class="top-list" id="topList"></ol>
       <p class="empty-note" id="topEmpty" hidden>La classifica prenderà forma con le prime pubblicazioni nell'archivio.</p>
@@ -740,10 +767,10 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 </footer>
 
 <div class="overlay" id="palBack">
-  <div class="palette" role="dialog" aria-modal="true" aria-label="Ricerca lezioni, saggi, opere e film">
+  <div class="palette" role="dialog" aria-modal="true" aria-label="Ricerca lezioni, saggi, opere, film e approfondimenti">
     <div class="p-bar">
       <i data-lucide="search"></i>
-      <input type="text" id="palInput" placeholder="Cerca tra lezioni, saggi, opere e film…" autocomplete="off" spellcheck="false">
+      <input type="text" id="palInput" placeholder="Cerca tra lezioni, saggi, opere, film e approfondimenti…" autocomplete="off" spellcheck="false">
       <kbd>esc</kbd>
     </div>
     <ul class="p-res" id="palRes"></ul>
@@ -852,6 +879,7 @@ footer{background:#1B1712;color:#F0E8D5;padding:clamp(3.5rem,8vh,5.5rem) 0 2rem;
 
 <div class="toaster" id="toaster" aria-live="polite"></div>
 
+</body>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
 /* ════════ FUNZIONI DI BASE ════════ */
@@ -898,6 +926,12 @@ const SUBJ_META = {
   sto:{label:'Storia',    tint:'--t-sto', sym:'Σ'},
   x:  {label:'Trasversale',tint:'--t-sag',sym:'¶'}
 };
+const FTYPE_LABEL = {
+  estratto:'estratto da libro',
+  articolo:'articolo di rivista',
+  attualita:'attualità',
+  civica:'educazione civica'
+};
 const store={
   get(k,fb){ try{ const v=localStorage.getItem(k); return v===null?fb:v; }catch{ return fb; } },
   set(k,v){ try{ localStorage.setItem(k,v); }catch{} },
@@ -906,7 +940,7 @@ const store={
 const shortHost=u=>{ try{ return new URL(u).hostname; }catch{ return u; } };
 
 /* ════════ STATO DATI ════════ */
-let SUBJECTS_NOW=[], ESSAYS_NOW=[], FILMS_NOW=[];
+let SUBJECTS_NOW=[], ESSAYS_NOW=[], FILMS_NOW=[], APPS_NOW=[];
 const ALL=[]; const fileMap=new Map(); let totalSlides=0;
 let WORKS=[];
 
@@ -916,15 +950,17 @@ const seedArchive=()=>({
     {id:'sto',name:'Storia',tint:'--t-sto',desc:DEFAULT_DESC.sto,files:[]}
   ],
   essays:[],
-  films:[]
+  films:[],
+  apps:[]
 });
 const OLD_DESC_STO='L\'Ottocento e il Novecento: fatti, cause e storiografia, con fonti, mappe e cronologie.';
 
 function normalizeArchive(json){
-  if(Array.isArray(json)) json={subjects:json,essays:[],films:[]};
+  if(Array.isArray(json)) json={subjects:json,essays:[],films:[],apps:[]};
   if(!Array.isArray(json.subjects)) json.subjects=[];
   if(!Array.isArray(json.essays)) json.essays=[];
   if(!Array.isArray(json.films)) json.films=[];
+  if(!Array.isArray(json.apps)) json.apps=[];
   const seed=seedArchive();
   ['fil','sto'].forEach(id=>{
     let s=json.subjects.find(x=>x.id===id);
@@ -950,7 +986,6 @@ function computeWorks(){
   });
   WORKS=[...map.values()].map(w=>{
     w.parts.sort((a,b)=>((a.part||999)-(b.part||999))||a.date.localeCompare(b.date));
-    /* anno di riferimento dell'opera: il più presente tra le parti */
     const cc={};
     w.parts.forEach(p=>{ if(p.cls) cc[p.cls]=(cc[p.cls]||0)+1; });
     const best=Object.entries(cc).sort((a,b)=>b[1]-a[1])[0];
@@ -959,20 +994,22 @@ function computeWorks(){
   }).sort((a,b)=>b.date.localeCompare(a.date));
 }
 
-function useData(subjects,essays,films){
+function useData(subjects,essays,films,apps){
   SUBJECTS_NOW = subjects.map(s=>({...s, files:(s.files||[])}));
   ESSAYS_NOW   = (essays||[]).map(e=>({...e}));
   FILMS_NOW    = (films||[]).map(e=>({...e}));
+  APPS_NOW     = (apps||[]).map(e=>({...e}));
   ALL.length=0; fileMap.clear();
   SUBJECTS_NOW.forEach(s=>s.files.forEach(f=>ALL.push({f,s,kind:'lezione'})));
   ESSAYS_NOW.forEach(f=>ALL.push({f,s:null,kind:'saggio'}));
   FILMS_NOW.forEach(f=>ALL.push({f,s:null,kind:'film'}));
+  APPS_NOW.forEach(f=>ALL.push({f,s:null,kind:'app'}));
   ALL.forEach(x=>fileMap.set(x.f.id,x));
   totalSlides = ALL.reduce((a,x)=>a+(x.f.pages||0),0);
   computeWorks();
   renderProjects();
   renderHeroSlides();
-  renderSubjects(); renderEssays(); renderFilms(); renderDiario(); renderTop();
+  renderSubjects(); renderEssays(); renderFilms(); renderApps(); renderDiario(); renderTop();
   applyFilter(); setupStats();
 }
 
@@ -1002,7 +1039,9 @@ function renderHeroSlides(){
       ? `Saggio · ${(SUBJ_META[it.f.subj]||SUBJ_META.x).sym} ${(SUBJ_META[it.f.subj]||SUBJ_META.x).label}`
       : it.kind==='film'
         ? `Scheda film · ${it.f.film||''}`
-        : `${it.s.name} · ${it.f.cls}ª`;
+        : it.kind==='app'
+          ? 'Pagina sparsa · approfondimento'
+          : `${it.s.name} · ${it.f.cls}ª`;
     const pages = it.f.pages ? ` · ${it.f.pages} ${it.f.type==='pptx'?'slide':'pagine'}` : '';
     el.querySelector('.hero-sl-head').textContent=head;
     el.querySelector('.hero-sl-title').textContent=it.f.title;
@@ -1285,6 +1324,55 @@ function applyFilmFilter(){
   if(n===0) e.textContent='Nessuna scheda in questa selezione.';
 }
 
+/* ════════ APPROFONDIMENTI — Pagine sparse ════════ */
+let appFilter='all', appsExist=false;
+function renderApps(){
+  const box=$('#apps'); if(!box) return;
+  const list=[...APPS_NOW].sort((a,b)=>b.date.localeCompare(a.date));
+  appsExist=list.length>0;
+  if(!appsExist){
+    box.innerHTML='';
+    const e=$('#appEmpty'); e.hidden=false;
+    e.textContent='Nessun approfondimento ancora: le prime pagine sparse arriveranno dal Registro del docente.';
+    return;
+  }
+  $('#appEmpty').hidden=true;
+  box.innerHTML=list.map(f=>{
+    const m=SUBJ_META[f.subj]||SUBJ_META.x;
+    const parts=['✦ pagina sparsa', m.label, f.ftype?(FTYPE_LABEL[f.ftype]||f.ftype):''];
+    if(f.cls) parts.push(f.cls+'ª');
+    if(f.source) parts.push('fonte: '+f.source);
+    parts.push(f.pages?f.pages+' pagine':'', fmtSize(f.size), fmtDate(f.date));
+    if(f.riassunto) parts.push('<span class="rias-chip">riassunto</span>');
+    return `<div class="essay" data-id="${f.id}" data-subj="${f.subj}" style="--c:var(${m.tint})">
+      <span class="e-badge" aria-hidden="true">✦</span>
+      <div class="e-body">
+        <button class="e-title" data-act="view" data-file="${f.id}"><span class="f-sec">✦</span>${esc(f.title)}</button>
+        <span class="e-sub">${parts.filter(Boolean).join(' · ')}</span>
+        <span class="e-desc">${esc(f.desc)}</span>
+      </div>
+      <span class="f-dl" title="Scaricamenti"><i data-lucide="arrow-down-to-line"></i><b data-dl="${f.id}">${f.dl}</b></span>
+      <span class="f-actions">
+        <button class="ibtn fav ${favs.has(f.id)?'on':''}" data-act="fav" data-file="${f.id}" aria-label="Salva tra le preferite"><i data-lucide="star"></i></button>
+        <button class="ibtn" data-act="view" data-file="${f.id}" aria-label="Apri la scheda"><i data-lucide="eye"></i></button>
+        <button class="ibtn" data-act="dl" data-file="${f.id}" aria-label="Scarica il file"><i data-lucide="download"></i></button>
+      </span>
+    </div>`;
+  }).join('');
+  icons();
+  applyAppFilter();
+}
+function applyAppFilter(){
+  if(!appsExist) return;
+  let n=0;
+  $$('#apps .essay').forEach(el=>{
+    const ok = appFilter==='all' || el.dataset.subj===appFilter;
+    el.classList.toggle('off',!ok); if(ok) n++;
+  });
+  const e=$('#appEmpty'); e.hidden=n!==0;
+  if(n===0) e.textContent='Nessun approfondimento in questa selezione.';
+}
+
 /* ════════ CLASSIFICA / DIARIO / STATS ════════ */
 const kindMeta = x=> x.kind==='opera'
   ? {sub:`Opera · ${x.w.parts.length} parti${x.w.author?' · '+x.w.author:''}`, tint:(SUBJ_META[x.w.subj]||SUBJ_META.x).tint}
@@ -1294,7 +1382,9 @@ const kindMeta = x=> x.kind==='opera'
         : {sub:`Saggio · ${(SUBJ_META[x.f.subj]||SUBJ_META.x).label}`, tint:(SUBJ_META[x.f.subj]||SUBJ_META.x).tint})
     : x.kind==='film'
       ? {sub:`Scheda film · ${x.f.film||''}${x.f.director?' · '+x.f.director:''}`, tint:(SUBJ_META[x.f.subj]||SUBJ_META.x).tint}
-      : {sub:`${x.s.name} · ${fmtType(x.f.type)} · ${x.f.cls}ª`, tint:x.s.tint};
+      : x.kind==='app'
+        ? {sub:`Pagina sparsa${x.f.source?' · '+x.f.source:''}`, tint:(SUBJ_META[x.f.subj]||SUBJ_META.x).tint}
+        : {sub:`${x.s.name} · ${fmtType(x.f.type)} · ${x.f.cls}ª`, tint:x.s.tint};
 
 function renderTop(){
   const top=[...ALL].sort((a,b)=>b.f.dl-a.f.dl).slice(0,5);
@@ -1321,8 +1411,10 @@ function renderDiario(){
       ? (x.f.work?`«${x.f.work.title}» · P.${x.f.part||'?'}`:`Saggio · ${(SUBJ_META[x.f.subj]||SUBJ_META.x).label}`)
       : x.kind==='film'
         ? `Film · ${x.f.film||''}`
-        : `${x.s.name} · ${x.f.cls}ª`;
-    const chip = x.kind==='saggio' ? 'saggio' : x.kind==='film' ? 'film' : 'nuovo';
+        : x.kind==='app'
+          ? 'Pagina sparsa'
+          : `${x.s.name} · ${x.f.cls}ª`;
+    const chip = x.kind==='saggio' ? 'saggio' : x.kind==='film' ? 'film' : x.kind==='app' ? 'pagina' : 'nuovo';
     return `<span class="d-item"><span class="d-new">${chip}</span><b>${esc(x.f.title)}</b><span class="d-meta">${meta}</span><span class="d-date">${fmtDateShort(x.f.date)}</span></span><span class="d-sep"></span>`;
   }).join('');
   $('#diarioMove').innerHTML = items
@@ -1330,15 +1422,13 @@ function renderDiario(){
     : `<div class="d-half"><span class="d-item">Le prime pubblicazioni dell'archivio arriveranno presto.</span></div>`;
 }
 function setupStats(){
-  const v={lessons:ALL.filter(x=>x.kind==='lezione').length, essays:ALL.filter(x=>x.kind==='saggio').length, films:FILMS_NOW.length};
+  const v={lessons:ALL.filter(x=>x.kind==='lezione').length, essays:ALL.filter(x=>x.kind==='saggio').length, films:FILMS_NOW.length, apps:APPS_NOW.length};
   $$('#stats [data-auto]').forEach(el=>{ el.dataset.count=v[el.dataset.auto]||0; el.textContent=el.dataset.count; });
   $('#stSaved').textContent=favs.size;
 }
 const updateSavedStat=()=>{ $('#stSaved').textContent=favs.size; };
 
 /* ════════ DOWNLOAD ════════ */
-/* i percorsi con cartella (es. riassunti/) sono già completi;
-   quelli semplici restano nella cartella lezioni/ */
 const fileUrl=f=>{
   const p=f.file||'';
   const rel=p.includes('/')?p:('lezioni/'+p);
@@ -1475,7 +1565,9 @@ async function openReader(x){
       ? (f.work?`«${f.work.title}» · Parte ${f.part||'?'}`:`Saggio · ${(SUBJ_META[f.subj]||SUBJ_META.x).label}`)
       : x.kind==='film'
         ? `Scheda film · ${f.film||''}`
-        : `${x.s.name} · ${f.cls}ª`;
+        : x.kind==='app'
+          ? 'Pagina sparsa · approfondimento'
+          : `${x.s.name} · ${f.cls}ª`;
   $('#rdTitle').textContent=f.title;
   $('#rdPage').textContent='carico il PDF…';
   $('#rdPrev').disabled=true; $('#rdNext').disabled=true;
@@ -1620,6 +1712,14 @@ function fillModal(x){
     $('#msFoot').textContent=`${f.pages||'—'} pagine · © Prof. Valerio Ciaco`;
     $('#mKicker').textContent=`Scheda di visione · ${m.label}${f.cls?` · ${f.cls}ª`:''}`;
     $('#mFormat').textContent=`${fmtType(f.type)} · ${f.pages?f.pages+' pagine':'n.d.'}`;
+  }else if(kind==='app'){
+    const m=SUBJ_META[f.subj]||SUBJ_META.x;
+    $('#mSlide').style.setProperty('--c',`var(${m.tint})`);
+    $('#msTop').textContent=`Pagina sparsa · ${m.label}`;
+    $('#msTitle').textContent=f.title;
+    $('#msFoot').textContent=`${f.pages||'—'} pagine · © Prof. Valerio Ciaco`;
+    $('#mKicker').textContent=`Approfondimento · ${m.label}${f.cls?` · ${f.cls}ª`:''}${f.source?' · Fonte: '+f.source:''}`;
+    $('#mFormat').textContent=`${fmtType(f.type)} · ${f.pages?f.pages+' pagine':'n.d.'}`;
   }else{
     const s=x.s;
     $('#mSlide').style.setProperty('--c',`var(${s.tint})`);
@@ -1643,7 +1743,7 @@ function fillModal(x){
   $('#mDownload').classList.toggle('accent',!isPdf);
   $('#mNote').lastElementChild.textContent = f.type==='pdf'
     ? (hasRias
-      ? 'Pubblicato nell\u2019archivio: «Leggi» sfoglia le slide; «Riassunto» apre lo schema di ripasso collegato; «Scarica» salva il file originale.'
+      ? 'Pubblicato nell\u2019archivio: «Leggi» sfoglia il documento; «Riassunto» apre lo schema di ripasso collegato; «Scarica» salva il file originale.'
       : 'Pubblicato nell\u2019archivio: «Leggi» lo sfoglia qui sul sito, pagina per pagina; «Scarica» salva il file originale.')
     : 'Pubblicato nell\u2019archivio: «Scarica» salva il file; le slide PPTX si aprono con PowerPoint, LibreOffice o l\u2019app di Office.';
   const pane=$('#msCover');
@@ -1651,7 +1751,7 @@ function fillModal(x){
   pane.classList.remove('has-thumb');
   if(isPdf) renderCover(x);
 }
-function hashFor(x){ return (x.kind==='saggio'?'#saggio-':x.kind==='film'?'#film-':'#lezione-')+x.f.id; }
+function hashFor(x){ return (x.kind==='saggio'?'#saggio-':x.kind==='film'?'#film-':x.kind==='app'?'#app-':'#lezione-')+x.f.id; }
 function openFile(id){
   const x=fileMap.get(id); if(!x)return;
   if(x.kind==='film'&&x.f.link){
@@ -1759,7 +1859,9 @@ function palRender(q){
         ? x.f.title+' '+(x.w.author||'')+' '+(SUBJ_META[x.w.subj]||SUBJ_META.x).label
         : x.kind==='film'
           ? x.f.title+' '+(x.f.film||'')+' '+(x.f.director||'')+' '+(SUBJ_META[x.f.subj]||SUBJ_META.x).label
-          : x.f.title+' '+(x.kind==='saggio'?((SUBJ_META[x.f.subj]||SUBJ_META.x).label+' '+(x.f.work?x.f.work.title+' '+x.f.work.author:'')):x.s.name);
+          : x.kind==='app'
+            ? x.f.title+' '+(x.f.source||'')+' '+(x.f.ftype||'')+' '+(SUBJ_META[x.f.subj]||SUBJ_META.x).label
+            : x.f.title+' '+(x.kind==='saggio'?((SUBJ_META[x.f.subj]||SUBJ_META.x).label+' '+(x.f.work?x.f.work.title+' '+x.f.work.author:'')):x.s.name);
       return norm(hay).includes(norm(query));
     }).slice(0,9);
     label=list.length?`${list.length} risultat${list.length===1?'o':'i'}`:'';
@@ -1770,7 +1872,7 @@ function palRender(q){
   }else{
     box.innerHTML=`<li class="p-label">${label}</li>`+list.map((x,i)=>{
       const m=kindMeta(x);
-      const ic=x.kind==='opera'?'library':x.kind==='film'?'clapperboard':x.kind==='saggio'?'feather':icoType(x.f.type);
+      const ic=x.kind==='opera'?'library':x.kind==='film'?'clapperboard':x.kind==='app'?'newspaper':x.kind==='saggio'?'feather':icoType(x.f.type);
       return `<li><button class="p-item ${i===0?'sel':''}" data-file="${x.f.id}" data-kind="${x.kind}" style="--c:var(${m.tint})">
         <span class="p-ico"><i data-lucide="${ic}"></i></span>
         <span class="p-t">${hl(x.f.title,query)}</span>
@@ -1878,7 +1980,7 @@ async function updatePublished(mutator,msg){
     try{
       await ghPut('lezioni.json',textToB64(JSON.stringify(next)),msg,null,sha);
       publishedData=next;
-      useData(next.subjects,next.essays,next.films);
+      useData(next.subjects,next.essays,next.films,next.apps);
       return next;
     }catch(e){ if(e.status===409||e.status===422) continue; throw e; }
   }
@@ -1975,7 +2077,7 @@ function renderTwHome(){
     <div style="display:flex;justify-content:center">
       <button class="btn" data-tw="addfilmlink"><i data-lucide="clapperboard"></i> Scheda film con link — pagina viva</button>
     </div>
-    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b>, <b class="mono">saggio-</b> o <b class="mono">film-</b> il tipo si compila da solo. Per le parti di un'opera usa <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>): finiscono nell'opera giusta, in ordine. I riassunti si collegano dopo, con la matita.</span></p>
+    <p class="tw-hint"><i data-lucide="sparkles"></i><span>Se il nome inizia con <b class="mono">fil-</b>, <b class="mono">sto-</b>, <b class="mono">saggio-</b>, <b class="mono">film-</b> o <b class="mono">approfondimenti-</b> il tipo si compila da solo. Per le parti di un'opera usa <b class="mono">-p1</b>, <b class="mono">-p2</b>… (es. <span class="mono">saggio-storia-del-fascismo-p1.pdf</span>). I riassunti si collegano dopo, con la matita.</span></p>
     <div id="twQueue" style="display:flex;flex-direction:column;gap:.9rem"></div>
     <div id="twQueueBar" hidden style="display:flex;justify-content:flex-end">
       <button class="btn accent" data-tw="puball"><i data-lucide="upload"></i> Pubblica tutto</button>
@@ -2010,13 +2112,14 @@ function renderTwMeta(){
   const nS=ess.length;
   const nW=new Set(ess.filter(e=>e.work&&e.work.id).map(e=>e.work.id)).size;
   const nF=(publishedData?.films||[]).length;
-  el.innerHTML=`<b class="mono">${TCFG.owner}/${TCFG.repo}</b> · <b>${nL}</b> lezioni · <b>${nS}</b> saggi${nW?` in <b>${nW}</b> oper${nW===1?'a':'e'}`:''} · <b>${nF}</b> schede di film`;
+  const nA=(publishedData?.apps||[]).length;
+  el.innerHTML=`<b class="mono">${TCFG.owner}/${TCFG.repo}</b> · <b>${nL}</b> lezioni · <b>${nS}</b> saggi${nW?` in <b>${nW}</b> oper${nW===1?'a':'e'}`:''} · <b>${nF}</b> schede di film · <b>${nA}</b> pagine sparse`;
 }
 async function twReload(silent){
   try{
     const {json}=await ghGetPublished();
     publishedData=json;
-    useData(json.subjects,json.essays,json.films);
+    useData(json.subjects,json.essays,json.films,json.apps);
     renderPubList(); renderTwMeta(); fillDescFields();
     if(!silent) toast('Archivio ricaricato.','refresh-cw');
   }catch(e){ if(!silent) toast('Impossibile leggere l\u2019archivio: '+e.message,'info'); }
@@ -2027,7 +2130,8 @@ function renderPubList(){
   const subs=(publishedData?.subjects||[]);
   const ess=(publishedData?.essays||[]);
   const films=(publishedData?.films||[]);
-  if(!subs.some(s=>s.files.length)&&!ess.length&&!films.length){
+  const apps=(publishedData?.apps||[]);
+  if(!subs.some(s=>s.files.length)&&!ess.length&&!films.length&&!apps.length){
     box.innerHTML='<p class="tw-line">Nessuna pubblicazione: trascina il primo file qui sopra.</p>';
     return;
   }
@@ -2121,6 +2225,39 @@ function renderPubList(){
         <button class="btn accent" data-tw="saveedit" data-id="${f.id}" data-sub="flm"><i data-lucide="save"></i> Salva</button>
       </div>
     </div>`; };
+  const appEditor=f=>{
+    const m=SUBJ_META[f.subj]||SUBJ_META.x;
+    return `
+    <div class="pub-edit" style="--c:var(${m.tint})">
+      <p class="pub-h"><b>Modifica approfondimento</b> · il file online non viene rinominato</p>
+      <label class="fld">Titolo<input class="pe-title" value="${esc(f.title)}"></label>
+      <div class="fld-row">
+        <label class="fld">Fonte<input class="pe-source" value="${esc(f.source||'')}" placeholder="Le Monde Diplomatique, n. 212"></label>
+        <label class="fld">Tipo<select class="pe-ftype">
+          <option value="estratto" ${f.ftype==='estratto'?'selected':''}>Estratto da libro</option>
+          <option value="articolo" ${f.ftype==='articolo'?'selected':''}>Articolo di rivista</option>
+          <option value="attualita" ${(f.ftype||'attualita')==='attualita'?'selected':''}>Attualità</option>
+          <option value="civica" ${f.ftype==='civica'?'selected':''}>Educazione civica</option>
+        </select></label>
+      </div>
+      <div class="fld-row">
+        <label class="fld">Ambito<select class="pe-subj">
+          <option value="fil" ${f.subj==='fil'?'selected':''}>φ · Filosofia</option>
+          <option value="sto" ${f.subj==='sto'?'selected':''}>Σ · Storia</option>
+          <option value="x" ${f.subj==='x'?'selected':''}>¶ · Trasversale</option>
+        </select></label>
+        <label class="fld">Anno di riferimento<select class="pe-cls">
+          <option value="0">—</option>${[3,4,5].map(c=>`<option value="${c}" ${f.cls===c?'selected':''}>${c}ª</option>`).join('')}
+        </select></label>
+        <label class="fld">Data<input class="pe-date" type="date" value="${esc(f.date||'')}"></label>
+      </div>
+      ${riasBlock('app',f)}
+      <label class="fld">Descrizione<textarea class="pe-desc" rows="2">${esc(f.desc||'')}</textarea></label>
+      <div class="q-actions">
+        <button class="btn" data-tw="canceledit">Annulla</button>
+        <button class="btn accent" data-tw="saveedit" data-id="${f.id}" data-sub="app"><i data-lucide="save"></i> Salva</button>
+      </div>
+    </div>`; };
   box.innerHTML=
     subs.filter(s=>s.files.length).map(s=>`
       <div class="pub-group">
@@ -2163,6 +2300,20 @@ function renderPubList(){
             ${editBtn('flm',f.id)}
             <button class="ibtn" data-tw="del" data-id="${f.id}" data-sub="flm" aria-label="Elimina dall'archivio"><i data-lucide="trash-2"></i></button>
           </div>`; }).join('')}
+      </div>`:'')
+    + (apps.length?`
+      <div class="pub-group">
+        <p class="pub-h"><b>Approfondimenti</b> · ${apps.length} ${apps.length===1?'pagina':'pagine'}</p>
+        ${apps.map(f=>{
+          if(editKey==='app|'+f.id) return appEditor(f);
+          const m=SUBJ_META[f.subj]||SUBJ_META.x;
+          return `<div class="pub-row" style="--c:var(${m.tint})">
+            <span class="e-badge sm" aria-hidden="true">✦</span>
+            <b>${esc(f.title)}</b>
+            <span class="mono">${f.source?esc(f.source)+' · ':''}${fmtDate(f.date)}</span>
+            ${editBtn('app',f.id)}
+            <button class="ibtn" data-tw="del" data-id="${f.id}" data-sub="app" aria-label="Elimina dall'archivio"><i data-lucide="trash-2"></i></button>
+          </div>`; }).join('')}
       </div>`:'');
   icons();
 }
@@ -2171,10 +2322,11 @@ function findEditEntry(){
   const [sub,id]=editKey.split('|');
   if(sub==='sag') return publishedData.essays.find(x=>x.id===id);
   if(sub==='flm') return (publishedData.films||[]).find(x=>x.id===id);
+  if(sub==='app') return (publishedData.apps||[]).find(x=>x.id===id);
   return publishedData.subjects.find(s=>s.id===sub)?.files.find(x=>x.id===id);
 }
 async function saveEdit(sub,id,wrap,btn){
-  const isSag=sub==='sag', isFilm=sub==='flm';
+  const isSag=sub==='sag', isFilm=sub==='flm', isApp=sub==='app';
   const title=wrap.querySelector('.pe-title').value.trim();
   if(!title){ wrap.querySelector('.pe-title').focus(); toast('Il titolo non può restare vuoto.','info'); return; }
   const desc=wrap.querySelector('.pe-desc').value.trim();
@@ -2182,7 +2334,7 @@ async function saveEdit(sub,id,wrap,btn){
   const nd=/^\d{4}-\d{2}-\d{2}$/.test(ndRaw)?ndRaw:null;
   btn.disabled=true;
   try{
-    /* eventuale riassunto caricato (lezioni e saggi) */
+    /* eventuale riassunto caricato (lezioni, saggi, approfondimenti) */
     let riasObj=null;
     const riasInput=wrap.querySelector('.pe-rias');
     if(riasInput&&riasInput.files&&riasInput.files[0]){
@@ -2196,7 +2348,18 @@ async function saveEdit(sub,id,wrap,btn){
       riasObj={file:rfname,title:rtitle,type:rext,size:+(rf.size/1048576).toFixed(1),date:new Date().toISOString().slice(0,10)};
     }
     await updatePublished(j=>{
-      if(isFilm){
+      if(isApp){
+        const f=(j.apps||[]).find(x=>x.id===id);
+        if(!f) throw new Error('Voce non trovata');
+        f.title=title;
+        const ns=wrap.querySelector('.pe-subj'); if(ns) f.subj=ns.value;
+        const nc=wrap.querySelector('.pe-cls'); f.cls=(nc&&+nc.value)?+nc.value:null;
+        if(nd) f.date=nd;
+        f.source=(wrap.querySelector('.pe-source')||{}).value?.trim()||'';
+        f.ftype=(wrap.querySelector('.pe-ftype')||{}).value||'attualita';
+        if(riasObj) f.riassunto=riasObj;
+        f.desc=desc||'Approfondimento — '+(SUBJ_META[f.subj]||SUBJ_META.x).label+'.';
+      }else if(isFilm){
         const f=(j.films||[]).find(x=>x.id===id);
         if(!f) throw new Error('Voce non trovata');
         f.title=title;
@@ -2254,6 +2417,7 @@ async function removeRiassunto(sub,id,btn){
       let target=null;
       if(sub==='sag') target=j.essays.find(x=>x.id===id);
       else if(sub==='flm') target=(j.films||[]).find(x=>x.id===id);
+      else if(sub==='app') target=(j.apps||[]).find(x=>x.id===id);
       else { const s=j.subjects.find(x=>x.id===sub); target=s&&s.files.find(x=>x.id===id); }
       if(target&&target.riassunto){ rfile=target.riassunto.file; delete target.riassunto; }
       return j;
@@ -2269,7 +2433,7 @@ async function removeRiassunto(sub,id,btn){
 
 function guessMeta(name,ext){
   let base=name.replace(new RegExp('\\.'+ext+'$','i'),'');
-  let kind='lezione', sub=null, cls='', work=null, part=null, film=null, year=null;
+  let kind='lezione', sub=null, cls='', work=null, part=null, film=null, year=null, source='';
   let m=base.match(/^(film)[\s\-_.]+/i);
   if(m){
     kind='film'; sub='x'; base=base.slice(m[0].length);
@@ -2280,24 +2444,31 @@ function guessMeta(name,ext){
     const title=base||name.replace(/\.[^.]+$/,'');
     return { title:'Scheda: '+title, kind, sub, cls:'', pages:null, film:title, year, director:'' };
   }
-  m=base.match(/^(sag|saggio)[\s\-_.]+/i);
+  m=base.match(/^approf(ondimenti)?[\s\-_.]+/i);
   if(m){
-    kind='saggio'; base=base.slice(m[0].length);
+    kind='app'; sub='x'; base=base.slice(m[0].length);
     const a=base.match(/^(fil|sto)[\s\-_.]+/i);
-    if(a){ sub=a[1].toLowerCase(); base=base.slice(a[0].length); } else sub='x';
-    const pm=base.match(/[\s\-_.]p(?:arte)?[\-_. ]?(\d{1,2})$/i);
-    if(pm){ part=+pm[1]; base=base.slice(0,pm.index).replace(/[\s\-_.]+$/,'').trim(); }
+    if(a){ sub=a[1].toLowerCase(); base=base.slice(a[0].length); }
   }else{
-    m=base.match(/^(fil|sto)[\s\-_.]*/i);
-    if(m){ sub=m[1].toLowerCase(); base=base.slice(m[0].length); }
-    const c=base.match(/^(\d)[\s\-_.]+/);
-    if(c){ cls=c[1]; base=base.slice(c[0].length); }
+    m=base.match(/^(sag|saggio)[\s\-_.]+/i);
+    if(m){
+      kind='saggio'; base=base.slice(m[0].length);
+      const a=base.match(/^(fil|sto)[\s\-_.]+/i);
+      if(a){ sub=a[1].toLowerCase(); base=base.slice(a[0].length); } else sub='x';
+      const pm=base.match(/[\s\-_.]p(?:arte)?[\-_. ]?(\d{1,2})$/i);
+      if(pm){ part=+pm[1]; base=base.slice(0,pm.index).replace(/[\s\-_.]+$/,'').trim(); }
+    }else{
+      m=base.match(/^(fil|sto)[\s\-_.]*/i);
+      if(m){ sub=m[1].toLowerCase(); base=base.slice(m[0].length); }
+      const c=base.match(/^(\d)[\s\-_.]+/);
+      if(c){ cls=c[1]; base=base.slice(c[0].length); }
+    }
   }
   base=base.replace(/_+/g,' ').trim();
   if(base) base=base.charAt(0).toUpperCase()+base.slice(1);
   let title=base||name.replace(/\.[^.]+$/,'');
   if(part){ work=title; title='Parte '+part; }
-  return { title, kind, sub: sub||(kind==='saggio'?'x':'fil'), cls, pages:null, work, part, film, year, director:'' };
+  return { title, kind, sub: sub||'fil', cls, pages:null, work, part, film, year, director:'', source };
 }
 async function countPages(file,ext){
   try{
@@ -2329,6 +2500,7 @@ async function addFiles(files){
         <button type="button" data-k="lezione" class="${g.kind==='lezione'?'on':''}">Lezione</button>
         <button type="button" data-k="saggio" class="${g.kind==='saggio'?'on':''}">Saggio</button>
         <button type="button" data-k="film" class="${g.kind==='film'?'on':''}">Scheda film</button>
+        <button type="button" data-k="app" class="${g.kind==='app'?'on':''}">Approfondimento</button>
       </div>
       <label class="fld">Titolo${g.part?' (della parte)':''}<input class="q-title" value="${esc(g.title)}"></label>
       <div class="q-workbox" ${g.kind!=='saggio'?'hidden':''}>
@@ -2351,6 +2523,18 @@ async function addFiles(files){
         </div>
         <p class="tw-hint"><i data-lucide="clapperboard"></i><span>Il titolo del film apparirà in corsivo nella Filmoteca; la scheda resta un PDF normale, leggibile e scaricabile come i saggi.</span></p>
       </div>
+      <div class="q-appbox" ${g.kind!=='app'?'hidden':''}>
+        <div class="fld-row">
+          <label class="fld">Fonte<input class="q-fonte" placeholder="Le Monde Diplomatique, n. 212"></label>
+          <label class="fld">Tipo<select class="q-ftype">
+            <option value="estratto">Estratto da libro</option>
+            <option value="articolo">Articolo di rivista</option>
+            <option value="attualita" selected>Attualità</option>
+            <option value="civica">Educazione civica</option>
+          </select></label>
+        </div>
+        <p class="tw-hint"><i data-lucide="newspaper"></i><span>Pagina sparsa: comparirà nella sezione «Approfondimenti: Pagine sparse», aperta a tutte le classi, con la fonte dichiarata.</span></p>
+      </div>
       <div class="fld-row">
         <label class="fld q-lab-sub-lez" ${g.kind!=='lezione'?'hidden':''}>Materia<select class="q-subj">
           <option value="fil" ${g.sub==='fil'?'selected':''}>Filosofia</option>
@@ -2363,7 +2547,7 @@ async function addFiles(files){
         </select></label>
         <label class="fld q-lab-cls-lez" ${g.kind!=='lezione'?'hidden':''}>Anno<select class="q-cls">${[3,4,5].map(c=>`<option ${(+g.cls||4)===c?'selected':''}>${c}</option>`).join('')}</select></label>
         <label class="fld q-lab-cls-agg" ${g.kind==='lezione'?'hidden':''}>Anno di riferimento<select class="q-cls-sag">
-          <option value="0">—</option>${[3,4,5].map(c=>`<option ${+g.cls===c?'selected':''}>${c}</option>`).join('')}
+          <option value="0" ${!g.cls?'selected':''}>—</option>${[3,4,5].map(c=>`<option ${+g.cls===c?'selected':''}>${c}</option>`).join('')}
         </select></label>
         <label class="fld">Nº ${ext==='pdf'?'pagine':'slide'}<input class="q-pages" type="number" min="1" value="${g.pages||''}" placeholder="—"></label>
       </div>
@@ -2467,8 +2651,16 @@ async function publishOne(card){
   let desc=card.querySelector('.q-desc').value.trim();
   const date=new Date().toISOString().slice(0,10);
   const size=+(file.size/1048576).toFixed(1);
-  let subj,cls,fname,id,workObj=null,part=null,filmObj=null;
-  if(kind==='film'){
+  let subj,cls,fname,id,workObj=null,part=null,filmObj=null,appSource='',appFtype='';
+  if(kind==='app'){
+    subj=card.querySelector('.q-subj-sag').value;
+    cls=+card.querySelector('.q-cls-sag').value||null;
+    appSource=card.querySelector('.q-fonte')?.value?.trim()||'';
+    appFtype=card.querySelector('.q-ftype')?.value||'attualita';
+    id='app-'+slug(title);
+    fname='approfondimenti-'+slug(title)+'.'+ext;
+    if(!desc) desc='Approfondimento — '+(FTYPE_LABEL[appFtype]||'attualità')+(appSource?', fonte: '+appSource:'')+'.';
+  }else if(kind==='film'){
     subj=card.querySelector('.q-subj-sag').value;
     cls=+card.querySelector('.q-cls-sag').value||null;
     const filmT=card.querySelector('.q-film')?.value?.trim()||title;
@@ -2516,7 +2708,14 @@ async function publishOne(card){
     setP('Aggiorno l\u2019indice…',.85);
     await updatePublished(json=>{
       const entry={id,title,type:ext,cls,date,size,pages,file:fname,desc};
-      if(kind==='film'){
+      if(kind==='app'){
+        entry.subj=subj; entry.source=appSource; entry.ftype=appFtype;
+        if(!Array.isArray(json.apps)) json.apps=[];
+        const old=json.apps.find(x=>x.id===id);
+        entry.dl=old?old.dl:0;
+        const i=json.apps.findIndex(x=>x.id===id);
+        if(i>=0)json.apps[i]=entry;else json.apps.push(entry);
+      }else if(kind==='film'){
         entry.subj=subj; entry.film=filmObj.film; entry.director=filmObj.director; entry.year=filmObj.year;
         if(!Array.isArray(json.films)) json.films=[];
         const old=json.films.find(x=>x.id===id);
@@ -2539,7 +2738,7 @@ async function publishOne(card){
         if(i>=0)s.files[i]=entry;else s.files.push(entry);
       }
       return json;
-    },`Indice: + ${kind==='film'?'scheda film':kind==='saggio'?'saggio':'lezione'} «${title}»`);
+    },`Indice: + ${kind==='app'?'approfondimento':kind==='film'?'scheda film':kind==='saggio'?'saggio':'lezione'} «${title}»`);
     setP('Pubblicata',1);
     card.classList.add('done');
     renderPubList(); renderTwMeta();
@@ -2566,13 +2765,16 @@ async function deletePublished(sub,id,btn){
     ? (publishedData?.essays||[]).find(x=>x.id===id)
     : sub==='flm'
       ? (publishedData?.films||[]).find(x=>x.id===id)
-      : (publishedData?.subjects||[]).find(s=>s.id===sub)?.files.find(x=>x.id===id);
+      : sub==='app'
+        ? (publishedData?.apps||[]).find(x=>x.id===id)
+        : (publishedData?.subjects||[]).find(s=>s.id===sub)?.files.find(x=>x.id===id);
   if(!f) return;
   btn.disabled=true; btn.textContent='…';
   try{
     await updatePublished(json=>{
       if(sub==='sag') json.essays=json.essays.filter(x=>x.id!==id);
       else if(sub==='flm') json.films=(json.films||[]).filter(x=>x.id!==id);
+      else if(sub==='app') json.apps=(json.apps||[]).filter(x=>x.id!==id);
       else { const s=json.subjects.find(x=>x.id===sub); if(s) s.files=s.files.filter(x=>x.id!==id); }
       return json;
     },`Rimuove «${f.title}»`);
@@ -2603,6 +2805,7 @@ async function twSyncFolder(btn){
     json.subjects.forEach(s=>s.files.forEach(f=>indexed.add(f.file)));
     json.essays.forEach(f=>indexed.add(f.file));
     (json.films||[]).forEach(f=>indexed.add(f.file));
+    (json.apps||[]).forEach(f=>indexed.add(f.file));
     const plan=[];
     for(const x of files){
       if(indexed.has(x.name)) continue;
@@ -2620,6 +2823,7 @@ async function twSyncFolder(btn){
     json.subjects.forEach(s=>s.files.forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'lezione',sub:s.id,id:f.id}); }));
     json.essays.forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'saggio',id:f.id}); });
     (json.films||[]).forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'film',id:f.id}); });
+    (json.apps||[]).forEach(f=>{ if(f.file&&!names.has(f.file)) orphans.push({kind:'app',id:f.id}); });
     if(!plan.length&&!orphans.length){
       toast('Cartella e indice già allineati: nessuna novità.','check');
       return;
@@ -2629,13 +2833,20 @@ async function twSyncFolder(btn){
       j.subjects.forEach(s=>s.files.forEach(f=>taken.add(f.id)));
       j.essays.forEach(f=>taken.add(f.id));
       (j.films||[]).forEach(f=>taken.add(f.id));
+      (j.apps||[]).forEach(f=>taken.add(f.id));
       const have=new Set();
       j.subjects.forEach(s=>s.files.forEach(f=>have.add(f.file)));
       j.essays.forEach(f=>have.add(f.file));
       (j.films||[]).forEach(f=>have.add(f.file));
+      (j.apps||[]).forEach(f=>have.add(f.file));
       plan.forEach(p=>{
         if(have.has(p.name)) return;
-        if(p.g.kind==='film'){
+        if(p.g.kind==='app'){
+          const id=uniqueId('app-'+slug(p.g.title),taken); taken.add(id);
+          if(!Array.isArray(j.apps)) j.apps=[];
+          j.apps.push({id,title:p.g.title,type:p.ext,subj:p.g.sub,cls:p.g.cls?+p.g.cls:null,date:p.date,size:p.size,pages:null,dl:0,file:p.name,
+            source:'',ftype:'attualita',desc:'Approfondimento — '+(SUBJ_META[p.g.sub]||SUBJ_META.x).label+'.'});
+        }else if(p.g.kind==='film'){
           const id=uniqueId('film-'+slug(p.g.film||p.g.title),taken); taken.add(id);
           if(!Array.isArray(j.films)) j.films=[];
           j.films.push({id,title:p.g.title,type:p.ext,subj:p.g.sub,cls:null,date:p.date,size:p.size,pages:null,dl:0,file:p.name,
@@ -2660,6 +2871,7 @@ async function twSyncFolder(btn){
       orphans.forEach(o=>{
         if(o.kind==='saggio') j.essays=j.essays.filter(x=>x.id!==o.id);
         else if(o.kind==='film') j.films=(j.films||[]).filter(x=>x.id!==o.id);
+        else if(o.kind==='app') j.apps=(j.apps||[]).filter(x=>x.id!==o.id);
         else { const s=j.subjects.find(y=>y.id===o.sub); if(s) s.files=s.files.filter(x=>x.id!==o.id); }
       });
       return j;
@@ -2685,9 +2897,9 @@ async function loadPublicData(){
         const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
         if(!r.ok) throw new Error('HTTP '+r.status);
         const j=normalizeArchive(await r.json());
-        if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length||j.films.length){
+        if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length||j.films.length||j.apps.length){
           store.set(SNAP,JSON.stringify(j));
-          useData(j.subjects,j.essays,j.films);
+          useData(j.subjects,j.essays,j.films,j.apps);
           return;
         }
         break;
@@ -2700,8 +2912,8 @@ async function loadPublicData(){
   if(snap){
     try{
       const j=normalizeArchive(JSON.parse(snap));
-      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length||j.films.length){
-        useData(j.subjects,j.essays,j.films);
+      if(j.subjects.some(s=>s.files&&s.files.length)||j.essays.length||j.films.length||j.apps.length){
+        useData(j.subjects,j.essays,j.films,j.apps);
         toast('Rete inaffidabile: mostro l\u2019ultima copia salvata dell\u2019archivio.','wifi-off');
       }
     }catch{}
@@ -2763,6 +2975,12 @@ function bind(){
     $$('#filmFilter button').forEach(x=>x.classList.toggle('on',x===b));
     applyFilmFilter();
   });
+  $('#appFilter').addEventListener('click',e=>{
+    const b=e.target.closest('[data-asub]'); if(!b)return;
+    appFilter=b.dataset.asub;
+    $$('#appFilter button').forEach(x=>x.classList.toggle('on',x===b));
+    applyAppFilter();
+  });
   $$('.sorter button').forEach(b=>b.addEventListener('click',()=>{
     sortBy=b.dataset.sort;
     $$('.sorter button').forEach(x=>x.classList.toggle('on',x===b));
@@ -2803,6 +3021,7 @@ function bind(){
   });
   $('#essays').addEventListener('click',listHandler);
   $('#films').addEventListener('click',listHandler);
+  $('#apps').addEventListener('click',listHandler);
   $('#topList').addEventListener('click',e=>{
     const b=e.target.closest('[data-file]'); if(b)openFile(b.dataset.file);
   });
@@ -2890,6 +3109,7 @@ function bind(){
       if(ca) ca.hidden = kind==='lezione';
       const wb=card.querySelector('.q-workbox'); if(wb) wb.hidden = kind!=='saggio';
       const fb=card.querySelector('.q-filmbox'); if(fb) fb.hidden = kind!=='film';
+      const ab=card.querySelector('.q-appbox'); if(ab) ab.hidden = kind!=='app';
       return;
     }
     const el=e.target.closest('[data-tw]'); if(!el)return;
@@ -2955,7 +3175,7 @@ function bind(){
     }
   });
   window.addEventListener('hashchange',()=>{
-    const m=location.hash.match(/^#(?:lezione|saggio|film)-(.+)$/);
+    const m=location.hash.match(/^#(?:lezione|saggio|film|app)-(.+)$/);
     const mo=location.hash.match(/^#opera-(.+)$/);
     if(mo){
       const w=WORKS.find(x=>x.id===mo[1]);
@@ -2992,7 +3212,7 @@ function boot(){
   const savedTheme=store.get('qa-theme',null);
   if(savedTheme)document.documentElement.dataset.theme=savedTheme;
   const seed=seedArchive();
-  useData(seed.subjects,seed.essays,seed.films);
+  useData(seed.subjects,seed.essays,seed.films,seed.apps);
   bind();
   parallax();
   icons();
@@ -3003,7 +3223,7 @@ function boot(){
   idle(()=>{ ensurePdfJs().catch(()=>{}); });
   const w0=location.hash.match(/^#opera-(.+)$/);
   if(w0){ const w=WORKS.find(x=>x.id===w0[1]); if(w){ fillOpera(w); $('#opBack').classList.add('open'); document.body.classList.add('locked'); } }
-  const m0=location.hash.match(/^#(?:lezione|saggio|film)-(.+)$/);
+  const m0=location.hash.match(/^#(?:lezione|saggio|film|app)-(.+)$/);
   if(m0&&fileMap.has(m0[1])) openFile(m0[1]);
 }
 try{ boot(); }
